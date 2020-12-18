@@ -6,18 +6,18 @@ from .auth import require_auth
 short = Blueprint('short', __name__)
 
 
+@short.route('/')
+@require_auth
+def index():
+    return render_template('index.html')
+
+
 @short.route('/<short_url>')
 def redirect_to_url(short_url):
     link = Link.query.filter_by(short_url=short_url).first_or_404()
     link.visits = link.visits + 1
     db.session.commit()
     return redirect(link.original_url)
-
-
-@short.route('/')
-@require_auth
-def index():
-    return render_template('index.html')
 
 
 @short.route('/add_link', methods=['POST'])
