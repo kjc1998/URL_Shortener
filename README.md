@@ -8,3 +8,4 @@
 
 # Author
 Kai Jie Chow
+Daniel Goh
