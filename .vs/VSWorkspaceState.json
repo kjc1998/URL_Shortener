@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\url_shortener",
+    "\\url_shortener\\static",
+    "\\url_shortener\\templates"
+  ],
+  "SelectedNode": "\\url_shortener\\routes.py",
+  "PreviewInSolutionExplorer": false
+}
