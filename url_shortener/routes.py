@@ -2,6 +2,7 @@
 from .extensions import db, bcrypt
 from .forms import RegistrationForm, LoginForm
 from .models import User, Link
+import url_shortener.REST
 from flask_login import login_user, current_user, logout_user, login_required
 
 app = Blueprint('app', __name__)
