@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<form method='POST' action="{{ url_for('add_link') }}">
+<form method='POST' action="{{ url_for('app.add_link') }}">
     <input type="text" name="original_url">
     <input type="submit">
 </form>

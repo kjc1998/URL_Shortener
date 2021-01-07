@@ -1,7 +1,5 @@
-﻿from url_shortener import app
-
-
+﻿from url_shortener import appF
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    appF.run(debug=True)

@@ -2,7 +2,7 @@
 {% block content %}
 Old Link: {{ original_url }}
 <br />
-New Link: <a href="{{ url_for('redirect_to_url', short_url=new_link, _external = True) }}">
+New Link: <a href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
     {{ url_for('redirect_to_url', short_url=new_link, _external = True) }}
 </a>
 <!--{{ url_for('redirect_to_url', short_url=new_link, _external = True) }} is the full shortened link-->
