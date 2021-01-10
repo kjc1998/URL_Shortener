@@ -1,9 +1,9 @@
 ﻿from flask import render_template, url_for, flash, redirect, request, Blueprint
-from .extensions import db, bcrypt
 from .forms import RegistrationForm, LoginForm
 from .models import User, Link
-import url_shortener.REST
 from flask_login import login_user, current_user, logout_user, login_required
+import url_shortener.REST
+from .extensions import db, bcrypt, api
 
 app = Blueprint('app', __name__)
 
