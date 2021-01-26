@@ -17,3 +17,6 @@ api.init_app(appF)
 login_manager.init_app(appF)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
+
+# create database, won't overwrite existing storage
+db.create_all(app=appF)

@@ -1,4 +1,6 @@
-﻿from flask import render_template, url_for, flash, redirect, request, Blueprint
+﻿import string
+import random
+from flask import render_template, url_for, flash, redirect, request, Blueprint
 from .forms import RegistrationForm, LoginForm
 from .models import User, Link
 from flask_login import login_user, current_user, logout_user, login_required
@@ -22,8 +24,10 @@ def register():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
+        letters = string.ascii_letters
+        userID = ''.join(random.choice(letters) for i in range(10))
         user = User(username=form.username.data,
-                    email=form.email.data, password=hashed_password)
+                    email=form.email.data, password=hashed_password, user_id=userID)
 
         db.session.add(user)
         db.session.commit()

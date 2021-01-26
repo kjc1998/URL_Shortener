@@ -1,8 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
-Old Link: {{ original_url }}
+Old Link: <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
 <br />
-New Link: <a href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
+New Link: <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
     {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
 </a>
+
+<div>
+    <button class="qr-btn" onclick="generateQRCode()">Create QR Code</button>
+</div>
+
+<p id="qr-result"></p>
+        
+<canvas id="qr-code"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script>
+    
+    function generateQRCode() {
+        var qrtext = document.getElementById("NewLink").textContent;
+        var qr;
+        (function() {
+            qr = new QRious({
+            element: document.getElementById('qr-code'),
+            foreground: 'black',
+            size: 200,
+            value: qrtext,
+            });
+        })();
+
+        document.getElementById("qr-result").innerHTML = "QR code for " + qrtext +":";
+    }
+</script>
 {% endblock content%}
