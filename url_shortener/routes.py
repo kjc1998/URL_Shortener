@@ -90,6 +90,14 @@ def stats():
     return render_template('stats.html', links=links)
 
 
+@app.route('/add_link/<short>', methods=['GET', 'POST'])
+def link_page(short):
+    original_url = short
+    link = Link.query.filter_by(short_url=short).first()
+    return render_template('link_added.html',
+                           new_link=link.short_url, original_url=link.original_url)
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return '<h1>404</h1>', 404
