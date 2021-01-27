@@ -20,12 +20,11 @@ class Details(Resource):
     def post(self, userID, longURL):
         userLinks = User.query.filter_by(user_id=userID).first()
         urlLinks = userLinks.linkUser
-
         for link in urlLinks:
             if link.original_url == longURL:
                 return {"short_url": link.short_url}
 
-        # Not in database
+        # Create New
         link = Link(original_url=longURL, user_id=userLinks.id)
         db.session.add(link)
         db.session.commit()

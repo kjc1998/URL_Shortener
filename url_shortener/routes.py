@@ -1,10 +1,10 @@
 ﻿import string
 import random
+from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint
+import url_shortener.REST
 from .forms import RegistrationForm, LoginForm
 from .models import User, Link
-from flask_login import login_user, current_user, logout_user, login_required
-import url_shortener.REST
 from .extensions import db, bcrypt, api
 
 app = Blueprint('app', __name__)
@@ -76,8 +76,7 @@ def redirect_to_url(short_url):
 @login_required
 def add_link():
     original_url = request.form['original_url']
-    # LINK USER.ID INTO THE SHORTENED LINKS @Daniel
-    link = Link(original_url=original_url)
+    link = Link(original_url=original_url, user_id=current_user.id)
     db.session.add(link)
     db.session.commit()
     return render_template('link_added.html',
@@ -87,14 +86,13 @@ def add_link():
 @app.route('/stats')
 @login_required
 def stats():
-    # FILTER THIS SHIT @DANIEL
-    links = Link.query.all()
+    thisUser = User.query.filter_by(user_id=current_user.user_id).first()
+    links = thisUser.linkUser
     return render_template('stats.html', links=links)
 
 
 @app.route('/add_link/<short>', methods=['GET', 'POST'])
 def link_page(short):
-    original_url = short
     link = Link.query.filter_by(short_url=short).first()
     return render_template('link_added.html',
                            new_link=link.short_url, original_url=link.original_url)

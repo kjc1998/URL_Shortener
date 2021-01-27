@@ -1,3 +1,10 @@
 {
-  "CurrentProjectSetting": null
+  "CurrentProjectSetting": null,
+  "python.linting.pylintArgs": [
+    "--load-plugins",
+    "--disable=C0103",
+    "pylint_flask_sqlalchemy",
+    "pylint_flask"
+  ],
+  "ignore-classes": ["scoped_session"]
 }
