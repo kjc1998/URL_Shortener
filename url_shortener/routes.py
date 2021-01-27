@@ -76,6 +76,7 @@ def redirect_to_url(short_url):
 @login_required
 def add_link():
     original_url = request.form['original_url']
+    # LINK USER.ID INTO THE SHORTENED LINKS @Daniel
     link = Link(original_url=original_url)
     db.session.add(link)
     db.session.commit()
@@ -86,6 +87,7 @@ def add_link():
 @app.route('/stats')
 @login_required
 def stats():
+    # FILTER THIS SHIT @DANIEL
     links = Link.query.all()
     return render_template('stats.html', links=links)
 

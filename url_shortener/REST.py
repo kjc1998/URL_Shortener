@@ -11,7 +11,7 @@ class Login(Resource):
     def post(self, userName, passWord):
         user = User.query.filter_by(username=userName).first()
         if user and bcrypt.check_password_hash(user.password, passWord):
-            return {"userid": "USER.userid @Daniel"}
+            return {"userid": user.user_id}
         else:
             abort(404, message="User not recognised")
 
@@ -19,18 +19,19 @@ class Login(Resource):
 class Details(Resource):
     def post(self, userID, longURL):
         userLinks = User.query.filter_by(user_id=userID).first()
-        # relation id    urlLinks = Link.query.filter_by ...
-        urlLinks = []
+        urlLinks = userLinks.linkUser
+
         for link in urlLinks:
             if link.original_url == longURL:
                 return {"short_url": link.short_url}
 
         # Not in database
-        link = Link(original_url=longURL)
+        link = Link(original_url=longURL, user_id=userLinks.id)
         db.session.add(link)
         db.session.commit()
+
         return {"short_url": link.short_url}
 
 
 api.add_resource(Login, "/login/<string:userName>/<string:passWord>")
-api.add_resource(Details, "/details/<string:userID>/<string:longURL>")
+api.add_resource(Details, "/details/<string:userID>/<path:longURL>")
