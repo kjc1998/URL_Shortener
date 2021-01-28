@@ -1,12 +1,15 @@
 # URL_Shortener
 
 # API
-{To be amended}
+
+Details listed in REST.py
 
 # WebPage
+
 {To be amended}
 
 # Author
+
 Kai Jie Chow
 
 Daniel Goh
