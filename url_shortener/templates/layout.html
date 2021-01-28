@@ -30,6 +30,9 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if current_user.is_authenticated %}
+                            {% if current_user.admin == True %}
+                                <a class="nav-item nav-link" href="">Admin</a>    
+                            {% endif %}
                             <a class="nav-item nav-link" href="{{ url_for('app.shortener') }}">Shortener</a>
                             <a class="nav-item nav-link" href="{{ url_for('app.stats') }}">Stats</a>
                             <a class="nav-item nav-link" href="{{ url_for('app.logout') }}">Log Out</a>

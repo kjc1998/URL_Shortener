@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     user_id = db.Column(db.String(60), nullable=False)
-    admin = db.Column(db.Boolean)  # False True
+    admin = db.Column(db.Boolean)
     linkUser = db.relationship('Link', backref='user', lazy=True)
 
     def __repr__(self):
