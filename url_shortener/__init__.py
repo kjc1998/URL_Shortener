@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import url_shortener.routes
 from .extensions import db, login_manager, bcrypt, api
+from .models import User, Link
 
 
 appF = Flask(__name__)
@@ -20,4 +21,4 @@ login_manager.init_app(appF)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-# db.create_all(app=appF)
+db.create_all(app=appF)
