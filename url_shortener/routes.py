@@ -5,7 +5,7 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint
 import url_shortener.REST
 from .forms import RegistrationForm, LoginForm
 from .models import User, Link
-from .extensions import db, bcrypt, api
+from .extensions import db, bcrypt, api, admin_USERID
 
 app = Blueprint('app', __name__)
 
@@ -38,6 +38,12 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if int(current_user.user_id) in admin_USERID:
+        current_user.admin = True
+    else:
+        pass
+    db.session.commit()
+
     if current_user.is_authenticated:
         return redirect(url_for('app.shortener'))
     form = LoginForm()
