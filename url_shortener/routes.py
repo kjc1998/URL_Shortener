@@ -40,9 +40,9 @@ def register():
 def login():
     if int(current_user.user_id) in admin_USERID:
         current_user.admin = True
+        db.session.commit()
     else:
         pass
-    db.session.commit()
 
     if current_user.is_authenticated:
         return redirect(url_for('app.shortener'))
