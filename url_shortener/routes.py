@@ -61,7 +61,7 @@ def logout():
 @app.route("/shortener")
 @login_required
 def shortener():
-    if int(current_user.user_id) in admin_USERID:
+    if current_user.user_id in admin_USERID:
         current_user.admin = True
         db.session.commit()
     else:
