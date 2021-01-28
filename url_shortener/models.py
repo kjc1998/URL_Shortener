@@ -1,8 +1,8 @@
 ﻿import string
 from random import choices
 from datetime import datetime
-from .extensions import db, login_manager
 from flask_login import UserMixin
+from .extensions import db, login_manager
 
 
 @login_manager.user_loader
