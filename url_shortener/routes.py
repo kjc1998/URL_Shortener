@@ -38,12 +38,6 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if int(current_user.user_id) in admin_USERID:
-        current_user.admin = True
-        db.session.commit()
-    else:
-        pass
-
     if current_user.is_authenticated:
         return redirect(url_for('app.shortener'))
     form = LoginForm()
@@ -67,6 +61,11 @@ def logout():
 @app.route("/shortener")
 @login_required
 def shortener():
+    if int(current_user.user_id) in admin_USERID:
+        current_user.admin = True
+        db.session.commit()
+    else:
+        pass
     return render_template('shortener.html')
 
 
