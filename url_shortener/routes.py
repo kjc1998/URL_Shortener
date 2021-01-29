@@ -128,4 +128,18 @@ def admin(userID):
         flash('You have no access to this page', 'danger')
         return render_template('home.html')
     users = User.query.all()
-    return render_template('admin.html', users=users)
+    return render_template('admin.html', users=users, primaryAdmin=admin_USERID[0], currentUser=current_user)
+
+
+@app.route('/admin/<userid>', methods=['POST'])
+@login_required
+def setAdmin(userid):
+    changedUser = User.query.filter_by(user_id=userid).first()
+    if userid in admin_USERID:
+        admin_USERID.remove(userid)
+    elif userid not in admin_USERID:
+        admin_USERID.append(userid)
+    changedUser.admin = not changedUser.admin
+    db.session.commit()
+    users = User.query.all()
+    return render_template('admin.html', users=users, primaryAdmin=admin_USERID[0], currentUser=current_user)
