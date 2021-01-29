@@ -128,12 +128,13 @@ def admin(userID):
         flash('You have no access to this page', 'danger')
         return render_template('home.html')
     users = User.query.all()
-    return render_template('admin.html', users=users, primaryAdmin=admin_USERID[0], currentUser=current_user)
+    return render_template('admin.html', users=users,
+                           primaryAdmin=admin_USERID[0], currentUser=current_user)
 
 
-@app.route('/admin/<userid>', methods=['POST'])
+@app.route('/admin/<userID>', methods=['POST'])
 @login_required
-def setAdmin(userid):
+def setAdmin(userID):
     changedUserID = request.form['submit_button']
     changedUser = User.query.filter_by(user_id=changedUserID).first()
     if changedUserID in admin_USERID:
@@ -142,4 +143,4 @@ def setAdmin(userid):
         admin_USERID.append(changedUserID)
     changedUser.admin = not changedUser.admin
     db.session.commit()
-    return redirect(url_for('app.setAdmin', userid=current_user.user_id))
+    return redirect(url_for('app.setAdmin', userID=userID))
