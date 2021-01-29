@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1> Home </h1>
-    <h3> User ID: {{ current_user.user_id }} </h3>
+    {% if current_user.is_authenticated %}
+        <h3> User ID: {{ current_user.user_id }} </h3>
+    {% endif %}
 {% endblock content%}
