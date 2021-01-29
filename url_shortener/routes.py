@@ -1,5 +1,6 @@
 ﻿import string
 import random
+from sqlalchemy import asc, desc
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 import url_shortener.REST
@@ -127,7 +128,7 @@ def admin(userID):
     if current_user.admin is not True:
         flash('You have no access to this page', 'danger')
         return render_template('home.html')
-    users = User.query.all()
+    users = User.query.order_by(User.id).all()
     return render_template('admin.html', users=users,
                            primaryAdmin=admin_USERID[0], currentUser=current_user)
 
