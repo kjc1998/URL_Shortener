@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1> Admin </h1><br>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>User ID</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <th>{{ user.username }}</th>
+        <th>{{ user.email }}</th>
+        <th>{{ user.user_id }}</th>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content%}

@@ -9,10 +9,25 @@ from .extensions import db, bcrypt, api, admin_USERID
 
 app = Blueprint('app', __name__)
 
+# Functions
+
+
+def checkAdmin():
+    if current_user.user_id in admin_USERID:
+        current_user.admin = True
+        db.session.commit()
+    else:
+        current_user.admin = False
+        db.session.commit()
+    return None
+# End
+
 
 @app.route("/")
 @app.route("/home")
 def home():
+    if current_user.is_authenticated:
+        checkAdmin()
     return render_template('home.html')
 
 
@@ -61,11 +76,7 @@ def logout():
 @app.route("/shortener")
 @login_required
 def shortener():
-    if current_user.user_id in admin_USERID:
-        current_user.admin = True
-        db.session.commit()
-    else:
-        pass
+    checkAdmin()
     return render_template('shortener.html')
 
 
@@ -80,6 +91,7 @@ def redirect_to_url(short_url):
 @app.route('/add_link', methods=['POST'])
 @login_required
 def add_link():
+    checkAdmin()
     original_url = request.form['original_url']
     link = Link(original_url=original_url, user_id=current_user.id)
     db.session.add(link)
@@ -91,6 +103,7 @@ def add_link():
 @app.route('/stats')
 @login_required
 def stats():
+    checkAdmin()
     thisUser = User.query.filter_by(user_id=current_user.user_id).first()
     links = thisUser.linkUser
     return render_template('stats.html', links=links)
@@ -106,3 +119,10 @@ def link_page(short):
 @app.errorhandler(404)
 def page_not_found(e):
     return '<h1>404</h1>', 404
+
+
+@app.route('/admin/<userID>')
+@login_required
+def admin(userID):
+    users = User.query.all()
+    return render_template('admin.html', users=users)
