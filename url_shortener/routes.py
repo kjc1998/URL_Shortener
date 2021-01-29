@@ -134,12 +134,12 @@ def admin(userID):
 @app.route('/admin/<userid>', methods=['POST'])
 @login_required
 def setAdmin(userid):
-    changedUser = User.query.filter_by(user_id=userid).first()
-    if userid in admin_USERID:
-        admin_USERID.remove(userid)
-    elif userid not in admin_USERID:
-        admin_USERID.append(userid)
+    changedUserID = request.form['submit_button']
+    changedUser = User.query.filter_by(user_id=changedUserID).first()
+    if changedUserID in admin_USERID:
+        admin_USERID.remove(changedUserID)
+    elif changedUserID not in admin_USERID:
+        admin_USERID.append(changedUserID)
     changedUser.admin = not changedUser.admin
     db.session.commit()
-    users = User.query.all()
-    return render_template('admin.html', users=users, primaryAdmin=admin_USERID[0], currentUser=current_user)
+    return redirect(url_for('app.setAdmin', userid=current_user.user_id))

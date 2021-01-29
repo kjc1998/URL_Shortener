@@ -21,15 +21,15 @@
             {% elif user.admin==True and user.user_id!=primaryAdmin %}
                 <th>
                     True
-                    <form action="{{ url_for('app.setAdmin', userid=user.user_id) }}" method="POST">
-                        <button>Remove Admin</button>
+                    <form action="{{ url_for('app.setAdmin', userid=current_user.user_id) }}" method="POST">
+                        <button name="submit_button" value="{{ user.user_id }}">Remove Admin</button>
                     </form>
                 </th>
             {% else %}
                 <th>
                     False
-                    <form action="{{ url_for('app.setAdmin', userid=user.user_id) }}" method="POST">
-                        <button>Set Admin</button>
+                    <form action="{{ url_for('app.setAdmin', userid=current_user.user_id) }}" method="POST">
+                        <button name="submit_button" value="{{ user.user_id }}">Set Admin</button>
                     </form>
                 </th>
             {% endif %}
