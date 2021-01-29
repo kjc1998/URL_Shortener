@@ -124,5 +124,8 @@ def page_not_found(e):
 @app.route('/admin/<userID>')
 @login_required
 def admin(userID):
+    if current_user.admin is not True:
+        flash('You have no access to this page', 'danger')
+        return render_template('home.html')
     users = User.query.all()
     return render_template('admin.html', users=users)
