@@ -2,7 +2,7 @@
 import random
 from sqlalchemy import asc, desc
 from flask_login import login_user, current_user, logout_user, login_required
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
 import url_shortener.REST
 from .forms import RegistrationForm, LoginForm
 from .models import User, Link
@@ -98,7 +98,7 @@ def add_link():
     db.session.add(link)
     db.session.commit()
     return render_template('link_added.html',
-                           new_link=link.short_url, original_url=link.original_url)
+                           new_link=link.short_url, original_url=link.original_url, link=link)
 
 
 @app.route('/stats')
@@ -114,7 +114,7 @@ def stats():
 def link_page(short):
     link = Link.query.filter_by(short_url=short).first()
     return render_template('link_added.html',
-                           new_link=link.short_url, original_url=link.original_url)
+                           new_link=link.short_url, original_url=link.original_url, link=link)
 
 
 @app.errorhandler(404)
@@ -145,3 +145,14 @@ def setAdmin(userID):
     changedUser.admin = not changedUser.admin
     db.session.commit()
     return redirect(url_for('app.setAdmin', userID=userID))
+
+@app.route("/add_link/<link_id>/delete", methods=['POST'])
+@login_required
+def delete_link(link_id):
+    link = Link.query.get_or_404(link_id)
+    if link.author != current_user:
+        abort(403)
+    db.session.delete(link)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('app.stats', link=link))
