@@ -3,6 +3,7 @@
 # API
 
 Details listed in REST.py
+UserID is required, follwed by long url_link
 
 # WebPage
 
