@@ -6,8 +6,7 @@ Details listed in REST.py
 
 # WebPage
 
-Heroku
-Local Commit
+Heroku WebPage: https://spshurl.herokuapp.com/
 
 # Author
 
