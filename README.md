@@ -7,7 +7,7 @@ Details listed in REST.py
 # WebPage
 
 Heroku
-Remote Commit
+Local Commit
 
 # Author
 
