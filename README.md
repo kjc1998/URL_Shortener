@@ -10,10 +10,10 @@ Details listed in REST.py
 
 # Author
 
-Kai Jie Chow
+Kai Jie Chow - Project Lead
 
-Daniel Goh
+Daniel Goh - Backend Designer
 
-Ben Wo Yew
+Ben Wo Yew - Data Analytics
 
-Jeremy Lee
+Jeremy Lee - Frontend Designer
