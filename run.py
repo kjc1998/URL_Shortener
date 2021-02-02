@@ -3,5 +3,4 @@
 
 if __name__ == '__main__':
     # appF.run(debug=True)  # local host
-    # Test
     appF.run()
