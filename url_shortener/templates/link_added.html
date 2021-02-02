@@ -41,8 +41,8 @@ New Link: <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-          <form action="{{ url_for('app.delete_link', link_id=link.id) }}" method="POST">
-            <input class="btn btn-danger" type="submit" value="Delete">
+          <form action="{{ url_for('app.delete_link') }}" method="POST">
+            <button name="delete_button" class="btn btn-danger" value="{{ link.id }}">Delete</button>
           </form>
         </div>
       </div>

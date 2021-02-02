@@ -132,13 +132,14 @@ def setAdmin(userID):
     return redirect(url_for('app.setAdmin', userID=userID))
 
 
-@app.route("/add_link/<link_id>/delete", methods=['POST'])
+@app.route("/add_link/delete", methods=['POST'])
 @login_required
-def delete_link(link_id):
+def delete_link():
+    link_id = request.form['delete_button']
     link = Link.query.get_or_404(link_id)
     if link.author != current_user:
         abort(403)
     db.session.delete(link)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('app.stats', link=link))
+    return redirect(url_for('app.stats'))
