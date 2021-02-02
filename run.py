@@ -2,5 +2,5 @@
 
 
 if __name__ == '__main__':
-    # appF.run(debug=True)  # local host
-    appF.run()
+    appF.run(debug=True)  # local host
+    # appF.run()
