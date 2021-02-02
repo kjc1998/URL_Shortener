@@ -9,9 +9,6 @@ UserID is required, follwed by long url_link
 
 Heroku WebPage: https://spshurl.herokuapp.com/
 Test
-{To be added}
-Hello Remote
-Hello Local
 
 # Author
 
