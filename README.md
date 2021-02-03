@@ -3,17 +3,20 @@
 # API
 
 Details listed in REST.py
+UserID is required, follwed by long url_link
 
 # WebPage
 
-{To be amended}
+Heroku WebPage: https://spshurl.herokuapp.com/
+Test
+Daniel was here
 
 # Author
 
-Kai Jie Chow
+Kai Jie Chow - Project Lead
 
-Daniel Goh
+Daniel Goh - Backend Designer
 
-Ben Wo Yew
+Ben Wo Yew - Data Analytics
 
-Jeremy Lee
+Jeremy Lee - Frontend Designer
