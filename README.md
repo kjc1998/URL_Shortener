@@ -9,6 +9,8 @@ UserID is required, follwed by long url_link
 
 Heroku WebPage: https://spshurl.herokuapp.com/
 Test
+Daniel was here
+KaiJie was here
 
 # Author
 
