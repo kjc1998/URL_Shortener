@@ -1,0 +1,32 @@
+body {  
+    background: #1D1F20;
+    padding: 16px;
+  }
+
+  :root {
+    --green: #00FF00;
+    --white: #ffffff;
+    --black: #000000;
+  }
+  
+  .light-theme {
+    --bg: var(--white);
+  }
+
+  body {
+    background: var(--bg);
+}
+
+  canvas {
+    border: 1px dotted red;
+  }
+  
+
+
+  .chart-container {
+    position: relative;
+    margin: auto;
+    height: 50vh;
+    width: 50vw;
+  }
+  
