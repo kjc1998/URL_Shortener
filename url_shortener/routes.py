@@ -1,5 +1,6 @@
 ﻿import string
 import random
+import tldextract
 from sqlalchemy import asc, desc
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
@@ -84,7 +85,9 @@ def redirect_to_url(short_url):
 @login_required
 def add_link():
     original_url = request.form['original_url']
-    link = Link(original_url=original_url, user_id=current_user.id)
+    ext = tldextract.extract(original_url)
+    Domain = ext.domain
+    link = Link(original_url=original_url, domain_url=Domain, user_id=current_user.id)
     db.session.add(link)
     db.session.commit()
     return render_template('link_added.html',
@@ -143,3 +146,12 @@ def delete_link():
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('app.stats'))
+
+@app.route("/graph")
+@login_required
+def global_graph():
+    link = Link.query.all()
+    return render_template('usergraph.html', link=link)
+    # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    # values = [10, 9, 8, 7, 6, 4, 7, 8]
+    # return render_template('usergraph.html', values=values, labels=labels)
