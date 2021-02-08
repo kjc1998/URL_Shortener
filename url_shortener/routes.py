@@ -11,11 +11,6 @@ from .extensions import db, bcrypt, api, admin_USERID
 
 app = Blueprint('app', __name__)
 
-# Functions
-
-
-# End
-
 
 @app.route("/")
 @app.route("/home")
@@ -87,7 +82,8 @@ def add_link():
     original_url = request.form['original_url']
     ext = tldextract.extract(original_url)
     Domain = ext.domain
-    link = Link(original_url=original_url, domain_url=Domain, user_id=current_user.id)
+    link = Link(original_url=original_url,
+                domain_url=Domain, user_id=current_user.id)
     db.session.add(link)
     db.session.commit()
     return render_template('link_added.html',
@@ -146,6 +142,7 @@ def delete_link():
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('app.stats'))
+
 
 @app.route("/graph")
 @login_required
