@@ -578,6 +578,6 @@ html {
     transform: translateY(0px);
   }
   to {
-    transform: translateY(-1500px);
+    transform: translateY(-1000px);
   }
 }
