@@ -148,7 +148,7 @@ def delete_link():
 @login_required
 def global_graph():
     link = Link.query.all()
-    return render_template('usergraph.html', link=link)
+    return render_template('graph.html', link=link)
     # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
     # values = [10, 9, 8, 7, 6, 4, 7, 8]
     # return render_template('usergraph.html', values=values, labels=labels)

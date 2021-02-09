@@ -1,50 +1,52 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1> Admin </h1><br>
-<table>
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>User ID</th>
-        <th>Admin</th>
-    </tr>
-    {% for user in users %}
-    <tr>
-        <th>{{ user.username }}</th>
-        <th>{{ user.email }}</th>
-        <th>{{ user.user_id }}</th>
-        {% if currentUser.user_id==primaryAdmin %}
-            {% if user.admin==True and user.user_id==primaryAdmin %}
-                <th>
-                    True<br>Primary Admin
-                </th>
-            {% elif user.admin==True and user.user_id!=primaryAdmin %}
-                <th>
-                    True
-                    <form action="{{ url_for('app.setAdmin', userID=current_user.user_id) }}" method="POST">
-                        <button name="submit_button" value="{{ user.user_id }}">Remove Admin</button>
-                    </form>
-                </th>
-            {% else %}
-                <th>
-                    False
-                    <form action="{{ url_for('app.setAdmin', userID=current_user.user_id) }}" method="POST">
-                        <button name="submit_button" value="{{ user.user_id }}">Set Admin</button>
-                    </form>
-                </th>
-            {% endif %}
-        {% else %}
-            {% if user.admin==True %}
-                <th>
-                    True
-                </th>
+<div style="position:relative">
+    <h1> Admin </h1><br>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>User ID</th>
+            <th>Admin</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <th>{{ user.username }}</th>
+            <th>{{ user.email }}</th>
+            <th>{{ user.user_id }}</th>
+            {% if currentUser.user_id==primaryAdmin %}
+                {% if user.admin==True and user.user_id==primaryAdmin %}
+                    <th>
+                        True<br>Primary Admin
+                    </th>
+                {% elif user.admin==True and user.user_id!=primaryAdmin %}
+                    <th>
+                        True
+                        <form action="{{ url_for('app.setAdmin', userID=current_user.user_id) }}" method="POST">
+                            <button name="submit_button" value="{{ user.user_id }}">Remove Admin</button>
+                        </form>
+                    </th>
                 {% else %}
-                <th>
-                    False
-                </th>
+                    <th>
+                        False
+                        <form action="{{ url_for('app.setAdmin', userID=current_user.user_id) }}" method="POST">
+                            <button name="submit_button" value="{{ user.user_id }}">Set Admin</button>
+                        </form>
+                    </th>
+                {% endif %}
+            {% else %}
+                {% if user.admin==True %}
+                    <th>
+                        True
+                    </th>
+                    {% else %}
+                    <th>
+                        False
+                    </th>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    </tr>
-    {% endfor %}
-</table>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock content%}

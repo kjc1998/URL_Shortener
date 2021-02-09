@@ -1,16 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for link in links %}
-Original Url: <a href='{{ link.original_url }}'>{{ link.original_url }}</a>
-<br />
-Short URL: <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
+<div style="position:relative">
+    {% for link in links %}
+    Original Url: <a href='{{ link.original_url }}'>{{ link.original_url }}</a>
+    <br>
+    Short URL: <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
 
-<br />
-Visits: {{ link.visits }}
-<br />
-<a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
-<br />
-<br />
-{% endfor %}
-
+    <br>
+    Visits: {{ link.visits }}
+    <br>
+    <a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
+    <br>
+    <br>
+    {% endfor %}
+</div>
 {% endblock content%}

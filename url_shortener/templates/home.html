@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
+<div style="position:relative">
     <h1> Home </h1>
+    <br>
     {% if current_user.is_authenticated %}
         <h3> User ID: {{ current_user.user_id }} </h3>
     {% endif %}
+</div>
 {% endblock content%}
