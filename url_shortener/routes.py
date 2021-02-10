@@ -32,7 +32,6 @@ def register():
         userID = ''.join(random.choice(letters) for i in range(10))
         user = User(username=form.username.data,
                     email=form.email.data, password=hashed_password, user_id=userID)
-
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -43,7 +42,7 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('app.shortener'))
+        return redirect(url_for('app.home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
