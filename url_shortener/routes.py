@@ -47,8 +47,8 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    checkPrimaryAdmin()
     if current_user.is_authenticated:
+        checkPrimaryAdmin()
         return redirect(url_for('app.home'))
     form = LoginForm()
     if form.validate_on_submit():
