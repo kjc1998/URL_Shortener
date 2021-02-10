@@ -158,7 +158,7 @@ nav{
         right: 0px;
         height: 92vh;
         top: 8vh;
-        background-color: rgb(71, 69, 69);
+        background-color: #141C26; 
         display: flex;
         flex-direction: column;
         align-items: center; 
@@ -219,9 +219,10 @@ nav{
     margin: auto;
     justify-content: center;
     max-width: 600px;
+    height: 600px;
     padding: 1em;
     
-    background: rgb(0, 0, 0); 
+    background: transparent; 
     border-radius: 50px;
     backdrop-filter: blur(40px);
     border: solid 2px transparent;
@@ -284,4 +285,12 @@ nav{
   display: block;
   margin: 0 auto;
   fill: white;
+}
+
+.roow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: transparent;
+  max-width: 600px;
 }

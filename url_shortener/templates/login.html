@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-<span class="brSpace"></span>
 <div class="content-section" style="display: flex; width: 500px; justify-content: center; margin: auto;">
     <form method="POST" action="" style="width:80%;">
         {{ form.hidden_tag() }}
@@ -48,7 +47,7 @@
                
     </form>
 </div>
-<div class="border-top-light pt-3" style="display: flex; width: 500px; justify-content: center; margin: auto;">
+<div class="border-top-light pt-3" style="display: flex; max-width: 600px; justify-content: start; margin: auto;">
     <small class="text-muted" style="width: 80%; padding: 0px 20px;">
         <mark style="color:white; background-color: transparent;">Don't have an account?</mark><a class="ml-2" href="{{ url_for('app.register') }}">Register</a>
     </small>
