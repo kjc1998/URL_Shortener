@@ -1,5 +1,6 @@
 ﻿import string
 import random
+import tldextract
 from sqlalchemy import asc, desc
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
@@ -10,25 +11,12 @@ from .extensions import db, bcrypt, api, admin_USERID
 
 app = Blueprint('app', __name__)
 
-# Functions
-
-
-def checkAdmin():
-    if current_user.user_id in admin_USERID:
-        current_user.admin = True
-        db.session.commit()
-    else:
-        current_user.admin = False
-        db.session.commit()
-    return None
-# End
-
 
 @app.route("/")
 @app.route("/home")
 def home():
     if current_user.is_authenticated:
-        checkAdmin()
+        pass
     return render_template('home.html')
 
 
@@ -77,7 +65,6 @@ def logout():
 @app.route("/shortener")
 @login_required
 def shortener():
-    checkAdmin()
     return render_template('shortener.html')
 
 
@@ -92,9 +79,11 @@ def redirect_to_url(short_url):
 @app.route('/add_link', methods=['POST'])
 @login_required
 def add_link():
-    checkAdmin()
     original_url = request.form['original_url']
-    link = Link(original_url=original_url, user_id=current_user.id)
+    ext = tldextract.extract(original_url)
+    Domain = ext.domain
+    link = Link(original_url=original_url,
+                domain_url=Domain, user_id=current_user.id)
     db.session.add(link)
     db.session.commit()
     return render_template('link_added.html',
@@ -104,7 +93,6 @@ def add_link():
 @app.route('/stats')
 @login_required
 def stats():
-    checkAdmin()
     thisUser = User.query.filter_by(user_id=current_user.user_id).first()
     links = thisUser.linkUser
     return render_template('stats.html', links=links)
@@ -138,21 +126,29 @@ def admin(userID):
 def setAdmin(userID):
     changedUserID = request.form['submit_button']
     changedUser = User.query.filter_by(user_id=changedUserID).first()
-    if changedUserID in admin_USERID:
-        admin_USERID.remove(changedUserID)
-    elif changedUserID not in admin_USERID:
-        admin_USERID.append(changedUserID)
     changedUser.admin = not changedUser.admin
     db.session.commit()
     return redirect(url_for('app.setAdmin', userID=userID))
 
-@app.route("/add_link/<link_id>/delete", methods=['POST'])
+
+@app.route("/add_link/delete", methods=['POST'])
 @login_required
-def delete_link(link_id):
+def delete_link():
+    link_id = request.form['delete_button']
     link = Link.query.get_or_404(link_id)
     if link.author != current_user:
         abort(403)
     db.session.delete(link)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('app.stats', link=link))
+    return redirect(url_for('app.stats'))
+
+
+@app.route("/graph")
+@login_required
+def global_graph():
+    link = Link.query.all()
+    return render_template('graph.html', link=link)
+    # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    # values = [10, 9, 8, 7, 6, 4, 7, 8]
+    # return render_template('usergraph.html', values=values, labels=labels)

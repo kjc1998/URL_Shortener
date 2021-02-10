@@ -1,98 +1,81 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='trythis.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css')}}">
-    <style>
-        body{
-            color: white;
-            background-color: black;
-        }
-    </style>
-    {% if title %}
-    <title> URL Shortener - {{ title }} </title>
-    {% else %}
-    <title> URL Shortener</title>
-    {% endif %}
-</head>
-<body>
-    <nav>
-        <div class="leftSide">
-            <a class="urlLogo" href="/"> <h4>URL shortener</h4></a>
-        </div>
-        <div>
-            {% if current_user.is_authenticated %}
-                {% if current_user.admin == True %}
-                    <ul class="rightSide">
-                        <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
-                        <li><a class="loginLogo" href="#">Login</a></li>
-                        <li><a class="RegisterLogo" href="#">Register</a></li>
-                    </ul>
-                {% endif %}
-                <ul class="rightSide">
-                    <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
-                    <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
-                    <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
-                </ul>
-            {% else %}
-            <ul class="rightSide">
-                <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
-                <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
-            </ul>
-            {% endif %}
-        </div>
-
-        
-        <!--Mobile config-->
-        <div class="burgerView">
-            <div class="top"></div>
-            <div class="mid"></div>
-            <div class="bottom"></div>
-        </div>
-    </nav>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='parallaxStar.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='trythis.css')}}"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css')}}">
+        {% if title %}
+        <title> URL Shortener - {{ title }} </title>
+        {% else %}
+        <title> URL Shortener</title>
+        {% endif %}
 
 
-    <!-- <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand mr-4" href="/">URL Shortener</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{{ url_for('app.home') }}">Home</a>
-                    </div> -->
-                    <!-- Navbar Right Side -->
-                    <!-- <div class="navbar-nav">
-                        {% if current_user.is_authenticated %}
-                            {% if current_user.admin == True %}
-                                <a class="nav-item nav-link" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a>
-                            {% endif %}
-                            <a class="nav-item nav-link" href="{{ url_for('app.shortener') }}">Shortener</a>
-                            <a class="nav-item nav-link" href="{{ url_for('app.stats') }}">Stats</a>
-                            <a class="nav-item nav-link" href="{{ url_for('app.logout') }}">Log Out</a>
-                        {% else %}
-                        <a class="nav-item nav-link" href="{{ url_for('app.login') }}">Log In</a>
-                        <a class="nav-item nav-link" href="{{ url_for('app.register') }}">Register</a>
-                        {% endif %}
-                    </div>
+        <style>
+            body{
+                color: white;
+                /* background-color: black; */
+            }
+        </style>
+        {% if title %}
+        <title> URL Shortener - {{ title }} </title>
+        {% else %}
+        <title> URL Shortener</title>
+        {% endif %}
+    </head>
+
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+
+    <body style="position:fixed; width:100%;height:100%;background-color:transparent;">
+        <header class="site-header">
+            <nav>
+                <div class="leftSide">
+                    <a class="urlLogo" href="/"> <h4>URL shortener</h4></a>
                 </div>
-            </div>
-        </nav>
-    </header> -->
+                <div>
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.admin == True %}
+                            <ul class="rightSide">
+                                <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
+                                <li><a class="loginLogo" href="#">Login</a></li>
+                                <li><a class="RegisterLogo" href="#">Register</a></li>
+                            </ul>
+                        {% endif %}
+                        <ul class="rightSide">
+                            <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
+                            <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
+                            <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
+                        </ul>
+                    {% else %}
+                    <ul class="rightSide">
+                        <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
+                        <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
 
-    
-    <main role="main" >
-        <div>
-            <div>
+                
+                <!--Mobile config-->
+                <div class="burgerView">
+                    <div class="top"></div>
+                    <div class="mid"></div>
+                    <div class="bottom"></div>
+                </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container">
+            <div class="row" style="margin:auto; position:relative; width:80%">
                 {% with messages = get_flashed_messages(with_categories = true) %}
                     {% if messages %}
                         {%  for category, message in messages %}
@@ -104,16 +87,12 @@
                 {% endwith %}
                 {% block content %}{% endblock %}
             </div>
-        </div>
-
-    </main>
+        </main>
 
 
-    <script src="index.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+        <script src="index.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
 </html>
