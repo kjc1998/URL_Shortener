@@ -43,25 +43,20 @@
                     <a class="urlLogo" href="/"> <h4>URL shortener</h4></a>
                 </div>
                 <div>
-                    {% if current_user.is_authenticated %}
-                        {% if current_user.admin == True %}
-                            <ul class="rightSide">
-                                <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
-                                <li><a class="loginLogo" href="#">Login</a></li>
-                                <li><a class="RegisterLogo" href="#">Register</a></li>
-                            </ul>
-                        {% endif %}
-                        <ul class="rightSide">
-                            <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
-                            <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
-                            <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
-                        </ul>
-                    {% else %}
                     <ul class="rightSide">
-                        <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
-                        <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.admin == True %}
+                                <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
+                            {% endif %}
+                                <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
+                                <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
+                                <li><a class="graphLogo" href="{{ url_for('app.global_graph') }}">Graph</a></li>
+                                <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
+                        {% else %}
+                            <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
+                            <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
+                        {% endif %}
                     </ul>
-                    {% endif %}
                 </div>
 
                 
