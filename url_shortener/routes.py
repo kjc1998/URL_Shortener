@@ -47,8 +47,8 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    checkPrimaryAdmin()
     if current_user.is_authenticated:
-        checkPrimaryAdmin()
         return redirect(url_for('app.home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -71,6 +71,7 @@ def logout():
 @app.route("/shortener")
 @login_required
 def shortener():
+    checkPrimaryAdmin()
     return render_template('shortener.html')
 
 
@@ -85,6 +86,7 @@ def redirect_to_url(short_url):
 @app.route('/add_link', methods=['POST'])
 @login_required
 def add_link():
+    checkPrimaryAdmin()
     original_url = request.form['original_url']
     ext = tldextract.extract(original_url)
     Domain = ext.domain
@@ -99,6 +101,7 @@ def add_link():
 @app.route('/stats')
 @login_required
 def stats():
+    checkPrimaryAdmin()
     thisUser = User.query.filter_by(user_id=current_user.user_id).first()
     links = thisUser.linkUser
     return render_template('stats.html', links=links)
@@ -119,6 +122,7 @@ def page_not_found(e):
 @app.route('/admin/<userID>')
 @login_required
 def admin(userID):
+    checkPrimaryAdmin()
     if current_user.admin is not True:
         flash('You have no access to this page', 'danger')
         return render_template('home.html')
@@ -130,6 +134,7 @@ def admin(userID):
 @app.route('/admin/<userID>', methods=['POST'])
 @login_required
 def setAdmin(userID):
+    checkPrimaryAdmin()
     changedUserID = request.form['submit_button']
     changedUser = User.query.filter_by(user_id=changedUserID).first()
     changedUser.admin = not changedUser.admin
@@ -140,6 +145,7 @@ def setAdmin(userID):
 @app.route("/add_link/delete", methods=['POST'])
 @login_required
 def delete_link():
+    checkPrimaryAdmin()
     link_id = request.form['delete_button']
     link = Link.query.get_or_404(link_id)
     if link.author != current_user:
@@ -153,6 +159,7 @@ def delete_link():
 @app.route("/graph")
 @login_required
 def global_graph():
+    checkPrimaryAdmin()
     link = Link.query.all()
     return render_template('graph.html', link=link)
     # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
