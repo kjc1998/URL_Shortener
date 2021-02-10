@@ -1,7 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1> Home </h1>
+<!--space btw nav and web deets-->
+<span class="brSpace"></span>
+<div class="container" id= "container_trans" >
+    <div class="details" id="inner">
+        <h1>Webpage details</h1>
+        <br>
+        <p>
+            The Moon is a barren, rocky world without air and water. It has dark lava plain on its surface. The Moon is filled wit craters. It has no light of its own. It gets its light from the Sun. The Moo keeps changing its shape as it moves round the Earth. It spins on its axis in 27.3 days stars were named after the Edwin Aldrin were the first ones to set their foot on the Moon on 21 July 1969 They reached the Moon in their space craft named Apollo II
+        </p>
+    </div>
+</div>
+
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+
+<script>
+    // ease in transition
+    const glass= document.getElementById("container_trans");
+
+    const tl= gsap.timeline({defaults: {ease: "power2.inOut", duration: 1.5}})
+    tl.from('.container', {x: '-10%', opacity:0});
+    tl.from('img' , {opacity:0, delay: .5, duration:1}, "-=1.5")
+    tl.from('nav' , {opacity: 0, delay: 1.2, duration:1}, "-=1.5")
+
+</script>
+
+
     {% if current_user.is_authenticated %}
-        <h3> User ID: {{ current_user.user_id }} </h3>
+        <div class="idStyle">
+            <h4> User ID: {{ current_user.user_id }} </h4>
+        </div>
+        
     {% endif %}
 {% endblock content%}
