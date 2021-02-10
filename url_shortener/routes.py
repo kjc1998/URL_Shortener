@@ -12,6 +12,12 @@ from .extensions import db, bcrypt, api, admin_USERID
 app = Blueprint('app', __name__)
 
 
+def checkPrimaryAdmin():
+    if current_user.user_id in admin_USERID:
+        current_user.admin = True
+        db.session.commit()
+
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -42,6 +48,7 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        checkPrimaryAdmin()
         return redirect(url_for('app.home'))
     form = LoginForm()
     if form.validate_on_submit():
