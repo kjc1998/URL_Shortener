@@ -25,13 +25,12 @@ class User(db.Model, UserMixin):
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    original_url = db.Column(db.String(2021))
+    original_url = db.Column(db.String(2000))
     domain_url = db.Column(db.String(2000))
     short_url = db.Column(db.String(5), unique=True)
     visits = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
