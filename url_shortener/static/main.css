@@ -9,7 +9,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #444444;
+  color: white;
 }
 
 .bg-steel {
@@ -32,7 +32,7 @@ h6 {
   background: #ffffff;
   padding: 10px 20px;
   border: 1px solid #dddddd;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 

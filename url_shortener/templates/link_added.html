@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 <div style="position:relative">
-  Old Link: <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
+  <b style="color:white; font-weight: normal">Old Link:</b> <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
   <br />
-  New Link: <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
+  <b style="color:white; font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
       {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
   </a>
 
@@ -34,15 +34,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="deleteModalLabel">Delete Link?</h5>
+            Delete Link?
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             <form action="{{ url_for('app.delete_link') }}" method="POST">
-              <button name="delete_button" class="btn btn-danger" value="{{ link.id }}">Delete</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button name="delete_button" class="btn btn-secondary" value="{{ link.id }}">Yes</button>
             </form>
           </div>
         </div>
