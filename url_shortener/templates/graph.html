@@ -11,13 +11,13 @@
   </div>
 </body>
 
-<!--<script>
+<script>
   var jsDomainURL = [];
   var jsVisits = [];
-  /*{% for inlink in link %}
+  {% for inlink in link %}
     jsDomainURL.push("{{inlink.domain_url}}");
     jsVisits.push( {{inlink.visits}} );
-  {% endfor %}*/
+  {% endfor %}
   var data = {
     labels  :jsDomainURL,
     datasets: [{
@@ -50,9 +50,9 @@
   };
 
 
-  Chart.Bar('chart', {
+  /*Chart.Bar('chart', {
     options: options,
     data: data
-  });
+  });*/
 
-</script>--!>
+</script>
