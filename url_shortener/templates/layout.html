@@ -32,45 +32,17 @@
         <title> URL Shortener</title>
         {% endif %}
     </head>
-<<<<<<< Updated upstream
-
-    <body style="position:fixed; width:100%; height:100%;background-color:transparent; overflow-y:auto; padding:0; margin:0">
-=======
 <!-- 
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div> -->
 
     <body style="position:fixed; width:100%;height:100%;background-color:transparent;">
->>>>>>> Stashed changes
         <div style="z-index: -5; overflow:visible; position:absolute; height:100%; width:100%">
             <div id="stars"></div>
             <div id="stars2"></div>
             <div id="stars3"></div>
         </div>
-<<<<<<< Updated upstream
-        <div style="overflow-y:auto; position:absolute; height:100%; width:100%">
-            <header class="site-header">
-                <nav>
-                    <div class="leftSide">
-                        <a class="urlLogo" href="/"> <h4>URL shortener</h4></a>
-                    </div>
-                    <div>
-                        <ul class="rightSide">
-                            {% if current_user.is_authenticated %}
-                                {% if current_user.admin == True %}
-                                    <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
-                                {% endif %}
-                                    <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
-                                    <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
-                                    <li><a class="graphLogo" href="{{ url_for('app.global_graph') }}">Graph</a></li>
-                                    <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
-                            {% else %}
-                                <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
-                                <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
-                            {% endif %}
-                        </ul>
-=======
         <div style="overflow-y:auto; position:absolute; height:100%; width:100%">       
             <header class="site-header">
                 <nav>
@@ -89,6 +61,7 @@
                             <ul class="rightSide">
                                 <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
                                 <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
+                                <li><a class="graphLogo" href="{{ url_for('app.global_graph') }}">Graph</a></li>
                                 <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
                             </ul>
                         {% else %}
@@ -97,7 +70,6 @@
                             <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
                         </ul>
                         {% endif %}
->>>>>>> Stashed changes
                     </div>
 
                     
@@ -109,10 +81,6 @@
                     </div>
                 </nav>
             </header>
-<<<<<<< Updated upstream
-
-            <span class="brSpace"></span>
-=======
 
             <span class="brSpace"></span>
 
@@ -132,23 +100,7 @@
             </main>
         </div>
         <span class="brSpace"><h2></h2></span>
->>>>>>> Stashed changes
 
-            <main role="main" style="flex-wrap: nowrap; justify-content: center;">
-                <div class="roow" style="margin:auto; position:relative; width:80%;">
-                    {% with messages = get_flashed_messages(with_categories = true) %}
-                        {% if messages %}
-                            {%  for category, message in messages %}
-                                <div class ="alert alert-{{ category }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
-                    {% block content %}{% endblock %}
-                </div>
-            </main>
-        </div>
         <script src="{{ url_for('static', filename='index.js')}}"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
