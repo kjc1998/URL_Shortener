@@ -32,13 +32,23 @@
         <title> URL Shortener</title>
         {% endif %}
     </head>
+<<<<<<< Updated upstream
 
     <body style="position:fixed; width:100%; height:100%;background-color:transparent; overflow-y:auto; padding:0; margin:0">
+=======
+<!-- 
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div> -->
+
+    <body style="position:fixed; width:100%;height:100%;background-color:transparent;">
+>>>>>>> Stashed changes
         <div style="z-index: -5; overflow:visible; position:absolute; height:100%; width:100%">
             <div id="stars"></div>
             <div id="stars2"></div>
             <div id="stars3"></div>
         </div>
+<<<<<<< Updated upstream
         <div style="overflow-y:auto; position:absolute; height:100%; width:100%">
             <header class="site-header">
                 <nav>
@@ -60,6 +70,34 @@
                                 <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
                             {% endif %}
                         </ul>
+=======
+        <div style="overflow-y:auto; position:absolute; height:100%; width:100%">       
+            <header class="site-header">
+                <nav>
+                    <div class="leftSide">
+                        <a class="urlLogo" href="/"> <h3>URL shortener</h3></a>
+                    </div>
+                    <div>
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.admin == True %}
+                                <ul class="rightSide">
+                                    <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
+                                    <li><a class="loginLogo" href="#">Login</a></li>
+                                    <li><a class="RegisterLogo" href="#">Register</a></li>
+                                </ul>
+                            {% endif %}
+                            <ul class="rightSide">
+                                <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
+                                <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
+                                <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
+                            </ul>
+                        {% else %}
+                        <ul class="rightSide">
+                            <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
+                            <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
+                        </ul>
+                        {% endif %}
+>>>>>>> Stashed changes
                     </div>
 
                     
@@ -71,8 +109,30 @@
                     </div>
                 </nav>
             </header>
+<<<<<<< Updated upstream
 
             <span class="brSpace"></span>
+=======
+
+            <span class="brSpace"></span>
+
+            <main role="main" style="flex-wrap: nowrap; justify-content: center;">
+                <div class="roow" style="margin:auto; position:relative; width:80%;">
+                    {% with messages = get_flashed_messages(with_categories = true) %}
+                        {% if messages %}
+                            {%  for category, message in messages %}
+                                <div class ="alert alert-{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {% block content %}{% endblock %}
+                </div>
+            </main>
+        </div>
+        <span class="brSpace"><h2></h2></span>
+>>>>>>> Stashed changes
 
             <main role="main" style="flex-wrap: nowrap; justify-content: center;">
                 <div class="roow" style="margin:auto; position:relative; width:80%;">
