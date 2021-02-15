@@ -7,8 +7,13 @@ from .models import User, Link
 
 
 appF = Flask(__name__)
-# appF.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-appF.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'  # local host
+localHost = False
+if os.environ.get('DATABASE_URL') is not None:
+    appF.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+else:
+    appF.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+    localHost = True
+
 appF.config['SECRET_KEY'] = '95e1f4ae670667e3338bd65cfe36c773d9b958bb'
 appF.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 appF.register_blueprint(url_shortener.routes.app)
@@ -21,4 +26,5 @@ login_manager.init_app(appF)
 login_manager.login_view = 'app.login'
 login_manager.login_message_category = 'info'
 
-db.create_all(app=appF)
+if localHost:
+    db.create_all(app=appF)

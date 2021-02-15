@@ -1,6 +1,9 @@
-﻿from url_shortener import appF
+﻿from url_shortener import appF, localHost
 
 
 if __name__ == '__main__':
-    appF.run(debug=True)
-    # appF.run()
+    if localHost:
+        appF.run(debug=True)
+        print("running local host")
+    else:
+        appF.run()
