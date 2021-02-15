@@ -103,7 +103,6 @@ navSlide();
     container.onmouseenter = onMouseEnterHandler;
 })();
 
-
 document.getElementById('scrollDiv').addEventListener(
   'scroll',
   function(){
