@@ -2,6 +2,14 @@
 {% block content %}
 <!--space btw nav and web deets-->
 <!-- <span class="brSpace"></span> -->
+{% if current_user.is_authenticated %}
+  <div style="position:relative">
+    <form method='POST' action="{{ url_for('app.add_link') }}">
+        <input type="text" name="original_url">
+        <input type="submit">
+    </form>
+  </div>
+{% endif %}
 
 <div class="container" id= "container_trans" >
     <div class="details" id="inner">

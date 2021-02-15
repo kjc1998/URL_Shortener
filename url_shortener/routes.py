@@ -68,13 +68,6 @@ def logout():
     return redirect(url_for('app.home'))
 
 
-@app.route("/shortener")
-@login_required
-def shortener():
-    checkPrimaryAdmin()
-    return render_template('shortener.html')
-
-
 @app.route('/<short_url>')
 def redirect_to_url(short_url):
     link = Link.query.filter_by(short_url=short_url).first_or_404()

@@ -56,8 +56,8 @@
                             {% if current_user.admin == True %}
                                 <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
                             {% endif %}
-                                <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
-                                <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
+                                <li><a class="adminLogo" href="{{ url_for('app.home') }}">Home</a></li>
+                                <li><a class="loginLogo" href="{{ url_for('app.stats') }}">URL List</a></li>
                                 <li><a class="graphLogo" href="{{ url_for('app.global_graph') }}">Graph</a></li>
                                 <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
                             </ul>
