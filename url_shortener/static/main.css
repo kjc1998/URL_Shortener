@@ -1,9 +1,9 @@
 /* JEREMY */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* body{
@@ -11,11 +11,11 @@
   overflow-x: hidden;
 } */
 
-nav{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min-height: 8vh;
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
 }
 
 .leftSide a {
@@ -67,30 +67,30 @@ nav{
   transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 768px){
-    body{
-        overflow-x: visible;
-    }
-    .rightSide{
-        position: absolute;
-        right: 0px;
-        height: 92vh;
-        top: 8vh;
-        background-color: #141C26; 
-        display: flex;
-        flex-direction: column;
-        align-items: center; 
-        width: 100%;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in;
-        z-index:1; 
-    }
-    .rightSide li{
-        opacity: 0; 
-    }
-    .burgerView{
-        display: block; 
-    }
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: visible;
+  }
+  .rightSide {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: #141c26;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+    z-index: 1;
+  }
+  .rightSide li {
+    opacity: 0;
+  }
+  .burgerView {
+    display: block;
+  }
 }
 
 .nav-active {
@@ -220,7 +220,7 @@ nav{
   /* overflow-x: scroll; */
 }
 
-.aboutUs{
+.aboutUs {
   padding: 2rem 3rem 50px 3rem;
   display: flex;
   justify-content: start;
@@ -228,12 +228,13 @@ nav{
   min-width: 1300px;
 }
 
-.back{
+.back {
   padding-top: 3rem;
   min-width: auto;
   background-color: rgba(0, 0, 0, 0.5);
   border: rgba(0, 0, 0, 0.5);
   border-radius: 50px;
+  transition: all 0.5s;
 }
 
 .card-list::-webkit-scrollbar {
@@ -243,13 +244,13 @@ nav{
 .card-list::-webkit-scrollbar-thumb {
   background: #201c29;
   border-radius: 10px;
-  box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25), inset -2px -2px 2px rgba(0,0,0,.25);
+  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+    inset -2px -2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .card-list::-webkit-scrollbar-track {
-  background: linear-gradient(90deg,#201c29,#201c29 1px,#17141d 0,#17141d);
+  background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);
 }
-
 
 .card {
   height: 350px;
@@ -257,18 +258,19 @@ nav{
   min-width: 250px;
   padding: 1.5rem;
   border-radius: 16px;
-  background: #141C26;
+  background: #141c26;
   box-shadow: -1rem 0 3rem #000;
   display: flex;
   flex-direction: column;
-  transition: .2s;
+  transition: 0.2s;
   margin: 0;
   scroll-snap-align: start;
   clear: both;
   position: relative;
 }
 
-.card:focus-within~.card, .card:hover~.card {
+.card:focus-within ~ .card,
+.card:hover ~ .card {
   transform: translateX(130px);
 }
 
@@ -279,7 +281,6 @@ nav{
 .card:not(:first-child) {
   margin-left: -130px;
 }
-
 
 .card-header {
   margin-bottom: auto;
@@ -293,7 +294,7 @@ nav{
 
 .card-header h2 {
   font-size: 20px;
-  margin: .25rem 0 auto;
+  margin: 0.25rem 0 auto;
   text-decoration: none;
   color: inherit;
   border: 0;
@@ -302,7 +303,7 @@ nav{
 }
 
 .card-header h2:hover {
-  background: linear-gradient(90deg,#ff8a00,#e52e71);
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
   text-shadow: none;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -360,7 +361,7 @@ nav{
 
 .tags {
   margin: 1rem 0 2rem;
-  padding: .5rem 0 1rem;
+  padding: 0.5rem 0 1rem;
   line-height: 2;
   margin-bottom: 0;
 }
@@ -368,22 +369,29 @@ nav{
 .tags a {
   font-style: normal;
   font-weight: 700;
-  font-size: .5rem;
+  font-size: 0.5rem;
   color: #7a7a8c;
   text-transform: uppercase;
-  font-size: .66rem;
+  font-size: 0.66rem;
   border: 3px solid #28242f;
   border-radius: 2rem;
-  padding: .2rem .85rem .25rem;
+  padding: 0.2rem 0.85rem 0.25rem;
   position: relative;
 }
 
 .tags a:hover {
-  background: linear-gradient(90deg,#ff8a00,#e52e71);
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
   text-shadow: none;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-box-decoration-break: clone;
   background-clip: text;
   border-color: white;
+}
+
+.hide {
+  opacity: 0;
+}
+.show {
+  opacity: 1;
 }

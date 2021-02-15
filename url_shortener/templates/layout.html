@@ -43,7 +43,7 @@
             <div id="stars2"></div>
             <div id="stars3"></div>
         </div>
-        <div style="overflow-y:auto; position:absolute; height:100%; width:100%">       
+        <div style="overflow-y:auto; position:absolute; height:100%; width:100%" id="scrollDiv">       
             <header class="site-header">
                 <nav>
                     <div class="leftSide">
@@ -51,14 +51,10 @@
                     </div>
                     <div>
                         {% if current_user.is_authenticated %}
-                            {% if current_user.admin == True %}
-                                <ul class="rightSide">
-                                    <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
-                                    <li><a class="loginLogo" href="#">Login</a></li>
-                                    <li><a class="RegisterLogo" href="#">Register</a></li>
-                                </ul>
-                            {% endif %}
                             <ul class="rightSide">
+                            {% if current_user.admin == True %}
+                                <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
+                            {% endif %}
                                 <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>
                                 <li><a class="loginLogo" href="{{ url_for('app.stats') }}">Stats</a></li>
                                 <li><a class="graphLogo" href="{{ url_for('app.global_graph') }}">Graph</a></li>
