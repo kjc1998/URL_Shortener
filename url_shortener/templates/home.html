@@ -139,11 +139,4 @@
     tl.from('.details' , {opacity: 0, delay: 1.2, duration:1}, "-=1.5")
 
 </script>
-    {% if current_user.is_authenticated %}
-        <div class="idStyle">
-            <h4> User ID: {{ current_user.user_id }} </h4>
-        </div>
-        
-    {% endif %}
-</div>
 {% endblock content%}
