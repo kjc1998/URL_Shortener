@@ -23,7 +23,7 @@
         <style>
             body{
                 color: white;
-                /* background-color: black; */
+                background-color: black;
             }
         </style>
         {% if title %}
@@ -43,7 +43,7 @@
             <div id="stars2"></div>
             <div id="stars3"></div>
         </div>
-        <div style="overflow-y:auto; position:absolute; height:100%; width:100%">       
+        <div style="overflow-y:auto; position:absolute; height:100%; width:100%" id="scrollDiv">       
             <header class="site-header">
                 <nav>
                     <div class="leftSide">
@@ -51,12 +51,9 @@
                     </div>
                     <div>
                         {% if current_user.is_authenticated %}
+                            <ul class="rightSide">
                             {% if current_user.admin == True %}
-                                <ul class="rightSide">
-                                    <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
-                                    <li><a class="loginLogo" href="#">Login</a></li>
-                                    <li><a class="RegisterLogo" href="#">Register</a></li>
-                                </ul>
+                                <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
                             {% endif %}
                             <ul class="rightSide">
                                 <li><a class="adminLogo" href="{{ url_for('app.shortener') }}">Shortener</a></li>

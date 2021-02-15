@@ -102,3 +102,16 @@ navSlide();
     container.onmouseleave = onMouseLeaveHandler;
     container.onmouseenter = onMouseEnterHandler;
 })();
+
+document.getElementById('scrollDiv').addEventListener(
+  'scroll',
+  function(){
+    var y = document.getElementById('scrollDiv').scrollTop;
+    if (y >= 500){
+      document.getElementById('scrollAppear').className = "back show";
+    }else{
+      document.getElementById('scrollAppear').className = "back hide";
+    }
+    console.log(y);
+  }
+)

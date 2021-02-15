@@ -234,6 +234,7 @@ nav{
   background-color: rgba(0, 0, 0, 0.5);
   border: rgba(0, 0, 0, 0.5);
   border-radius: 50px;
+  transition: all 1s;
 }
 
 .card-list::-webkit-scrollbar {
@@ -386,4 +387,13 @@ nav{
   -webkit-box-decoration-break: clone;
   background-clip: text;
   border-color: white;
+}
+
+.hide {
+  opacity:0;
+ 
+}
+.show {
+  opacity:1;
+
 }
