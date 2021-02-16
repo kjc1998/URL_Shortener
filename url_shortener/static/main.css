@@ -397,30 +397,29 @@ nav {
   opacity: 1;
 }
 
-.inputUrl{
+.inputUrl {
   border-radius: 15px 0px 0px 15px;
   padding: 15px;
   width: 500px;
   background-color: white;
   color: black;
   border-color: white;
-  
 }
 
-.submitUrl{
-  border-radius: 0px 15px 15px 0px ;
+.submitUrl {
+  border-radius: 0px 15px 15px 0px;
   padding: 15px 20px 15px 20px;
-  background-color: #2A394F;
+  background-color: #2a394f;
   color: white;
   font-weight: 500;
   border-color: white;
 }
 
-.bothURL{
+.bothURL {
   display: flex;
   word-spacing: 0%;
 }
 
-.enterUrl{
+.enterUrl {
   padding-top: 70px;
 }

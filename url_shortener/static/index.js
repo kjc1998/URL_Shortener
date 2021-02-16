@@ -115,3 +115,16 @@ document.getElementById('scrollDiv').addEventListener(
     console.log(y);
   }
 );
+
+function getTitle(externalUrl, id){
+  var ans;
+  $.ajax({
+      url: "http://textance.herokuapp.com/title/" + encodeURIComponent(externalUrl),
+      complete: function(data) {
+          document.getElementById(id).innerHTML = data.responseText;
+          console.log(data.responseText);
+      }
+  });
+  console.log(ans);
+  return ans;
+};
