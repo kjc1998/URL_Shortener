@@ -7,4 +7,4 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 api = Api()
-admin_USERID = ["dHuVrGtLti", "iUsQZLZzqv"]
+admin_USERID = ["PiUrSXFOLq"]
