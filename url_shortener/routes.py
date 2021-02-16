@@ -1,6 +1,8 @@
 ﻿import string
 import random
 import tldextract
+import requests
+from urllib.parse import quote
 from sqlalchemy import asc, desc
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
@@ -83,8 +85,13 @@ def add_link():
     original_url = request.form['original_url']
     ext = tldextract.extract(original_url)
     Domain = ext.domain
+    ####
+    url = "https://textance.herokuapp.com/title/" + quote(original_url)
+    response = requests.get(url)
+    title = str(response.content.decode("utf-8"))
+    ####
     link = Link(original_url=original_url,
-                domain_url=Domain, user_id=current_user.id)
+                domain_url=Domain, title_url=title, user_id=current_user.id)
     db.session.add(link)
     db.session.commit()
     return render_template('link_added.html',
