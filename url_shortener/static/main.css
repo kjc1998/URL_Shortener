@@ -396,3 +396,31 @@ nav {
 .show {
   opacity: 1;
 }
+
+.inputUrl{
+  border-radius: 15px 0px 0px 15px;
+  padding: 15px;
+  width: 500px;
+  background-color: white;
+  color: black;
+  border-color: white;
+  
+}
+
+.submitUrl{
+  border-radius: 0px 15px 15px 0px ;
+  padding: 15px 20px 15px 20px;
+  background-color: #2A394F;
+  color: white;
+  font-weight: 500;
+  border-color: white;
+}
+
+.bothURL{
+  display: flex;
+  word-spacing: 0%;
+}
+
+.enterUrl{
+  padding-top: 70px;
+}
