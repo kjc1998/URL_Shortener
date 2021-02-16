@@ -19,16 +19,16 @@
 </div>
 <script>
     function getTitle(externalUrl, id){
-    var ans;
-    $.ajax({
-        url: "http://textance.herokuapp.com/title/" + encodeURIComponent(externalUrl),
-        complete: function(data) {
-            document.getElementById(id).innerHTML = data.responseText;
-            console.log(data.responseText);
+        var xhttp = new XMLHttpRequest();
+        var url = "http://textance.herokuapp.com/title/" + encodeURIComponent(externalUrl)
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(id).innerHTML = this.responseText;
+                console.log(this.responseText);
+            }
         }
-    });
-    console.log(ans);
-    return ans;
+        xhttp.open("GET", url, true);
+        xhttp.send();
     };
 
     var count = parseInt("{{ count.value }}");
