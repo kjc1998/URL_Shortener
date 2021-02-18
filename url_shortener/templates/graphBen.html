@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+</head>
+
+<div> 
+    <canvas id="local" width="240px" height="480px"></canvas> 
+    <canvas id="empty" width="0px" height="0px"></canvas> 
+    <canvas id="global" width="240px" height="480px"></canvas> 
+</div>
+
+<script>
+    var linkDictJSON = {{ linkDict| tojson  }};
+    var linkDictJS = JSON.parse(linkDictJSON);
+    var globalData = [];
+    var globalLabel = [];
+    for(i = 0; i < Object.keys(linkDictJS).length; i++){
+        globalLabel.push(Object.keys(linkDictJS)[i]);
+        globalData.push(linkDictJS[Object.keys(linkDictJS)[i]]);
+    }
+
+    var currentLinkDictJSON = {{ currentLinkDict| tojson  }};
+    var currentLinkDictJS = JSON.parse(currentLinkDictJSON);
+    var currentData = [];
+    var currentLabel = [];
+    for(i = 0; i < Object.keys(currentLinkDictJS).length; i++){
+        currentLabel.push(Object.keys(currentLinkDictJS)[i]);
+        currentData.push(currentLinkDictJS[Object.keys(currentLinkDictJS)[i]]);
+    }
+    $(function () {
+        var ctx = document.getElementById("local").getContext('2d');
+        var data = {
+            datasets:[{
+                data:currentData,
+                label: "Most visited sites by user",
+                backgroundColor: "rgba(255,99,132,0.2)",
+                borderColor: "rgba(255,99,132,1)",
+                borderWidth: 2,
+                hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                hoverBorderColor: "rgba(255,99,132,1)",
+            }],
+            labels:currentLabel,
+            };
+
+    var mysingleChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom',
+                labels: {
+                boxWidth: 12
+            }
+            }
+        }
+    });
+
+    var ctx_2 = document.getElementById("global").getContext('2d');
+    var data_2 = {
+        datasets:[{
+            data:globalData,
+            label: "Most visited sites globally",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            borderWidth: 2,
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)",
+        }],        
+        labels:globalLabel,
+    };
+
+    var myglobalChart = new Chart(ctx_2, {
+        type: 'bar',
+        data: data_2,
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 12
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock content%}

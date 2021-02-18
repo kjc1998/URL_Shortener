@@ -1,8 +1,9 @@
 ﻿import string
+import json
 import random
+from urllib.parse import quote
 import tldextract
 import requests
-from urllib.parse import quote
 from sqlalchemy import asc, desc
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
@@ -160,8 +161,22 @@ def delete_link():
 @login_required
 def global_graph():
     checkPrimaryAdmin()
-    link = Link.query.all()
-    return render_template('graph.html', link=link)
-    # labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
-    # values = [10, 9, 8, 7, 6, 4, 7, 8]
-    # return render_template('usergraph.html', values=values, labels=labels)
+    # global
+    links = Link.query.all()
+    dictionary = {}
+    for link in links:
+        try:
+            dictionary[link.domain_url] += link.visits
+        except:
+            dictionary[link.domain_url] = link.visits
+    dictionary = json.dumps(dictionary)
+    # current User
+    userLinks = Link.query.filter_by(author=current_user).all()
+    currentDictionary = {}
+    for link in userLinks:
+        try:
+            currentDictionary[link.domain_url] += link.visits
+        except:
+            currentDictionary[link.domain_url] = link.visits
+    currentDictionary = json.dumps(currentDictionary)
+    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary)
