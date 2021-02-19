@@ -104,11 +104,6 @@ navSlide();
 })();
 
 
-if(!!window.performance && window.performance.navigation.type === 2)
-{
-  window.location.reload();
-}
-
 document.getElementById('scrollDiv').addEventListener(
   'scroll',
   function(){
