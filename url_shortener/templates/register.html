@@ -4,7 +4,7 @@
     <form method="POST" action="" style="width:80%;">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Register</legend>
+            <legend class="registerStyle">Register</legend>
             <div class="form-group">
                 {{ form.username.label(class="form-control-label") }}
                 {% if form.username.errors %}
@@ -65,11 +65,12 @@
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-light") }}
         </div>
+        <div class="border-top-light" >
+            <small class="text-muted" style="width: 80%; margin:auto;">
+                <mark style="color:white; background-color: transparent;">Already have an account?</mark><a class="ml-2" href="{{ url_for('app.login') }}">Sign In</a>
+            </small>
+        </div>
     </form>
 </div>
-<div class="border-top-light" style="display: flex; width: 500px; justify-content: center; margin: auto;">
-    <small class="text-muted" style="width: 80%; margin:auto;">
-        <mark style="color:white; background-color: transparent;">Already have an account?</mark><a class="ml-2" href="{{ url_for('app.login') }}">Sign In</a>
-    </small>
-</div>
+
 {% endblock content %}
