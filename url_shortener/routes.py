@@ -87,7 +87,7 @@ def add_link():
     original_url = request.form['original_url']
     if not validators.url(original_url):
         flash('Please insert a valid url', 'danger')
-        return render_template('home.html')
+        return redirect(url_for('app.home'))
     ext = tldextract.extract(original_url)
     Domain = ext.domain
     ####
@@ -133,7 +133,7 @@ def admin(userID):
     checkPrimaryAdmin()
     if current_user.admin is not True:
         flash('You have no access to this page', 'danger')
-        return render_template('home.html')
+        return redirect(url_for('app.home'))
     users = User.query.order_by(User.id).all()
     return render_template('admin.html', users=users,
                            primaryAdmin=admin_USERID[0], currentUser=current_user)
