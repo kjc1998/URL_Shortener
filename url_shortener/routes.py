@@ -1,4 +1,5 @@
 ﻿import string
+import validators
 import json
 import random
 from urllib.parse import quote
@@ -84,12 +85,18 @@ def redirect_to_url(short_url):
 def add_link():
     checkPrimaryAdmin()
     original_url = request.form['original_url']
+    if not validators.url(original_url):
+        flash('Please insert a valid url', 'danger')
+        return render_template('home.html')
     ext = tldextract.extract(original_url)
     Domain = ext.domain
     ####
     url = "https://textance.herokuapp.com/title/" + quote(original_url)
     response = requests.get(url)
-    title = str(response.content.decode("utf-8"))
+    if response.status_code != 200:
+        title = "Unknown Title"
+    else:
+        title = str(response.content.decode("utf-8"))
     ####
     link = Link(original_url=original_url,
                 domain_url=Domain, title_url=title, user_id=current_user.id)
@@ -104,7 +111,7 @@ def add_link():
 def stats():
     checkPrimaryAdmin()
     thisUser = User.query.filter_by(user_id=current_user.user_id).first()
-    links = thisUser.linkUser
+    links = Link.query.order_by(Link.id).all()
     return render_template('stats.html', links=links)
 
 
