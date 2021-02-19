@@ -102,8 +102,7 @@ def add_link():
                 domain_url=Domain, title_url=title, user_id=current_user.id)
     db.session.add(link)
     db.session.commit()
-    return render_template('link_added.html',
-                           new_link=link.short_url, original_url=link.original_url, link=link)
+    return redirect(url_for('app.link_page', short=link.short_url))
 
 
 @app.route('/stats')
