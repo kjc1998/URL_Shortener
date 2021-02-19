@@ -103,15 +103,21 @@ navSlide();
     container.onmouseenter = onMouseEnterHandler;
 })();
 
+
+if(!!window.performance && window.performance.navigation.type === 2)
+{
+  window.location.reload();
+}
+
 document.getElementById('scrollDiv').addEventListener(
   'scroll',
   function(){
-    var y = document.getElementById('scrollDiv').scrollTop;
-    if (y >= 500){
+      var y = document.getElementById('scrollDiv').scrollTop;
+      if (y >= 500){
       document.getElementById('scrollAppear').className = "back show";
-    }else{
+      }else{
       document.getElementById('scrollAppear').className = "back hide";
-    }
-    console.log(y);
+      }
+      console.log(y);
   }
 );
