@@ -1,11 +1,11 @@
 ﻿import string
-import validators
 import json
 import random
 from urllib.parse import quote
+import validators
 import tldextract
 import requests
-from sqlalchemy import asc, desc
+from sqlalchemy import asc, desc, and_, or_
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
 import url_shortener.REST
@@ -88,16 +88,20 @@ def add_link():
     if not validators.url(original_url):
         flash('Please insert a valid url', 'danger')
         return redirect(url_for('app.home'))
+    checkLink = Link.query.filter(and_(Link.original_url == str(original_url),
+                                       Link.user_id == current_user.id)).first()
+    if checkLink:
+        # Link exists in the database before
+        flash('You have created this link before', 'info')
+        return redirect(url_for('app.link_page', short=checkLink.short_url))
     ext = tldextract.extract(original_url)
     Domain = ext.domain
-    ####
     url = "https://textance.herokuapp.com/title/" + quote(original_url)
     response = requests.get(url)
     if response.status_code != 200:
         title = "Unknown Title"
     else:
         title = str(response.content.decode("utf-8"))
-    ####
     link = Link(original_url=original_url,
                 domain_url=Domain, title_url=title, user_id=current_user.id)
     db.session.add(link)

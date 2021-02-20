@@ -1,9 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+  #urlList:hover {
+    color: red;
+    cursor: pointer;
+  }
+</style>
 <div style="position:relative">
-  <b style="color:white; font-weight: normal">Old Link:</b> <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
+  <b id = "urlList" style="font-weight: normal;" onclick="urlListPage()">&#x2190; URL List</b>
   <br />
-  <b style="color:white; font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
+  <b style="font-weight: normal">Old Link:</b> <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
+  <br />
+  <b style="font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
       {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
   </a>
 
@@ -13,6 +21,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script>
+      function urlListPage(){
+        window.location.href = "{{ url_for('app.stats') }}"
+      }
+
       var qrtext = document.getElementById("NewLink").textContent;
       var qr;
       (function() {
