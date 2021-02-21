@@ -1,16 +1,42 @@
 {% extends "layout.html" %}
 {% block content %}
-{% for link in links %}
-Original Url: <a href='{{ link.original_url }}'>{{ link.original_url }}</a>
-<br />
-Short URL: <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
+<div style="position:relative">
+    <!--{% set count = namespace(value = 0) %}-->
+    {% for link in links %}
+        <!--{% set my_string = current_user.user_id ~ count.value ~ '' %}-->
+        <b style="color:white; font-weight: normal">Title:</b> <b style="color:white; font-weight: normal">{{ link.title_url }}</b>
+        <br>
+        <b style="color:white; font-weight: normal">Short URL:</b> <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
 
-<br />
-Visits: {{ link.visits }}
-<br />
-<a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
-<br />
-<br />
-{% endfor %}
+        <br>
+        <b style="color:white; font-weight: normal">Visits: {{ link.visits }}</b>
+        <br>
+        <a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
+        <br>
+        <br>
+        <!--{% set count.value = count.value + 1 %}-->
+    {% endfor %}
+</div>
+<!--<script>
+    function getTitle(externalUrl, id){
+        var xhttp = new XMLHttpRequest();
+        var url = "https://textance.herokuapp.com/title/" + encodeURIComponent(externalUrl)
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(id).innerHTML = this.responseText;
+                console.log(this.responseText);
+            }
+        }
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    };
 
+    var count = parseInt("{{ count.value }}");
+    var userID = "{{ current_user.user_id }}";
+    for(i = 0; i < count; i++){
+        var id = userID+i;
+        var url = document.getElementById(id).getAttribute("value");
+        getTitle(url, id);
+    }
+</script>-->
 {% endblock content%}

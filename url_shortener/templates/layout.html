@@ -1,76 +1,110 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='parallaxStar.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css')}}">
+        <!--<link rel="stylesheet" href="{{ url_for('static', filename='cssgraph.css') }}">-->
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='trythis.css')}}"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css')}}">
+        <link rel="icon" href="https://pbs.twimg.com/media/EqCnACWXEAMANWd.jpg">
+        {% if title %}
+        <title> URL Shortener - {{ title }} </title>
+        {% else %}
+        <title> URL Shortener</title>
+        {% endif %}
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css')}}">
-    {% if title %}
-    <title> URL Shortener - {{ title }} </title>
-    {% else %}
-    <title> URL Shortener</title>
-    {% endif %}
-</head>
-<body>
-    <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-            <div class="container">
-                <a class="navbar-brand mr-4" href="/">URL Shortener</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{{ url_for('app.home') }}">Home</a>
+
+        <style>
+            body{
+                color: white;
+                background-color: black;
+            }
+        </style>
+        {% if title %}
+        <title> URL Shortener - {{ title }} </title>
+        {% else %}
+        <title> URL Shortener</title>
+        {% endif %}
+    </head>
+<!-- 
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div> -->
+
+    <body style="position:fixed; width:100%;height:100%;background-color:transparent;">
+        <div style="z-index: -5; overflow:visible; position:absolute; height:100%; width:100%">
+            <div id="stars"></div>
+            <div id="stars2"></div>
+            <div id="stars3"></div>
+        </div>
+        <div style="overflow-y:auto; position:absolute; height:100%; width:100%" id="scrollDiv">       
+            <header class="site-header">
+                <nav>
+                    <div class="leftSide">
+                        <a class="urlLogo" href="/"> <h3>URL shortener</h3></a>
                     </div>
-                    <!-- Navbar Right Side -->
-                    <div class="navbar-nav">
+                    <div>
                         {% if current_user.is_authenticated %}
+                            <ul class="rightSide">
                             {% if current_user.admin == True %}
-                                <a class="nav-item nav-link" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a>
+                                <li><a class="adminLogo" href="{{ url_for('app.admin', userID=current_user.user_id) }}">Admin</a></li>
                             {% endif %}
-                            <a class="nav-item nav-link" href="{{ url_for('app.shortener') }}">Shortener</a>
-                            <a class="nav-item nav-link" href="{{ url_for('app.stats') }}">Links</a>
-                            <a class="nav-item nav-link" href="{{ url_for('app.global_graph') }}">Analytics</a>
-                            <a class="nav-item nav-link" href="{{ url_for('app.logout') }}">Log Out</a>
+                                <li><a class="adminLogo" href="{{ url_for('app.home') }}">Home</a></li>
+                                <li><a class="loginLogo" href="{{ url_for('app.stats') }}">URL List</a></li>
+                                <li><a class="graphLogo" href="{{ url_for('app.global_graph') }}">Graph</a></li>
+                                <li><a class="RegisterLogo" href="{{ url_for('app.logout') }}">Log Out</a></li>
+                            </ul>
                         {% else %}
-                        <a class="nav-item nav-link" href="{{ url_for('app.login') }}">Log In</a>
-                        <a class="nav-item nav-link" href="{{ url_for('app.register') }}">Register</a>
+                        <ul class="rightSide">
+                            <li><a class="loginLogo" href="{{ url_for('app.login') }}">Login</a></li>
+                            <li><a class="RegisterLogo" href="{{ url_for('app.register') }}">Register</a></li>
+                        </ul>
                         {% endif %}
                     </div>
+
+                    
+                    <!--Mobile config-->
+                    <div class="burgerView">
+                        <div class="top"></div>
+                        <div class="mid"></div>
+                        <div class="bottom"></div>
+                    </div>
+                </nav>
+            </header>
+
+            <span class="brSpace"></span>
+
+            <main role="main" style="flex-wrap: nowrap; justify-content: center;">
+                <div class="roow" style="margin:auto; position:relative; width:80%;">
+                    {% with messages = get_flashed_messages(with_categories = true) %}
+                        {% if messages %}
+                            {%  for category, message in messages %}
+                                <div class ="alert alert-{{ category }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {% block content %}{% endblock %}
                 </div>
-            </div>
-        </nav>
-    </header>
-    <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
-                {% with messages = get_flashed_messages(with_categories = true) %}
-                    {% if messages %}
-                        {%  for category, message in messages %}
-                            <div class ="alert alert-{{ category }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
-            </div>
+            </main>
         </div>
+        <!-- <span class="brSpace"></span> -->
+        <script>
+            if(!!window.performance && window.performance.navigation.type === 2){
+                window.location.reload();}
+        </script>
 
-    </main>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+        <script src="{{ url_for('static', filename='index.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
 </html>

@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="content-section" style="margin-left: 350px; width: 500px">
-    <form method="POST" action="">
+<div class="content-section" style="display: flex; width: 500px; justify-content: center; margin: auto;">
+    <form method="POST" action="" style="width:80%;">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Log In</legend>
+            <legend class="loginStyle">Login</legend>
+            <!-- border-bottom mb-4 -->
             <div class="form-group">
                 {{ form.username.label(class="form-control-label") }}
                 {% if form.username.errors %}
@@ -39,17 +40,17 @@
         </fieldset>
 
         <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
+            {{ form.submit(class="btn btn-outline-light") }}
         </div>
         <small class="text-muted">
             <a href="#">Forgot Password?</a>
         </small>
-               
+        <div class="border-top-light" >
+            <small class="text-muted" style="width: 80%; margin:auto;">
+                <mark style="color:white; background-color: transparent;">Don't have an account?</mark><a class="ml-2" href="{{ url_for('app.register') }}">Register</a>
+            </small>
+        </div>               
     </form>
 </div>
-<div class="border-top pt-3" , style="margin-left:350px; width:500px">
-    <small class="text-muted">
-        Don't have an account? <a class="ml-2" href="{{ url_for('app.register') }}">Register</a>
-    </small>
-</div>
+
 {% endblock content %}
