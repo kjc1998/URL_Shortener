@@ -7,9 +7,9 @@ A standard URL shortener webpage with additional GUI extensions for better and m
 
 To gain access, user(s) should first create an account via the website's registration page.
 
-Tabs | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
---- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
-Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+Tabs | About
+--- | --- 
+Home | url shortening input & authors' backgrounds
 
 # API
 
