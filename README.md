@@ -7,9 +7,14 @@ A standard URL shortener webpage with additional GUI extensions for better and m
 
 To gain access, user(s) should first create an account via the website's registration page.
 
-Tabs | About
+Page | About
 --- | --- 
-Home | url shortening input & authors' backgrounds
+Home | URL shortening input & Authors' backgrounds
+List | Table list of all individual shortened URL(s)
+Graph | Statistical overview on URL(s) usage from both local and global perspective
+URL (more info) | Details and QR display of a specific URL
+Admin | Table list of all registered individuals
+
 
 # API
 
