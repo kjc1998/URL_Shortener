@@ -55,8 +55,9 @@ class Details(Resource):
         db.session.add(link)
         db.session.commit()
 
-        # return dictionary
-        linkDICT = vars(link)
+        # return dictionary of the newly created link
+        newLink = Link.query.filter_by(id=link.id).first()
+        linkDICT = vars(newLink)
         del linkDICT['_sa_instance_state']
         linkDICT['date_created'] = linkDICT['date_created'].strftime(
             "%m/%d/%Y, %H:%M:%S")
