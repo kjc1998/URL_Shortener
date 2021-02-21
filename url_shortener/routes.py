@@ -114,7 +114,7 @@ def add_link():
 def stats():
     checkPrimaryAdmin()
     thisUser = User.query.filter_by(user_id=current_user.user_id).first()
-    links = Link.query.order_by(Link.id).all()
+    links = Link.query.filter_by(author=current_user).order_by(Link.id).all()
     return render_template('stats.html', links=links)
 
 
