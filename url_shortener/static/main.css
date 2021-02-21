@@ -425,6 +425,8 @@ nav {
   background-color: white;
   color: black;
   border-color: white;
+  border: none;
+  outline: none;
 }
 
 .submitUrl {
@@ -434,6 +436,8 @@ nav {
   color: white;
   font-weight: 500;
   border-color: white;
+  border: none;
+  outline: none;
 }
 
 .bothURL {
