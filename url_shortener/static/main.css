@@ -479,3 +479,9 @@ nav {
   display: flex;
   justify-content: space-around;
 }
+
+.alert{
+  height: 5vh;
+  margin: 20px 500px 20px 500px;
+  border-radius: 50px;
+}
