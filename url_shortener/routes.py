@@ -179,7 +179,10 @@ def global_graph():
             dictionary[link.domain_url] += link.visits
         except:
             dictionary[link.domain_url] = link.visits
+    dictionary = dict(reversed(sorted(dictionary.items(), key=lambda item: item[1])))
+    dictionary = dict(list(dictionary.items())[:5])
     dictionary = json.dumps(dictionary)
+
     # current User
     userLinks = Link.query.filter_by(author=current_user).all()
     currentDictionary = {}
@@ -188,5 +191,7 @@ def global_graph():
             currentDictionary[link.domain_url] += link.visits
         except:
             currentDictionary[link.domain_url] = link.visits
+    currentDictionary = dict(reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
+    currentDictionary = dict(list(currentDictionary.items())[:5])
     currentDictionary = json.dumps(currentDictionary)
     return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary)
