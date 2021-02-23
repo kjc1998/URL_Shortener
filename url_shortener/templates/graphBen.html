@@ -3,32 +3,58 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <link rel="stylesheet" href="cssgraph.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <title>URL Shortener Analytics</title>
 </head>
 
-<table style="width:100%">
-    <tr>
-      <th>Your Top Websites:</th>
-      <th>Overall Links Shorted:</th>
-      <th>Top 3 Country Origin of Users: (To be decided)</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-    </tr>
-  </table>
+<!-- LOCAL USER DASHBOARD-->
+
+<div class="container1" style = "justify-content: space-between; text-align: center;"> 
+<h1>Hello, here's your data...</h1>
+    <div class="localUser" style="display: inline-block; vertical-align:text-top"> 
+        <h1>Top Webs</h1>
+        <p id="top1"></p>
+        <p id="top2"></p>        
+        <p id="top3"></p>
+    </div>
+    <div class="localUserNum" style="display: inline-block; vertical-align:text-top">
+        <h1>Total Webs Shortened</h1>
+        <p>{{ lenCurDict }}</p>
+    </div>
+
+    <div class="localUserVisits" style="display: inline-block; vertical-align:text-top">
+        <h1>Total Web Visits</h1>
+        <p>{{ sumCurDict }}</p>
+    </div>
+</div>
 
 <div class = "graphs" style="width:100% ; margin:auto">
     <canvas id="local" width="720" height="480"></canvas> 
 </div>
-    
+
+
+<!-- GLOBAL USER DASHBOARD-->
+
+<div class = "container2" style = "justify-content: space-between; text-align: center;">
+    <h1>... and here's the data for overall users</h1>
+    <div class="GlobalUser" style= "display: inline-block; vertical-align:text-top">
+        <h1>Top Webs</h1>
+        <p id="top1g"></p>
+        <p id="top2g"></p>        
+        <p id="top3g"></p>
+    </div>
+    <div class="GlobalUserNum" style="display: inline-block; vertical-align:text-top">
+        <h1>Total Webs Shortened</h1>
+        <p>{{ lenDict }}</p>
+    </div>
+    <div class="GlobalUserVisits" style="display: inline-block; vertical-align:text-top">
+        <h1>Total Web Visits</h1>
+        <p>{{ sumDict }}</p>
+    </div>
+</div>
+
 <div class="graphs" style="width:100% ; margin:auto"> 
      <canvas id="global" width="720" height="480"></canvas> 
 </div>
@@ -41,8 +67,11 @@
     var globalLabel = [];
     for(i = 0; i < Object.keys(linkDictJS).length; i++){
         globalLabel.push(Object.keys(linkDictJS)[i]);
+        globalLabel[i] = globalLabel[i].charAt(0).toUpperCase() + globalLabel[i].substr(1);
         globalData.push(linkDictJS[Object.keys(linkDictJS)[i]]);
     }
+
+    globalLabel.map( a => a.charAt(0).toUpperCase() + a.substr(1) );
 
     var currentLinkDictJSON = {{ currentLinkDict| tojson  }};
     var currentLinkDictJS = JSON.parse(currentLinkDictJSON);
@@ -50,10 +79,61 @@
     var currentLabel = [];
     for(i = 0; i < Object.keys(currentLinkDictJS).length; i++){
         currentLabel.push(Object.keys(currentLinkDictJS)[i]);
+        currentLabel[i] = currentLabel[i].charAt(0).toUpperCase() + currentLabel[i].substr(1);
         currentData.push(currentLinkDictJS[Object.keys(currentLinkDictJS)[i]]);
     }
 
     $(function () {
+        //USER
+        if (currentLabel.length == 0) {
+            document.getElementById("top1").innerHTML = "NaN";
+            document.getElementById("top2").innerHTML = "NaN";
+            document.getElementById("top3").innerHTML = "NaN";            
+        } 
+        if (currentLabel.length == 1) {
+            document.getElementById("top1").innerHTML = currentLabel[0];
+            document.getElementById("top2").innerHTML = "NaN";
+            document.getElementById("top3").innerHTML = "NaN";   
+        } 
+        if (currentLabel.length == 2) {
+            document.getElementById("top1").innerHTML = currentLabel[0];
+            document.getElementById("top2").innerHTML = currentLabel[1];
+            document.getElementById("top3").innerHTML = "NaN";   
+        } 
+        else {
+            document.getElementById("top1").innerHTML = currentLabel[0];
+            document.getElementById("top2").innerHTML = currentLabel[1];
+            document.getElementById("top3").innerHTML = currentLabel[2];   
+        }
+
+        // GLOBAL
+        if (globalLabel.length == 0) {
+            //  block of code to be executed if the condition is true
+            document.getElementById("top1g").innerHTML = "NaN";
+            document.getElementById("top2g").innerHTML = "NaN";
+            document.getElementById("top3g").innerHTML = "NaN";            
+        } 
+
+        if (globalLabel.length == 1) {
+            //  block of code to be executed if the condition is true
+            document.getElementById("top1g").innerHTML = currentLabel[0];
+            document.getElementById("top2g").innerHTML = "NaN";
+            document.getElementById("top3g").innerHTML = "NaN";   
+        } 
+
+        if (globalLabel.length == 2) {
+            //  block of code to be executed if the condition is true
+            document.getElementById("top1g").innerHTML = globalLabel[0];
+            document.getElementById("top2g").innerHTML = globalLabel[1];
+            document.getElementById("top3g").innerHTML = "NaN";   
+        } 
+        
+        else {
+            //  block of code to be executed if the condition is false
+            document.getElementById("top1g").innerHTML = globalLabel[0];
+            document.getElementById("top2g").innerHTML = globalLabel[1];
+            document.getElementById("top3g").innerHTML = globalLabel[2];   
+        }
 
         var ctx = document.getElementById("local").getContext('2d');
         var data = {
@@ -99,12 +179,12 @@
                 yAxes: [{
                         display: true,
                         maxBarThickness: 50,
-
                     }],
                 xAxes: [{
                         display: true,
                         ticks: {
                             beginAtZero: true,
+                            stepSize: 1
                         }
                     }]
             },
@@ -153,6 +233,10 @@
                     }],
                 xAxes: [{
                         display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }                        
                     }]
             },
             legend: {

@@ -1,29 +1,105 @@
-body {
-  background: #1d1f20;
-  padding: 16px;
+.container1{
+  /* Style the parent container */
+  display: flex; /*flex-box*/
+  flex-direction: row; /*make it a row instead of column*/
+  justify-content: center; /*center the text*/
+  padding: 10px;
 }
 
-:root {
-  --green: #00ff00;
-  --white: #ffffff;
-  --black: #000000;
+.localUser{
+  border: solid; 
+  border-color: grey;
+  border-radius: 25px;/*Add a border and a border with colour and radius*/
+  padding: 5px 30px 5px 30px;
+  margin: 50px;
 }
 
-.light-theme {
-  --bg: var(--white);
+.localUser h1{
+  /*the h1 is when you want to style the h1 tag inside of the newUser class*/
+  display: flex;
+  justify-content: start; /*text start from left*/
+  color: red;
+  /*basically any style, color, font can add here*/
+  /*if let's say a font size of 100px is added here, then only the things inside h1 will have a font size of 100px*/
 }
 
-body {
-  background: var(--bg);
+.localUser p{
+  /*use p same as h1*/
+  display: flex;
+  justify-content: center;
+  color: blue;
+  font-weight: 700;
+  font-size: 100px;
+  margin: 5px;
 }
 
-canvas {
-  border: 1px dotted red;
+/*basically the same as the newUser*/
+.localUserNum{
+  border: solid;
+  border-color: grey;
+  border-radius: 25px;
+  padding: 30px;
+  margin: 50px;
 }
 
-.chart-container {
-  position: relative;
-  margin: auto;
-  height: 50vh;
-  width: 50vw;
+.localUserNum h1{
+  display: flex;
+  justify-content: start;
+  color: red;
+}
+
+.localUserNum p{
+  display: flex;
+  justify-content: center;
+  color: blue;
+  font-weight: 700;
+  font-size: 100px;
+  margin: 5px;
+}
+
+/*basically the same as the newUser*/
+.GlobalUser{
+  border: solid;
+  border-color: grey;
+  border-radius: 25px;
+  padding: 30px;
+  margin: 50px;
+}
+
+.GlobalUser h1{
+  display: flex;
+  justify-content: start;
+  color: red;
+}
+
+.GlobalUser p{
+  display: flex;
+  justify-content: center;
+  color: blue;
+  font-weight: 700;
+  font-size: 100px;
+  margin: 5px;
+}
+
+.GlobalUserNum{
+  border: solid;
+  border-color: grey;
+  border-radius: 25px;
+  padding: 30px;
+  margin: 50px;
+}
+
+.GlobalUserNum h1{
+  display: flex;
+  justify-content: start;
+  color: red;
+}
+
+.GlobalUserNum p{
+  display: flex;
+  justify-content: center;
+  color: blue;
+  font-weight: 700;
+  font-size: 100px;
+  margin: 5px;
 }
