@@ -17,10 +17,8 @@ const navSlide = () => {
         //burger animation
         burger.classList.toggle('toggle');
         if(document.getElementById("scrollDiv").style.overflow === "hidden"){
-          nav.style.position = "";
           document.getElementById("scrollDiv").style.overflow = "scroll";
         }else{
-          nav.style.position = "fixed";
           document.getElementById("scrollDiv").style.overflow = "hidden";
         }
     });
