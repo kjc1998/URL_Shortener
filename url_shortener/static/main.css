@@ -74,7 +74,7 @@ nav {
   .rightSide {
     position: absolute;
     right: 0px;
-    height: 92vh;
+    height: 80vh;
     top: 8vh;
     background-color: #141c26;
     display: flex;
@@ -246,7 +246,7 @@ nav {
   transition: all 1s;
 }
 
-.allAboutUs{
+.allAboutUs {
   background: transparent;
   border-radius: 50px;
   backdrop-filter: blur(40px);
@@ -449,7 +449,7 @@ nav {
   margin: 50px 500px 50px 500px;
 }
 
-.content-section{
+.content-section {
   background: transparent;
   border-radius: 50px;
   backdrop-filter: blur(40px);
@@ -461,33 +461,32 @@ nav {
   border-radius: 50px;
 }
 
-.loginStyle{
+.loginStyle {
   font-size: 50px;
   padding-bottom: 10px;
   font-weight: 500;
   color: #5f4c6b;
 }
 
-.registerStyle{
+.registerStyle {
   font-size: 50px;
   padding-bottom: 10px;
   font-weight: 500;
   color: #5f4c6b;
 }
 
-.graphs{
+.graphs {
   display: flex;
   justify-content: space-around;
 }
 
-.alert{
+.alert {
   height: 5vh;
   margin: 20px 500px 20px 500px;
   border-radius: 50px;
 }
 
-@media screen and (max-width: 768px){
-
+@media screen and (max-width: 768px) {
   .details {
     display: flex;
     flex-flow: column nowrap;
@@ -496,14 +495,14 @@ nav {
     color: #5f4c6b;
     max-width: 300px;
   }
-  .details p{
+  .details p {
     padding: 5px;
   }
-  .details h1{
+  .details h1 {
     font-size: 55px;
     margin-top: 5px;
   }
-  .enterUrl{
+  .enterUrl {
     max-width: 300px;
   }
   .bothURL {
@@ -512,10 +511,9 @@ nav {
     justify-content: center;
     word-spacing: 0%;
   }
-  .inputUrl, .submitUrl {
+  .inputUrl,
+  .submitUrl {
     border-radius: 15px;
     margin: 5px;
-  }
-
   }
 }
