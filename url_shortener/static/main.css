@@ -15,7 +15,8 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 8vh;
+  min-height: 8vh; /*fallback*/
+  min-height: calc(var(--vh, 1vh) * 8);
 }
 
 .leftSide a {
@@ -74,8 +75,10 @@ nav {
   .rightSide {
     position: absolute;
     right: 0px;
-    height: 92vh;
+    height: 92vh; /*fallback*/
+    height: calc(var(--vh, 1vh) * 92);
     top: 8vh;
+    top: calc(var(--vh, 1vh) * 8);
     background-color: #141c26;
     display: flex;
     flex-direction: column;
@@ -481,7 +484,8 @@ nav {
 }
 
 .alert {
-  height: 5vh;
+  height: 5vh; /*fallback*/
+  height: calc(var(--vh, 1vh) * 5);
   margin: 20px 500px 20px 500px;
   border-radius: 50px;
 }
