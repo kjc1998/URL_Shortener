@@ -68,8 +68,8 @@ nav {
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    overflow-x: visible;
+  .whole {
+    overflow-x: hidden;
   }
   .rightSide {
     position: absolute;
@@ -121,6 +121,7 @@ nav {
 }
 
 /* Moving container */
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
@@ -160,7 +161,6 @@ nav {
 .details h1 {
   font-size: 80px;
   text-align: center;
-  width: 700px;
 }
 
 .details p {
@@ -446,7 +446,7 @@ nav {
 
 .enterUrl {
   padding-top: 70px;
-  padding: 50px 500px 50px 500px;
+  margin: 50px 500px 50px 500px;
 }
 
 .content-section{
@@ -484,4 +484,38 @@ nav {
   height: 5vh;
   margin: 20px 500px 20px 500px;
   border-radius: 50px;
+}
+
+@media screen and (max-width: 768px){
+
+  .details {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: #5f4c6b;
+    max-width: 300px;
+  }
+  .details p{
+    padding: 5px;
+  }
+  .details h1{
+    font-size: 55px;
+    margin-top: 5px;
+  }
+  .enterUrl{
+    max-width: 300px;
+  }
+  .bothURL {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    word-spacing: 0%;
+  }
+  .inputUrl, .submitUrl {
+    border-radius: 15px;
+    margin: 5px;
+  }
+
+  }
 }
