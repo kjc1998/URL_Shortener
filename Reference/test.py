@@ -9,9 +9,10 @@ BASE_LOCAL = "http://127.0.0.1:5000/"
 long_link = "https://www.google.com/"
 
 userID = (requests.post(BASE + "login/" +
-                        "cer0cifer" + "/kaijie")).json()['userid']
-short = requests.post(
+                        "cer0cifer" + "/Kj1chow!")).json()['userid']
+print(userID)
+'''short = requests.post(
     BASE + "details/"+userID+'/'+long_link)
 shortened = short.json()
 print("userID:", userID)
-print("Values:", shortened)
+print("Values:", shortened)'''

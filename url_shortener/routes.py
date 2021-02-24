@@ -215,11 +215,8 @@ def send_verification_email(user, methods='GET'):
     db.session.commit()
     msg = Message('Email Verification',
                   sender='noreply@spshurl.com', recipients=[user.email])
-    msg.body = f'''Thank you for registering with us, to complete your registration please visit:
-{url_for('app.verification_token', token=token,  _external=True)}
-
-If you did not make this request please ignore this email.
-'''
+    msg.body = f'''Thank you for registering with us, to complete your registration please visit:\n\
+                {url_for('app.verification_token', token=token,  _external=True)}\nIf you did not make this request please ignore this email.'''
     mail.send(msg)
 
 
