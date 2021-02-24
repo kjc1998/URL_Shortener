@@ -541,12 +541,12 @@ nav {
     width: auto;
     margin-bottom: 50px;
     background: rgba(22, 29, 41, 0.9);
-    border-radius: 50px;G
+    border-radius: 50px;
     backdrop-filter: blur(40px);
     border: solid 2px transparent;
     background-clip: padding-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-
+}
 
 /* Mobile view end*/
