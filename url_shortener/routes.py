@@ -6,12 +6,15 @@ import validators
 import tldextract
 import requests
 from sqlalchemy import asc, desc, and_, or_
+from flask_mail import Message
 from flask_login import login_user, current_user, logout_user, login_required
 from flask import render_template, url_for, flash, redirect, request, Blueprint, abort
 import url_shortener.REST
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, RequestVerificationForm
 from .models import User, Link
-from .extensions import db, bcrypt, api, admin_USERID
+from .extensions import db, bcrypt, api, admin_USERID, mail
+
+
 
 app = Blueprint('app', __name__)
 
@@ -44,7 +47,8 @@ def register():
                     email=form.email.data, password=hashed_password, user_id=userID)
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
+        send_verification_email(user)
+        flash('Please verify your email before attempting to log in!', 'success')
         return redirect(url_for('app.login'))
     return render_template('register.html', title='Register', form=form)
 
@@ -57,12 +61,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
+        if user.verified is not True:
+            flash('Login Unsuccessful, please verify your email!', 'danger')
+            return redirect(url_for('app.login'))
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('app.home'))
         else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
+            flash('Login Unsuccessful, please check username and password!', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
@@ -198,4 +205,36 @@ def global_graph():
     currentDictionary = dict(reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
     currentDictionary = dict(list(currentDictionary.items())[:5])
     currentDictionary = json.dumps(currentDictionary)
+<<<<<<< Updated upstream
     return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary, lenDict = len_dict, sumDict = sum_dict, lenCurDict = len_curdict, sumCurDict = sum_curdict)
+=======
+    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary)
+
+def send_verification_email(user, methods='GET'):
+    token = user.get_verification_token()
+    user.user_token = token
+    db.session.commit()
+    msg = Message('Email Verification', sender='noreply@spshurl.com', recipients=[user.email])
+    msg.body = f'''Thank you for registering with us, to complete your registration please visit:
+{url_for('app.verification_token', token=token,  _external=True)}
+
+If you did not make this request please ignore this email.
+'''
+    mail.send(msg)
+
+@app.route("/register/<token>")
+def verification_token(token):
+    user = User.verify_verification_token(token)
+    unverified = User.query.filter_by(user_token=token).first()
+    if user is None: 
+        db.session.delete(unverified)
+        db.session.commit()
+        flash('That is an invalid or expired token', 'warning')
+        return redirect(url_for('app.register'))
+    else:     
+        user.verified = True
+        db.session.commit()
+        flash('Your email has been verified, you can now login!', 'success')
+    return redirect(url_for('app.login'))
+    
+>>>>>>> Stashed changes
