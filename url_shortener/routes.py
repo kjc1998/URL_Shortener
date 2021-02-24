@@ -15,7 +15,6 @@ from .models import User, Link
 from .extensions import db, bcrypt, api, admin_USERID, mail
 
 
-
 app = Blueprint('app', __name__)
 
 
@@ -188,7 +187,8 @@ def global_graph():
             dictionary[link.domain_url] = link.visits
     len_dict = len(dictionary)
     sum_dict = sum(dictionary.values())
-    dictionary = dict(reversed(sorted(dictionary.items(), key=lambda item: item[1])))
+    dictionary = dict(
+        reversed(sorted(dictionary.items(), key=lambda item: item[1])))
     dictionary = dict(list(dictionary.items())[:5])
     dictionary = json.dumps(dictionary)
 
@@ -202,19 +202,19 @@ def global_graph():
             currentDictionary[link.domain_url] = link.visits
     len_curdict = len(currentDictionary)
     sum_curdict = sum(currentDictionary.values())
-    currentDictionary = dict(reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
+    currentDictionary = dict(
+        reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
     currentDictionary = dict(list(currentDictionary.items())[:5])
     currentDictionary = json.dumps(currentDictionary)
-<<<<<<< Updated upstream
-    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary, lenDict = len_dict, sumDict = sum_dict, lenCurDict = len_curdict, sumCurDict = sum_curdict)
-=======
-    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary)
+    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary, lenDict=len_dict, sumDict=sum_dict, lenCurDict=len_curdict, sumCurDict=sum_curdict)
+
 
 def send_verification_email(user, methods='GET'):
     token = user.get_verification_token()
     user.user_token = token
     db.session.commit()
-    msg = Message('Email Verification', sender='noreply@spshurl.com', recipients=[user.email])
+    msg = Message('Email Verification',
+                  sender='noreply@spshurl.com', recipients=[user.email])
     msg.body = f'''Thank you for registering with us, to complete your registration please visit:
 {url_for('app.verification_token', token=token,  _external=True)}
 
@@ -222,19 +222,18 @@ If you did not make this request please ignore this email.
 '''
     mail.send(msg)
 
+
 @app.route("/register/<token>")
 def verification_token(token):
     user = User.verify_verification_token(token)
     unverified = User.query.filter_by(user_token=token).first()
-    if user is None: 
+    if user is None:
         db.session.delete(unverified)
         db.session.commit()
         flash('That is an invalid or expired token', 'warning')
         return redirect(url_for('app.register'))
-    else:     
+    else:
         user.verified = True
         db.session.commit()
         flash('Your email has been verified, you can now login!', 'success')
     return redirect(url_for('app.login'))
-    
->>>>>>> Stashed changes
