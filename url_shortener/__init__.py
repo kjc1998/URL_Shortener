@@ -34,5 +34,5 @@ login_manager.init_app(appF)
 login_manager.login_view = 'app.login'
 login_manager.login_message_category = 'info'
 
-# if localHost:
-db.create_all(app=appF)
+if localHost:
+    db.create_all(app=appF)
