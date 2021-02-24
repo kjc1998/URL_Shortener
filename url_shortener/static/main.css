@@ -6,11 +6,7 @@
   box-sizing: border-box;
 }
 
-/* body{
-  overflow-y: scroll;
-  overflow-x: hidden;
-} */
-
+/* Navigation styles */
 nav {
   display: flex;
   justify-content: space-around;
@@ -54,7 +50,9 @@ nav {
   width: 500px;
   list-style: none;
 }
+/* Navigation end*/
 
+/* Burger view*/
 .burgerView {
   display: none;
   cursor: pointer;
@@ -122,9 +120,9 @@ nav {
 .toggle .bottom {
   transform: rotate(45deg) translate(-5px, -6px);
 }
+/* Burger view end*/
 
 /* Moving container */
-
 @keyframes rotation {
   from {
     transform: rotate(0deg);
@@ -213,7 +211,7 @@ nav {
   margin: 0 auto;
   fill: white;
 }
-
+/* Moving container end*/
 .roow {
   display: flex;
   flex-wrap: wrap;
@@ -226,7 +224,6 @@ nav {
   display: flex;
   justify-content: center;
   padding: 0px 3rem 300px 3rem;
-  /* overflow-x: scroll; */
 }
 
 .aboutUs {
@@ -242,10 +239,6 @@ nav {
   padding-top: 3rem;
   padding-bottom: 3rem;
   min-width: auto;
-
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  /* border: rgba(0, 0, 0, 0.5); */
-  /* border-radius: 50px; */
   transition: all 1s;
 }
 
@@ -419,7 +412,9 @@ nav {
 .show {
   opacity: 1;
 }
+/* Card view end*/
 
+/* Enter URL*/
 .inputUrl {
   border-radius: 15px 0px 0px 15px;
   padding: 15px;
@@ -477,19 +472,22 @@ nav {
   font-weight: 500;
   color: #5f4c6b;
 }
+/* Enter URL end*/
 
 .graphs {
   display: flex;
   justify-content: space-around;
 }
-
+/* Wrong credential alerts*/
 .alert {
   height: 5vh; /*fallback*/
   height: calc(var(--vh, 1vh) * 5);
   margin: 20px 500px 20px 500px;
   border-radius: 50px;
 }
+/* Wrong credential alerts end*/
 
+/* Mobile view*/
 @media screen and (max-width: 768px) {
   .details {
     display: flex;
@@ -521,3 +519,4 @@ nav {
     margin: 5px;
   }
 }
+/* Mobile view end*/
