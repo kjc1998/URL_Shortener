@@ -1,105 +1,106 @@
+/*LOCAL USER DASHBOARD*/
+
+.localTitle{
+  width:100%;
+  margin:auto;
+  padding-bottom: 25px;
+}
+
 .container1{
-  /* Style the parent container */
-  display: flex; /*flex-box*/
-  flex-direction: row; /*make it a row instead of column*/
-  justify-content: center; /*center the text*/
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+  border-radius: 50px;
+  backdrop-filter: blur(40px);
+  border: solid 2px transparent;
+  background-clip: padding-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .localUser{
-  border: solid; 
-  border-color: grey;
-  border-radius: 25px;/*Add a border and a border with colour and radius*/
-  padding: 5px 30px 5px 30px;
-  margin: 50px;
+  display: inline-block;
+  vertical-align:text-top;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.localUser h1{font-size: 30px;}
+.localUser p{font-size: 20px;}
+
+.localUserNum {
+  display: inline-block; 
+  vertical-align:text-top;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.localUserNum h1{font-size: 30px;}
+.localUserNum p{font-size: 50px;}
+
+.localUserVisits {
+  display: inline-block; 
+  vertical-align:text-top;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.localUserVisits h1{font-size: 30px;}
+.localUserVisits p{font-size: 50px;}
+
+/*GLOBAL USER DASHBOARD*/
+
+.globalTitle{
+  width:100%;
+  margin:auto;
+  padding-top: 35px;
+  padding-bottom: 25px;
 }
 
-.localUser h1{
-  /*the h1 is when you want to style the h1 tag inside of the newUser class*/
+.container2{
   display: flex;
-  justify-content: start; /*text start from left*/
-  color: red;
-  /*basically any style, color, font can add here*/
-  /*if let's say a font size of 100px is added here, then only the things inside h1 will have a font size of 100px*/
-}
-
-.localUser p{
-  /*use p same as h1*/
-  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
   justify-content: center;
-  color: blue;
-  font-weight: 700;
-  font-size: 100px;
-  margin: 5px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-/*basically the same as the newUser*/
-.localUserNum{
-  border: solid;
-  border-color: grey;
-  border-radius: 25px;
-  padding: 30px;
-  margin: 50px;
+.globalUser{
+  display: inline-block;
+  vertical-align:text-top;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
+.globalUser h1{font-size: 30px;}
+.globalUser p{font-size: 20px;}
 
-.localUserNum h1{
-  display: flex;
-  justify-content: start;
-  color: red;
+.globalUserNum {
+  display: inline-block; 
+  vertical-align:text-top;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
+.globalUserNum h1{font-size: 30px;}
+.globalUserNum p{font-size: 50px;}
 
-.localUserNum p{
-  display: flex;
-  justify-content: center;
-  color: blue;
-  font-weight: 700;
-  font-size: 100px;
-  margin: 5px;
+.globalUserVisits {
+  display: inline-block; 
+  vertical-align:text-top;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
-
-/*basically the same as the newUser*/
-.GlobalUser{
-  border: solid;
-  border-color: grey;
-  border-radius: 25px;
-  padding: 30px;
-  margin: 50px;
-}
-
-.GlobalUser h1{
-  display: flex;
-  justify-content: start;
-  color: red;
-}
-
-.GlobalUser p{
-  display: flex;
-  justify-content: center;
-  color: blue;
-  font-weight: 700;
-  font-size: 100px;
-  margin: 5px;
-}
-
-.GlobalUserNum{
-  border: solid;
-  border-color: grey;
-  border-radius: 25px;
-  padding: 30px;
-  margin: 50px;
-}
-
-.GlobalUserNum h1{
-  display: flex;
-  justify-content: start;
-  color: red;
-}
-
-.GlobalUserNum p{
-  display: flex;
-  justify-content: center;
-  color: blue;
-  font-weight: 700;
-  font-size: 100px;
-  margin: 5px;
-}
+.globalUserVisits h1{font-size: 30px;}
+.globalUserVisits p{font-size: 50px;}

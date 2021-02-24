@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-    <link rel="stylesheet" href="cssgraph.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cssgraph.css')}}">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src = "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <title>URL Shortener Analytics</title>
@@ -11,39 +11,41 @@
 
 <!-- LOCAL USER DASHBOARD-->
 
-<div class="container1" style = "justify-content: space-between; text-align: center;"> 
-<h1>Hello, here's your data...</h1>
-    <div class="localUser" style="display: inline-block; vertical-align:text-top"> 
+<div class="localTitle"> 
+    <h1>Hello, here's your data...</h1>
+</div>
+
+<div class="container1"> 
+    <div class="localUser"> 
         <h1>Top Webs</h1>
         <p id="top1"></p>
-        <p id="top2"></p>        
-        <p id="top3"></p>
     </div>
-    <div class="localUserNum" style="display: inline-block; vertical-align:text-top">
+    <div class="localUserNum">
         <h1>Total Webs Shortened</h1>
         <p>{{ lenCurDict }}</p>
     </div>
 
-    <div class="localUserVisits" style="display: inline-block; vertical-align:text-top">
+    <div class="localUserVisits">
         <h1>Total Web Visits</h1>
         <p>{{ sumCurDict }}</p>
     </div>
 </div>
 
 <div class = "graphs" style="width:100% ; margin:auto">
-    <canvas id="local" width="720" height="480"></canvas> 
+    <canvas id="local" width="600" height="250"></canvas> 
 </div>
 
 
 <!-- GLOBAL USER DASHBOARD-->
 
-<div class = "container2" style = "justify-content: space-between; text-align: center;">
+<div class="GlobalTitle"> 
     <h1>... and here's the data for overall users</h1>
+</div>
+
+<div class = "container2" style = "justify-content: space-between; text-align: center;">
     <div class="GlobalUser" style= "display: inline-block; vertical-align:text-top">
         <h1>Top Webs</h1>
         <p id="top1g"></p>
-        <p id="top2g"></p>        
-        <p id="top3g"></p>
     </div>
     <div class="GlobalUserNum" style="display: inline-block; vertical-align:text-top">
         <h1>Total Webs Shortened</h1>
@@ -56,7 +58,7 @@
 </div>
 
 <div class="graphs" style="width:100% ; margin:auto"> 
-     <canvas id="global" width="720" height="480"></canvas> 
+     <canvas id="global" width="600" height="250"></canvas> 
 </div>
 
 
@@ -86,60 +88,45 @@
     $(function () {
         //USER
         if (currentLabel.length == 0) {
-            document.getElementById("top1").innerHTML = "NaN";
-            document.getElementById("top2").innerHTML = "NaN";
-            document.getElementById("top3").innerHTML = "NaN";            
+            document.getElementById("top1").innerHTML = "No Links Added";        
         } 
         if (currentLabel.length == 1) {
             document.getElementById("top1").innerHTML = currentLabel[0];
-            document.getElementById("top2").innerHTML = "NaN";
-            document.getElementById("top3").innerHTML = "NaN";   
         } 
         if (currentLabel.length == 2) {
             document.getElementById("top1").innerHTML = currentLabel[0];
-            document.getElementById("top2").innerHTML = currentLabel[1];
-            document.getElementById("top3").innerHTML = "NaN";   
+            document.getElementById("top1").innerHTML += "<br>" + currentLabel[1];
+   
         } 
-        else {
+        if (currentLabel.length > 2) {
             document.getElementById("top1").innerHTML = currentLabel[0];
-            document.getElementById("top2").innerHTML = currentLabel[1];
-            document.getElementById("top3").innerHTML = currentLabel[2];   
+            document.getElementById("top1").innerHTML += "<br>" + currentLabel[1];
+            document.getElementById("top1").innerHTML += "<br>" + currentLabel[2]; 
         }
 
         // GLOBAL
         if (globalLabel.length == 0) {
-            //  block of code to be executed if the condition is true
-            document.getElementById("top1g").innerHTML = "NaN";
-            document.getElementById("top2g").innerHTML = "NaN";
-            document.getElementById("top3g").innerHTML = "NaN";            
+            document.getElementById("top1g").innerHTML = "No Links Added";        
         } 
-
         if (globalLabel.length == 1) {
-            //  block of code to be executed if the condition is true
-            document.getElementById("top1g").innerHTML = currentLabel[0];
-            document.getElementById("top2g").innerHTML = "NaN";
-            document.getElementById("top3g").innerHTML = "NaN";   
+            document.getElementById("top1g").innerHTML = globalLabel[0];
         } 
-
         if (globalLabel.length == 2) {
-            //  block of code to be executed if the condition is true
             document.getElementById("top1g").innerHTML = globalLabel[0];
-            document.getElementById("top2g").innerHTML = globalLabel[1];
-            document.getElementById("top3g").innerHTML = "NaN";   
+            document.getElementById("top1g").innerHTML += "<br>" + globalLabel[1];
+   
         } 
-        
-        else {
-            //  block of code to be executed if the condition is false
+        if (globalLabel.length > 2) {
             document.getElementById("top1g").innerHTML = globalLabel[0];
-            document.getElementById("top2g").innerHTML = globalLabel[1];
-            document.getElementById("top3g").innerHTML = globalLabel[2];   
+            document.getElementById("top1g").innerHTML += "<br>" + globalLabel[1];
+            document.getElementById("top1g").innerHTML += "<br>" + globalLabel[2]; 
         }
 
         var ctx = document.getElementById("local").getContext('2d');
         var data = {
             datasets:[{
                 data:currentData,
-                label: "Frequency of visits",
+                label: "Number of visits",
                 backgroundColor: "rgba(255,99,132,0.2)",
                 borderColor: "rgba(255,99,132,1)",
                 borderWidth: 2,
@@ -153,8 +140,8 @@
         type: 'horizontalBar',
         data: data,
         options: {
-            responsive: false,
-            maintainAspectRatio: false,
+            responsive: true,
+            maintainAspectRatio: true,
             layout: {
                 padding: {
                     left: 0,
@@ -165,27 +152,41 @@
             },
             title: {
                 display:true,
-                text: 'Your Top 5 Visited Websites',
+                text: 'Top 5 Websites',
                 position: 'top',
                 fontSize: 35,
+                fontColor: 'rgba(255,255,255)',
+
             },
             legend: {
                 position: 'bottom',
                 labels: {
-                    boxWidth: 12
+                    boxWidth: 30,
+                    fontSize: 15,
+                    fontColor: 'rgb(255, 255, 255)'
                 }
             },
             scales: {
                 yAxes: [{
                         display: true,
                         maxBarThickness: 50,
+                        ticks: {
+                            fontColor: 'rgba(255,255,255)',
+                            fontSize: 15,
+                        }
                     }],
                 xAxes: [{
                         display: true,
                         ticks: {
                             beginAtZero: true,
-                            stepSize: 1
-                        }
+                            stepSize: 1,
+                            fontColor: 'rgba(255,255,255)',
+                            fontSize: 15,
+                        },
+                        gridLines: {
+                            color: 'rgba(255,255,255, 0.5)',
+                            lineWidth: 1
+                        }                         
                     }]
             },
         }
@@ -195,7 +196,7 @@
     var data_2 = {
         datasets:[{
             data:globalData,
-            label: "Frequency of visits",
+            label: "Number of visits",
             backgroundColor: "rgba(255,99,132,0.2)",
             borderColor: "rgba(255,99,132,1)",
             borderWidth: 2,
@@ -209,13 +210,15 @@
         type: 'horizontalBar',
         data: data_2,
         options: {
+            responsive: true,
+            maintainAspectRatio: true,
             title: {
                 display:true,
-                text: 'Top 5 Websites Visited by Users Worldwide',
+                text: 'Top 5 Websites',
+                fontColor: 'rgb(255, 255, 255)',
                 position: 'top',
                 fontSize: 35,
             },
-            responsive: false,
             layout: {
                 padding: {
                     left: 0,
@@ -224,27 +227,37 @@
                     bottom: 20
                 }
             },
-            maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                         display: true,
                         maxBarThickness: 50,
-
+                        ticks: {
+                            fontColor: 'rgba(255,255,255)',
+                            fontSize: 15,
+                        }
                     }],
                 xAxes: [{
                         display: true,
                         ticks: {
                             beginAtZero: true,
-                            stepSize: 1
-                        }                        
+                            stepSize: 1,
+                            fontColor: 'rgba(255,255,255)',
+                            fontSize: 15,
+                        },
+                        gridLines: {
+                            color: 'rgba(255,255,255, 0.5)',
+                            lineWidth: 1
+                        }                      
                     }]
             },
             legend: {
                 position: 'bottom',
                 labels: {
-                    boxWidth: 12
+                    boxWidth: 12,
+                    fontSize: 15,
+                    fontColor: 'rgb(255, 255, 255)'
                 }
-            }
+            },
         }
     });
 });
