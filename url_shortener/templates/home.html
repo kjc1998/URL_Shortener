@@ -2,16 +2,77 @@
 {% block content %}
 <!--space btw nav and web deets-->
 <!-- <span class="brSpace"></span> -->
+<div class="slideshow-container">
 
-<div class="container" id= "container_trans" >
-    <div class="details" id="inner">
-        <h1>Webpage details</h1>
-        <br>
-        <p>
-            The Moon is a barren, rocky world without air and water. It has dark lava plain on its surface. The Moon is filled wit craters. It has no light of its own. It gets its light from the Sun. The Moo keeps changing its shape as it moves round the Earth. It spins on its axis in 27.3 days stars were named after the Edwin Aldrin were the first ones to set their foot on the Moon on 21 July 1969 They reached the Moon in their space craft named Apollo II
-        </p>
+  <div class="mySlides">
+    <div class="container" id= "container_trans0" >
+        <div class="details" id="inner0">
+            <h1>Webpage details</h1>
+            <br>
+            <p>
+              Heroku WebPage: <b style="color:aquamarine">https://spshurl.herokuapp.com/</b> <br>
+              A standard URL shortener webpage with additional GUI extensions for better and more convenient usage. <br>
+              To gain access, user(s) should first create an account via the website's registration page.
+              <table>
+                <tr>
+                  <th>Page</th>
+                  <th>About</th>
+                </tr>
+                <tr>
+                  <th>Home</th>
+                  <th>URL shortening input & Authors' backgrounds</th>
+                </tr>
+                <tr>
+                  <th>List</th>
+                  <th>Table list of all individual shortened URL(s)</th>
+                </tr>
+                <tr>
+                  <th>Graph</th>
+                  <th>Statistical overview on URL(s) usage from both local and global perspective</th>
+                </tr>
+                <tr>
+                  <th>URL (more info)</th>
+                  <th>Details and QR display of a specific URL</th>
+                </tr>
+                <tr>
+                  <th>Admin</th>
+                  <th>Table list of all registered individuals</th>
+                </tr>
+              </table>
+            </p>
+        </div>
     </div>
+  </div>
+
+  <div class="mySlides">
+    <div class="container" id= "container_trans1" >
+        <div class="details" id="inner1">
+            <h1>API</h1>
+            <br>
+            <p>
+              Provides a simpler means of adding or inspecting related contents on a given URL.
+              <br>
+              <div id="textAlignLeft">
+                How it works:<br><br>
+                <ol>
+                  <li>Must first have a registered account at the hosted webpage.</li>
+                  <li>Set up a BASE_URL variable that links to "https://spshurl.herokuapp.com/".</li>
+                  <li>Obtain individual specific userID in JSON format via request method as given in the example below:<br>
+                  <b style="color:aquamarine">request.post(BASE + "login/" + "{username}/" + "{password}")</b></li>
+                  <li>Run another post request to either add or obtain information related to a given URL:<br>
+                  <b style="color:aquamarine">request.post(BASE + "details/" + "{userID}/" + "{URL}")</b><br>which should return a JSON serialised dictionary with all relevant details.</li>
+                </ol>
+              </div>
+            </p>
+        </div>
+    </div>
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
 </div>
+<br>
 
 {% if current_user.is_authenticated %}
   <div style="position:relative" class="enterUrl">
@@ -139,14 +200,36 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 
 <script>
-    // ease in transition
-    const glass= document.getElementById("container_trans");
+  // ease in transition
+  const glass= document.getElementById("container_trans");
 
-    const tl= gsap.timeline({defaults: {ease: "power2.inOut", duration: 1.5}})
-    tl.from('.container' , {opacity:0, delay: .5, duration:1}, "-=1.5")
-    tl.from('.container', {x: '-20%', backdropFilter: 'blur(0px)'});
-    tl.from('nav' , {opacity: 0, delay: 0, duration:1}, "-=1.5")
-    tl.from('.details' , {opacity: 0, delay: 1.2, duration:1}, "-=1.5")
+  const tl= gsap.timeline({defaults: {ease: "power2.inOut", duration: 1.5}})
+  tl.from('.container' , {opacity:0, delay: .5, duration:1}, "-=1.5")
+  tl.from('.container', {x: '-20%', backdropFilter: 'blur(0px)'});
+  tl.from('nav' , {opacity: 0, delay: 0, duration:1}, "-=1.5")
+  tl.from('.details' , {opacity: 0, delay: 1.2, duration:1}, "-=1.5")
 
+
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    slides[slideIndex-1].style.display = "block";  
+  }
 </script>
 {% endblock content%}
