@@ -11,13 +11,12 @@
 
 <!-- LOCAL USER DASHBOARD-->
 
-<div class="localTitle"> 
-    <h1>Hello, here's your data...</h1>
-</div>
-
 <div class="container1"> 
+    <div class="localTitle"> 
+        <h1>USER<br>DATA</h1>
+    </div>
     <div class="localUser"> 
-        <h1>Top Webs</h1>
+        <h1>Top Visited Webs</h1>
         <p id="top1"></p>
     </div>
     <div class="localUserNum">
@@ -31,34 +30,33 @@
     </div>
 </div>
 
-<div class = "graphs" style="width:100% ; margin:auto">
-    <canvas id="local" width="600" height="250"></canvas> 
+<div class = "graphs" style="width:80% ; margin:auto; padding-bottom: 50px; min-width: 500px; min-height: 250px;">
+    <canvas id="local" width="500" height="225"></canvas> 
 </div>
 
 
 <!-- GLOBAL USER DASHBOARD-->
 
-<div class="GlobalTitle"> 
-    <h1>... and here's the data for overall users</h1>
-</div>
-
-<div class = "container2" style = "justify-content: space-between; text-align: center;">
-    <div class="GlobalUser" style= "display: inline-block; vertical-align:text-top">
-        <h1>Top Webs</h1>
+<div class = "container2">
+    <div class="GlobalTitle"> 
+        <h1>OVERALL<br>DATA</h1>
+    </div>
+    <div class="GlobalUser">
+        <h1>Top Visited Webs</h1>
         <p id="top1g"></p>
     </div>
-    <div class="GlobalUserNum" style="display: inline-block; vertical-align:text-top">
+    <div class="GlobalUserNum">
         <h1>Total Webs Shortened</h1>
         <p>{{ lenDict }}</p>
     </div>
-    <div class="GlobalUserVisits" style="display: inline-block; vertical-align:text-top">
+    <div class="GlobalUserVisits">
         <h1>Total Web Visits</h1>
         <p>{{ sumDict }}</p>
     </div>
 </div>
 
-<div class="graphs" style="width:100% ; margin:auto"> 
-     <canvas id="global" width="600" height="250"></canvas> 
+<div class="graphs" style="width:80% ; margin:auto; min-width: 500px; min-height: 250px;"> 
+     <canvas id="global" width="500" height="225"></canvas> 
 </div>
 
 
@@ -152,9 +150,9 @@
             },
             title: {
                 display:true,
-                text: 'Top 5 Websites',
+                text: 'Your Top 5 Websites',
                 position: 'top',
-                fontSize: 35,
+                fontSize: 25,
                 fontColor: 'rgba(255,255,255)',
 
             },
@@ -173,6 +171,10 @@
                         ticks: {
                             fontColor: 'rgba(255,255,255)',
                             fontSize: 15,
+                        },
+                        gridLines:{
+                            zeroLineColor: 'rgba(255,255,255, 0.5)',
+                            lineWidth: 1,
                         }
                     }],
                 xAxes: [{
@@ -184,9 +186,11 @@
                             fontSize: 15,
                         },
                         gridLines: {
+                            zeroLineColor: 'rgba(255,255,255, 0.5)',
                             color: 'rgba(255,255,255, 0.5)',
-                            lineWidth: 1
-                        }                         
+                            lineWidth: 1,
+                        } ,
+                        position: 'bottom',                      
                     }]
             },
         }
@@ -214,10 +218,10 @@
             maintainAspectRatio: true,
             title: {
                 display:true,
-                text: 'Top 5 Websites',
+                text: 'Top 5 Overall User Websites',
                 fontColor: 'rgb(255, 255, 255)',
                 position: 'top',
-                fontSize: 35,
+                fontSize: 25,
             },
             layout: {
                 padding: {
@@ -234,6 +238,10 @@
                         ticks: {
                             fontColor: 'rgba(255,255,255)',
                             fontSize: 15,
+                        },
+                        gridLines: {
+                            zeroLineColor: 'rgba(255,255,255, 0.5)',
+                            lineWidth: 1
                         }
                     }],
                 xAxes: [{
@@ -245,6 +253,7 @@
                             fontSize: 15,
                         },
                         gridLines: {
+                            zeroLineColor: 'rgba(255,255,255, 0.5)',
                             color: 'rgba(255,255,255, 0.5)',
                             lineWidth: 1
                         }                      
