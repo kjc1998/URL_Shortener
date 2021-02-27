@@ -16,7 +16,7 @@
         <!--<link rel="stylesheet" href="{{ url_for('static', filename='cssgraph.css') }}">-->
         <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='trythis.css')}}"> -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css')}}">
-        <link rel="icon" href="{{ url_for('static/logo', filename='Sparrow (Logo, Dark, Trans).png') }}">
+        <link rel="icon" href="{{ url_for('static', filename='logo/Sparrow (Logo, Dark, Trans).png') }}">
         {% if title %}
         <title> URL Shortener - {{ title }} </title>
         {% else %}
@@ -52,7 +52,7 @@
                 <nav>
                     <div class="leftSide">
                         
-                        <a class="urlLogo" href="/"><img class="logo" src="static/logo/Sparrow (Logo, Dark, Trans).png"> <h3>URL shortener</h3></a>
+                        <a class="urlLogo" href="/"><img class="logo" src="{{ url_for('static', filename='logo/Sparrow (Logo, Dark, Trans).png') }}"> <h3>URL shortener</h3></a>
                     </div>
                     <div>
                         {% if current_user.is_authenticated %}
