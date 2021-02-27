@@ -9,4 +9,4 @@ login_manager = LoginManager()
 bcrypt = Bcrypt()
 api = Api()
 mail = Mail()
-admin_USERID = ["NaaJCviCCJ", "qclPmuNLxw"]
+admin_USERID = ["NaaJCviCCJ", "qclPmuNLxw", "MdlKNliSHB"]
