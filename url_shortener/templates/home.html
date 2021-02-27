@@ -40,6 +40,8 @@
                 </tr>
               </table>
             </p>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
     </div>
   </div>
@@ -64,12 +66,11 @@
                 </ol>
               </div>
             </p>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
     </div>
   </div>
-
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 </div>
 <br>
@@ -201,7 +202,8 @@
 
 <script>
   // ease in transition
-  const glass= document.getElementById("container_trans");
+  const glass0 = document.getElementById("container_trans0");
+  const glass1 = document.getElementById("container_trans1")
 
   const tl= gsap.timeline({defaults: {ease: "power2.inOut", duration: 1.5}})
   tl.from('.container' , {opacity:0, delay: .5, duration:1}, "-=1.5")
