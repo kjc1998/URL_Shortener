@@ -720,14 +720,20 @@ img {
 /* slideshow css End */
 
 /*Tables*/
+table {
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
 th {
   font-weight: bold;
   font-size: 25px;
-  background: #198050;
+  background: #c21a29;
 }
 
 td {
-  background: #064b7f;
+  background: #1ba5a9;
 }
 
 #homeTable {
