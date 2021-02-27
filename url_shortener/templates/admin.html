@@ -11,38 +11,38 @@
         </tr>
         {% for user in users %}
         <tr>
-            <th>{{ user.username }}</th>
-            <th>{{ user.email }}</th>
-            <th>{{ user.user_id }}</th>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.user_id }}</td>
             {% if currentUser.user_id==primaryAdmin %}
                 {% if user.admin==True and user.user_id==primaryAdmin %}
-                    <th>
+                    <td>
                         True<br>Primary Admin
-                    </th>
+                    </td>
                 {% elif user.admin==True and user.user_id!=primaryAdmin %}
-                    <th>
+                    <td>
                         True
                         <form action="{{ url_for('app.setAdmin', userID=current_user.user_id) }}" method="POST">
                             <button name="submit_button" value="{{ user.user_id }}">Remove Admin</button>
                         </form>
-                    </th>
+                    </td>
                 {% else %}
-                    <th>
+                    <td>
                         False
                         <form action="{{ url_for('app.setAdmin', userID=current_user.user_id) }}" method="POST">
                             <button name="submit_button" value="{{ user.user_id }}">Set Admin</button>
                         </form>
-                    </th>
+                    </td>
                 {% endif %}
             {% else %}
                 {% if user.admin==True %}
-                    <th>
+                    <td>
                         True
-                    </th>
+                    </td>
                     {% else %}
-                    <th>
+                    <td>
                         False
-                    </th>
+                    </td>
                 {% endif %}
             {% endif %}
         </tr>

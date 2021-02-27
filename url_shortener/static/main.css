@@ -194,13 +194,17 @@ nav {
   padding-left: 2em;
   padding-right: 2em;
   padding-bottom: 2em;
-  list-style-position: inside;
+  list-style-position: outside;
   text-align: justify;
 }
 
 .brSpace {
   display: block;
   margin-bottom: 3em;
+}
+
+.brSpaceUp {
+  margin-top: 2em;
 }
 
 @media (hover: hover) {
@@ -714,3 +718,18 @@ img {
 }
 
 /* slideshow css End */
+
+/*Tables*/
+th {
+  font-weight: bold;
+  font-size: 25px;
+  background: #198050;
+}
+
+td {
+  background: #064b7f;
+}
+
+#homeTable {
+  margin-left: 1.3em;
+}

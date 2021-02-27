@@ -7,36 +7,36 @@
   <div class="mySlides">
     <div class="container" id= "container_trans0" >
         <div class="details" id="inner0">
-            <h1>Webpage details</h1>
+            <h1>Webpage</h1>
             <br>
             <p>
-              Heroku WebPage: <b style="color:aquamarine">https://spshurl.herokuapp.com/</b> <br>
+              Heroku WebPage: <b style="color:#25C3AA">https://spshurl.herokuapp.com/</b> <br>
               A standard URL shortener webpage with additional GUI extensions for better and more convenient usage. <br>
               To gain access, user(s) should first create an account via the website's registration page.
-              <table>
+              <table class="brSpaceUp">
                 <tr>
                   <th>Page</th>
                   <th>About</th>
                 </tr>
                 <tr>
-                  <th>Home</th>
-                  <th>URL shortening input & Authors' backgrounds</th>
+                  <td>Home</td>
+                  <td>URL shortening input & Authors' backgrounds</td>
                 </tr>
                 <tr>
-                  <th>List</th>
-                  <th>Table list of all individual shortened URL(s)</th>
+                  <td>List</td>
+                  <td>Table list of all individual shortened URL(s)</td>
                 </tr>
                 <tr>
-                  <th>Graph</th>
-                  <th>Statistical overview on URL(s) usage from both local and global perspective</th>
+                  <td>Graph</td>
+                  <td>Statistical overview on URL(s) usage from both local and global perspective</td>
                 </tr>
                 <tr>
-                  <th>URL (more info)</th>
-                  <th>Details and QR display of a specific URL</th>
+                  <td>URL (more info)</td>
+                  <td>Details and QR display of a specific URL</td>
                 </tr>
                 <tr>
-                  <th>Admin</th>
-                  <th>Table list of all registered individuals</th>
+                  <td>Admin</td>
+                  <td>Table list of all registered individuals</td>
                 </tr>
               </table>
             </p>
@@ -56,13 +56,13 @@
               <br>
               <div id="textAlignLeft">
                 How it works:<br><br>
-                <ol>
+                <ol id="homeTable">
                   <li>Must first have a registered account at the hosted webpage.</li>
-                  <li>Set up a BASE_URL variable that links to "https://spshurl.herokuapp.com/".</li>
+                  <li>Set up a <i style="color:#A97EDF; font-weight: bold;">BASE</i> variable that links to <b style="color:#25C3AA">"https://spshurl.herokuapp.com/"</b>.</li>
                   <li>Obtain individual specific userID in JSON format via request method as given in the example below:<br>
-                  <b style="color:aquamarine">request.post(BASE + "login/" + "{username}/" + "{password}")</b></li>
+                  <b style="color:#25C3AA">request.post(<i style="color:#A97EDF">BASE</i> + "login/" + "{<i style="color:#A97EDF">username</i>}/" + "{<i style="color:#A97EDF">password</i>}")</b></li>
                   <li>Run another post request to either add or obtain information related to a given URL:<br>
-                  <b style="color:aquamarine">request.post(BASE + "details/" + "{userID}/" + "{URL}")</b><br>which should return a JSON serialised dictionary with all relevant details.</li>
+                  <b style="color:#25C3AA">request.post(BASE + "details/" + "{<i style="color:#A97EDF">userID</i>}/" + "{<i style="color:#A97EDF">URL</i>}")</b><br>which should return a JSON serialised dictionary with all relevant details.</li>
                 </ol>
               </div>
             </p>
@@ -79,7 +79,7 @@
   <div style="position:relative" class="enterUrl">
     <form method='POST' action="{{ url_for('app.add_link') }}" class="bothUrl">
         <input type="text" name="original_url" class="inputUrl" placeholder="Please enter URL here">
-        <input type="submit"class="submitUrl" value="Shorten URL">
+        <input type="submit" class="submitUrl" value="Shorten URL">
     </form>
   </div>
 {% endif %}
