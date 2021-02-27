@@ -30,6 +30,7 @@ navSlide();
 
 
 //Container
+/*
 if (screen.width > 768){
   (function() {
       // Init
@@ -189,6 +190,7 @@ if (screen.width > 768){
       container.onmouseenter = onMouseEnterHandler;
   })();
 }
+*/
 
 
 document.getElementById('scrollDiv').addEventListener(
@@ -196,9 +198,9 @@ document.getElementById('scrollDiv').addEventListener(
   function(){
       var y = document.getElementById('scrollDiv').scrollTop;
       if (y >= 500){
-      document.getElementById('scrollAppear').className = "back show";
+      document.getElementById('scrollAppear').className = "allAboutUs back show";
       }else{
-      document.getElementById('scrollAppear').className = "back hide";
+      document.getElementById('scrollAppear').className = "allAboutUs back hide";
       }
       console.log(y);
   }
