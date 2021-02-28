@@ -1,6 +1,8 @@
 html {
   height: 100%;
-  background: radial-gradient(#1b2735 0%, #090a0f 100%);
+  /* background: radial-gradient(#1b2735 0%, #090a0f 100%); */
+  /* background: radial-gradient( #1a2639 0%, #1a2639 100%); */
+  background: #0e141d;
 }
 
 #stars {

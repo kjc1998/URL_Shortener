@@ -1,17 +1,6 @@
 import json
-import urllib
 import requests
 
-#userid = post request (username & password)#
-
-BASE = "https://spshurl.herokuapp.com/"
-BASE_LOCAL = "http://127.0.0.1:5000/"
-long_link = "https://www.google.com/"
-
-userID = (requests.post(BASE + "login/" +
-                        "cer0cifer" + "/kaijie")).json()['userid']
-short = requests.post(
-    BASE + "details/"+userID+'/'+long_link)
-shortened = short.json()
-print("userID:", userID)
-print("Values:", shortened)
+BASE = "http://127.0.0.1:5000/"
+userID = requests.post(BASE + "login/" + "jeremyleejr/" + "Jlee1998$")
+print(userID.json())

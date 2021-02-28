@@ -2,151 +2,239 @@
 {% block content %}
 <!--space btw nav and web deets-->
 <!-- <span class="brSpace"></span> -->
+<div class="slideshow-container">
 
-<div class="container" id= "container_trans" >
-    <div class="details" id="inner">
-        <h1>Webpage details</h1>
-        <br>
-        <p>
-            The Moon is a barren, rocky world without air and water. It has dark lava plain on its surface. The Moon is filled wit craters. It has no light of its own. It gets its light from the Sun. The Moo keeps changing its shape as it moves round the Earth. It spins on its axis in 27.3 days stars were named after the Edwin Aldrin were the first ones to set their foot on the Moon on 21 July 1969 They reached the Moon in their space craft named Apollo II
-        </p>
+  <div class="mySlides">
+    <div class="container" id= "container_trans0" >
+        <div class="details fade" id="inner0">
+            <h1>Webpage</h1>
+            <br>
+            <p>
+              Heroku WebPage: <b style="color:#c24d2c">https://spshurl.herokuapp.com/</b> <br>
+              A standard URL shortener webpage with additional GUI extensions for better and more convenient usage. <br>
+              To gain access, user(s) should first create an account via the website's registration page.
+              <table class="brSpaceUp">
+                <tr>
+                  <th>Page</th>
+                  <th>About</th>
+                </tr>
+                <tr>
+                  <td class="page">Home</td>
+                  <td>URL shortening input & Authors' backgrounds</td>
+                </tr>
+                <tr>
+                  <td class="page">List</td>
+                  <td>Table list of all individual shortened URL(s)</td>
+                </tr>
+                <tr>
+                  <td class="page">Graph</td>
+                  <td>Statistical overview on URL(s) usage from both local and global perspective</td>
+                </tr>
+                <tr>
+                  <td class="page">URL (more info)</td>
+                  <td>Details and QR display of a specific URL</td>
+                </tr>
+                <tr>
+                  <td class="page">Admin</td>
+                  <td>Table list of all registered individuals</td>
+                </tr>
+              </table>
+            </p>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
     </div>
+  </div>
+
+  <div class="mySlides">
+    <div class="container" id= "container_trans1" >
+        <div class="details fade" id="inner1">
+            <h1>API</h1>
+            <br>
+            <p>
+              Provides a simpler means of adding or inspecting related contents on a given URL.
+              <br>
+              <div id="textAlignLeft">
+                How it works:<br><br>
+                <ol id="homeTable">
+                  <li>Must first have a registered account at the hosted webpage.</li>
+                  <li>Set up a <i style="color:#A97EDF; font-weight: bold;">BASE</i> variable that links to <b style="color:#25C3AA">"https://spshurl.herokuapp.com/"</b>.</li>
+                  <li>Obtain individual specific userID in JSON format via request method as given in the example below:<br>
+                  <b style="color:#25C3AA">request.post(<i style="color:#A97EDF">BASE</i> + "login/" + "{<i style="color:#A97EDF">username</i>}/" + "{<i style="color:#A97EDF">password</i>}")</b></li>
+                  <li>Run another post request to either add or obtain information related to a given URL:<br>
+                  <b style="color:#25C3AA">request.post(BASE + "details/" + "{<i style="color:#A97EDF">userID</i>}/" + "{<i style="color:#A97EDF">URL</i>}")</b><br>which should return a JSON serialised dictionary with all relevant details.</li>
+                </ol>
+              </div>
+            </p>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+  </div>
+
 </div>
+<br>
 
 {% if current_user.is_authenticated %}
   <div style="position:relative" class="enterUrl">
     <form method='POST' action="{{ url_for('app.add_link') }}" class="bothUrl">
         <input type="text" name="original_url" class="inputUrl" placeholder="Please enter URL here">
-        <input type="submit"class="submitUrl" value="Shorten URL">
+        <input type="submit" class="submitUrl" value="Shorten URL">
     </form>
   </div>
 {% endif %}
 
 <!-- about us section -->
 <!-- <span class="brSpace"><h1 style="color: transparent;"> - </h1></span> -->
-<div class="allAboutUs">
-  <div class="back hide" id= "scrollAppear">
-    <h1 class="aboutUs">About Us</h1>
-    <section class="card-list">  
-        <article class="card">
-          <header class="card-header">
-            <p>MEng Mechanical Engineering</p>
-            <h2>{"Tag line here"}</h2>
-          </header>
+<div class="allAboutUs back hide" id= "scrollAppear">
+  <div class="backgroundMobile" ></div>
+  <h1 class="aboutUs">About Us</h1>
+  <section class="card-list">  
+      <article class="card">
+        <header class="card-header">
+          <p>MEng Mechanical Engineering</p>
+          <h2><i>"Striving for Continuous Improvement!"</i></h2>
+          <a href="https://www.linkedin.com/in/kai-jie-chow-506763183/">LinkedIn Profile</a>
+        </header>
 
-          <div class="card-author">
-            <a class="author-avatar" href="#">
-              <img src="static/profilePics/KJLinkedIn3.jpeg" />
-            </a>
-            <svg class="half-circle" viewBox="0 0 106 57">
-              <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-            </svg>
+        <div class="card-author">
+          <a class="author-avatar" href="#">
+            <img src="static/profilePics/KJLinkedIn3.jpeg" />
+          </a>
+          <svg class="half-circle" viewBox="0 0 106 57">
+            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+          </svg>
 
-            <div class="author-name">
-              <div class="author-name-prefix">Project Lead</div>
-              Kai Jie Chow
-            </div>
+          <div class="author-name">
+            <div class="author-name-prefix">Project Lead</div>
+            Kai Jie Chow
           </div>
-          <div class="tags">
-            <a href="#">html</a>
-            <a href="#">python</a>
-            <!-- <a href="#">web-dev</a> -->
+        </div>
+        <div class="tags">
+          <a href="#">python</a>
+          <a href="#">javascript</a>
+          <a href="#">html</a>
+          <a href="#">css</a>
+          <!-- <a href="#">web-dev</a> -->
+        </div>
+      </article>
+
+
+
+      <article class="card">
+        <header class="card-header">
+          <p>MEng Mechanical Engineering</p>
+          <h2>{"Tag line here"}</h2>
+        </header>
+
+        <div class="card-author">
+          <a class="author-avatar" href="#">
+            <img src="static/profilePics/Handsomer_Ben.jpg" />
+          </a>
+          <svg class="half-circle" viewBox="0 0 106 57">
+            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+          </svg>
+
+          <div class="author-name">
+            <div class="author-name-prefix">Data Analytics</div>
+            Wo Yew Ben
           </div>
-        </article>
+        </div>
+        <div class="tags">
+          <a href="#">html</a>
+          <a href="#">python</a>
+        </div>
+      </article>
 
+      <article class="card">
+        <header class="card-header">
+          <p>MEng Mechanical Engineering</p>
+          <h2>{"Tag line here"}</h2>
+        </header>
 
+        <div class="card-author">
+          <a class="author-avatar" href="#">
+            <img src="static/profilePics/danieel.jpg" />
+          </a>
+          <svg class="half-circle" viewBox="0 0 106 57">
+            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+          </svg>
 
-        <article class="card">
-          <header class="card-header">
-            <p>MEng Mechanical Engineering</p>
-            <h2>{"Tag line here"}</h2>
-          </header>
-
-          <div class="card-author">
-            <a class="author-avatar" href="#">
-              <img src="static/profilePics/Handsomer_Ben.jpg" />
-            </a>
-            <svg class="half-circle" viewBox="0 0 106 57">
-              <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-            </svg>
-
-            <div class="author-name">
-              <div class="author-name-prefix">Data Analytics</div>
-              Wo Yew Ben
-            </div>
+          <div class="author-name">
+            <div class="author-name-prefix">Backend Designer</div>
+            Daniel Goh
           </div>
-          <div class="tags">
-            <a href="#">html</a>
-            <a href="#">python</a>
+        </div>
+        <div class="tags">
+          <a href="#">html</a>
+          <a href="#">Python</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <header class="card-header">
+          <p>MEng Mechanical Engineering</p>
+          <h2>{"Tag line here"}</h2>
+        </header>
+
+        <div class="card-author">
+          <a class="author-avatar" href="#">
+            <img src="static/profilePics/hs.jpg" />
+          </a>
+          <svg class="half-circle" viewBox="0 0 106 57">
+            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+          </svg>
+
+          <div class="author-name">
+            <div class="author-name-prefix">Frontend Designer</div>
+            Jeremy Lee
           </div>
-        </article>
-
-        <article class="card">
-          <header class="card-header">
-            <p>MEng Mechanical Engineering</p>
-            <h2>{"Tag line here"}</h2>
-          </header>
-
-          <div class="card-author">
-            <a class="author-avatar" href="#">
-              <img src="static/profilePics/danieel.jpg" />
-            </a>
-            <svg class="half-circle" viewBox="0 0 106 57">
-              <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-            </svg>
-
-            <div class="author-name">
-              <div class="author-name-prefix">Backend Designer</div>
-              Daniel Goh
-            </div>
-          </div>
-          <div class="tags">
-            <a href="#">html</a>
-            <a href="#">Python</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <header class="card-header">
-            <p>MEng Mechanical Engineering</p>
-            <h2>{"Tag line here"}</h2>
-          </header>
-
-          <div class="card-author">
-            <a class="author-avatar" href="#">
-              <img src="static/profilePics/hs.jpg" />
-            </a>
-            <svg class="half-circle" viewBox="0 0 106 57">
-              <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-            </svg>
-
-            <div class="author-name">
-              <div class="author-name-prefix">Frontend Designer</div>
-              Jeremy Lee
-            </div>
-          </div>
-          <div class="tags">
-            <a href="#">html</a>
-            <a href="#">css</a>
-          </div>
-        </article>
-    </section>
-  </div>
+        </div>
+        <div class="tags">
+          <a href="#">html</a>
+          <a href="#">css</a>
+        </div>
+      </article>
+  </section>
 </div>
+
 
 <span class="brSpace"><h1 style="color: transparent;"> - </h1></span>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 
 <script>
-    // ease in transition
-    const glass= document.getElementById("container_trans");
+  // ease in transition
+  const glass0 = document.getElementById("container_trans0");
+  const glass1 = document.getElementById("container_trans1")
 
-    const tl= gsap.timeline({defaults: {ease: "power2.inOut", duration: 1.5}})
-    tl.from('.container' , {opacity:0, delay: .5, duration:1}, "-=1.5")
-    tl.from('.container', {x: '-20%', backdropFilter: 'blur(0px)'});
-    tl.from('nav' , {opacity: 0, delay: 0, duration:1}, "-=1.5")
-    tl.from('.details' , {opacity: 0, delay: 1.2, duration:1}, "-=1.5")
+  const tl= gsap.timeline({defaults: {ease: "power2.inOut", duration: 1.5}})
+  tl.from('.container' , {opacity:0, delay: .5, duration:1}, "-=1.5")
+  tl.from('.container', {x: '-20%', backdropFilter: 'blur(0px)'});
+  tl.from('nav' , {opacity: 0, delay: 0, duration:1}, "-=1.5")
+  tl.from('.details' , {opacity: 0, delay: 1.2, duration:1}, "-=1.5")
 
+
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+  }
 </script>
 {% endblock content%}

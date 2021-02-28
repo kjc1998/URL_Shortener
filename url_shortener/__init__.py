@@ -20,8 +20,12 @@ appF.config['MAIL_SERVER'] = 'smtp.gmail.com'
 appF.config['MAIL_PORT'] = 587
 appF.config['MAIL_USE_TLS'] = True
 appF.config['MAIL_USE_SSL'] = False
-appF.config['MAIL_USERNAME'] = os.environ.get('DB_USER')
-appF.config['MAIL_PASSWORD'] = os.environ.get('DB_PASS')
+if localHost:
+    appF.config['MAIL_USERNAME'] = "projectester21@gmail.com"
+    appF.config['MAIL_PASSWORD'] = "mailsender21"
+else:
+    appF.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+    appF.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 
 appF.register_blueprint(url_shortener.routes.app)
 
