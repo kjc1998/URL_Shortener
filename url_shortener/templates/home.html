@@ -6,7 +6,7 @@
 
   <div class="mySlides">
     <div class="container" id= "container_trans0" >
-        <div class="details" id="inner0">
+        <div class="details fade" id="inner0">
             <h1>Webpage</h1>
             <br>
             <p>
@@ -48,7 +48,7 @@
 
   <div class="mySlides">
     <div class="container" id= "container_trans1" >
-        <div class="details" id="inner1">
+        <div class="details fade" id="inner1">
             <h1>API</h1>
             <br>
             <p>
@@ -93,7 +93,8 @@
       <article class="card">
         <header class="card-header">
           <p>MEng Mechanical Engineering</p>
-          <h2>{"Tag line here"}</h2>
+          <h2><i>"Striving for Continuous Improvement!"</i></h2>
+          <a href="https://www.linkedin.com/in/kai-jie-chow-506763183/">LinkedIn Profile</a>
         </header>
 
         <div class="card-author">
@@ -110,8 +111,10 @@
           </div>
         </div>
         <div class="tags">
-          <a href="#">html</a>
           <a href="#">python</a>
+          <a href="#">javascript</a>
+          <a href="#">html</a>
+          <a href="#">css</a>
           <!-- <a href="#">web-dev</a> -->
         </div>
       </article>
@@ -229,9 +232,9 @@
     if (n > slides.length) {slideIndex = 1}    
     if (n < 1) {slideIndex = slides.length}
     for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+      slides[i].style.display = "none";
     }
-    slides[slideIndex-1].style.display = "block";  
+    slides[slideIndex-1].style.display = "block";
   }
 </script>
 {% endblock content%}
