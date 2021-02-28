@@ -239,12 +239,13 @@ def verification_token(token):
 
 def send_reset_email(user, methods='GET'):
     resetoken = user.get_verification_token()
-    user.user_token = resetoken
     msg = Message('Password Reset', sender='noreply@shurl.com',
                   recipients=[user.email])
     msg.body = f"To complete your password reset request, please visit the following link:\
-    {url_for('app.reset_token', resetoken=resetoken,  _external=True)}If you did not make this request please ignore this email."
+                {url_for('app.reset_token', resetoken=resetoken,  _external=True)}If you did \
+                not make this request please ignore this email."
     mail.send(msg)
+    return None
 
 
 @app.route("/reset_password", methods=['GET', 'POST'])
