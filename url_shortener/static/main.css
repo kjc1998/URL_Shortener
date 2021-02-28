@@ -539,7 +539,7 @@ nav {
     justify-content: center;
     align-items: center;
     color: #5f4c6b;
-    max-width: 80%;
+    max-width: 80vw;
   }
   .details p {
     padding: 5px;
@@ -550,7 +550,10 @@ nav {
     color: #919191;
   }
   .enterUrl {
-    max-width: 80%;
+    max-width: 80vw;
+  }
+  #textAlignLeft {
+    max-width: 80vw;
   }
   .bothURL {
     display: flex;
@@ -564,7 +567,7 @@ nav {
     margin: 5px;
   }
   .allAboutUs {
-    max-width: 350px;
+    max-width: 80vw;
   }
   .aboutUs {
     font-size: 4em;
@@ -738,7 +741,7 @@ img {
 }
 
 /* On smaller screens, decrease text size */
-@media only screen and (max-width: 80%) {
+@media only screen and (max-width: 80vw) {
   .prev,
   .next,
   .text {
