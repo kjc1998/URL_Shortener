@@ -758,17 +758,21 @@ table {
 th {
   font-weight: bold;
   font-size: 25px;
-  background: #565656;
-  color: #21ae98;
+  background: #2e2e2e;
+  color: #919191;
   text-align: center !important;
   padding: 16px !important;
 }
 
 td {
-  background: #353535;
+  background: #464646;
   padding: 12px !important;
 }
 
 #homeTable {
   margin-left: 1.3em;
+}
+
+.page{
+  text-align: center;
 }

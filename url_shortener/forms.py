@@ -6,7 +6,7 @@ from .models import User
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min = 8, max = 20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), Regexp(regex="^(?=.*?\d)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", message='Password requires at least one uppercase character, number, and special character!'), Length(min = 8, max = 20)])
+    password = PasswordField('Password', validators=[DataRequired(), Regexp(regex="^(?=.*?[a-z])(?=.*?[A-Z])", message='Password requires at least one uppercase character!'), Length(min = 8, max = 20)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
