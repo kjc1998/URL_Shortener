@@ -2,20 +2,24 @@
 {% block content %}
 <div style="position:relative">
     <!--{% set count = namespace(value = 0) %}-->
-    {% for link in links %}
-        <!--{% set my_string = current_user.user_id ~ count.value ~ '' %}-->
-        <b style="color:white; font-weight: normal">Title:</b> <b style="color:white; font-weight: normal">{{ link.title_url }}</b>
-        <br>
-        <b style="color:white; font-weight: normal">Short URL:</b> <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
+    {% if links|length %}
+        {% for link in links %}
+            <!--{% set my_string = current_user.user_id ~ count.value ~ '' %}-->
+            <b style="color:white; font-weight: normal">Title:</b> <b style="color:white; font-weight: normal">{{ link.title_url }}</b>
+            <br>
+            <b style="color:white; font-weight: normal">Short URL:</b> <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
 
-        <br>
-        <b style="color:white; font-weight: normal">Visits: {{ link.visits }}</b>
-        <br>
-        <a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
-        <br>
-        <br>
-        <!--{% set count.value = count.value + 1 %}-->
-    {% endfor %}
+            <br>
+            <b style="color:white; font-weight: normal">Visits: {{ link.visits }}</b>
+            <br>
+            <a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
+            <br>
+            <br>
+            <!--{% set count.value = count.value + 1 %}-->
+        {% endfor %}
+    {% else %}
+        You have not shortened any URL yet.<br>Please head over to <a href="{{ url_for('app.home') }}">home</a> page to perform such task.
+    {% endif %}
 </div>
 <!--<script>
     function getTitle(externalUrl, id){
