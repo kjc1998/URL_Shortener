@@ -11,15 +11,15 @@ const navSlide = () => {
             if (link.style.animation) {
                 link.style.animation = ''
             } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index/ 5 + 0.5}s`
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index/5 + 0.5}s`
             }
         });
         //burger animation
         burger.classList.toggle('toggle');
-        if(document.getElementById("scrollDiv").style.overflow === "hidden"){
-          document.getElementById("scrollDiv").style.overflow = "scroll";
+        if(document.getElementById("scrollDiv").style.overflowY  === "hidden"){
+          document.getElementById("scrollDiv").style.overflowY  = "scroll";
         }else{
-          document.getElementById("scrollDiv").style.overflow = "hidden";
+          document.getElementById("scrollDiv").style.overflowY  = "hidden";
         }
     });
     

@@ -57,7 +57,7 @@ nav {
 
 .rightSide {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 500px;
   list-style: none;
 }
