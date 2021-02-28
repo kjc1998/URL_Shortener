@@ -6,7 +6,7 @@ from .models import User
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min = 8, max = 20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), Regexp(regex="^(?=.*?\d)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[^A-Za-z\s0-9])", message='Password requires at least one uppercase character, number, and special character!'), Length(min = 8, max = 20)])
+    password = PasswordField('Password', validators=[DataRequired(), Regexp(regex="(?=.*?[A-Z])", message='Password requires at least one uppercase character!'), Length(min = 8, max = 20)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
@@ -20,18 +20,27 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError('Email is already registered!')
 
-
-
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log In')
 
-class RequestVerificationForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Verification Link')
+class RequestResetForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user is None:
-            raise ValidationError('There is no account with that email!')
+            raise ValidationError('There is no account with that email, you must register first!')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired(), Regexp(regex="(?=.*?[A-Z])", message='Password requires at least one uppercase character!'), Length(min = 8, max = 20)])
+    confirm_password = PasswordField('Confirm Password',
+                                     validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
+
+
