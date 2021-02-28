@@ -758,11 +758,15 @@ table {
 th {
   font-weight: bold;
   font-size: 25px;
-  background: #c21a29;
+  background: #565656;
+  color: #21ae98;
+  text-align: center !important;
+  padding: 16px !important;
 }
 
 td {
-  background: #1ba5a9;
+  background: #353535;
+  padding: 12px !important;
 }
 
 #homeTable {
