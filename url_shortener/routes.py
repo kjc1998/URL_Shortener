@@ -206,12 +206,8 @@ def global_graph():
         reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
     currentDictionary = dict(list(currentDictionary.items())[:5])
     currentDictionary = json.dumps(currentDictionary)
-<<<<<<< HEAD
-    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary)
-=======
     return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary, lenDict=len_dict, sumDict=sum_dict, lenCurDict=len_curdict, sumCurDict=sum_curdict)
 
->>>>>>> 3408aae5d44162a9dd22edadb29f001cd93c5407
 
 def send_verification_email(user, methods='GET'):
     token = user.get_verification_token()
@@ -239,18 +235,17 @@ def verification_token(token):
         db.session.commit()
         flash('Your email has been verified, you can now login!', 'success')
     return redirect(url_for('app.login'))
-<<<<<<< HEAD
-    
+
+
 def send_reset_email(user, methods='GET'):
     resetoken = user.get_verification_token()
     user.user_token = resetoken
-    msg = Message('Password Reset', sender='noreply@shurl.com', recipients=[user.email])
-    msg.body = f'''To complete your password reset request, please visit the following link:
-{url_for('app.reset_token', resetoken=resetoken,  _external=True)}
-
-If you did not make this request please ignore this email.
-'''
+    msg = Message('Password Reset', sender='noreply@shurl.com',
+                  recipients=[user.email])
+    msg.body = f"To complete your password reset request, please visit the following link:\
+    {url_for('app.reset_token', resetoken=resetoken,  _external=True)}If you did not make this request please ignore this email."
     mail.send(msg)
+
 
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
@@ -264,6 +259,7 @@ def reset_request():
         return redirect(url_for('app.login'))
     return render_template('reset_request.html', title='Reset Password', form=form)
 
+
 @app.route("/reset_password/<resetoken>", methods=['GET', 'POST'])
 def reset_token(resetoken):
     if current_user.is_authenticated:
@@ -274,11 +270,10 @@ def reset_token(resetoken):
         return redirect(url_for('reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
         user.password = hashed_password
         db.session.commit()
         flash('Your password has been updated, you are now able to log in!', 'success')
         return redirect(url_for('app.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
-=======
->>>>>>> 3408aae5d44162a9dd22edadb29f001cd93c5407
