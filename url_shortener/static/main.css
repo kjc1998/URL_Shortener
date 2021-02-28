@@ -151,7 +151,7 @@ nav {
   /* margin-bottom: 300px; */
   justify-content: center;
   max-width: 800px;
-  height: 600px;
+  min-height: 600px;
   padding: 1em;
 
   background: transparent;
@@ -773,6 +773,6 @@ td {
   margin-left: 1.3em;
 }
 
-.page{
+.page {
   text-align: center;
 }
