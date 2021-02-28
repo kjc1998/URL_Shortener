@@ -45,8 +45,10 @@ class RequestResetForm(FlaskForm):
 
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired(), Regexp(
-        regex="(?=.*?[A-Z])", message='Password requires at least one uppercase character!'), Length(min=8, max=20)])
+    password = PasswordField('Password', validators=[DataRequired(),
+                                                     Regexp(
+                                                         regex="(?=.*?[A-Z])", message='Password requires at least one uppercase character!'),
+                                                     Length(min=8, max=20)])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')

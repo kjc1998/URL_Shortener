@@ -238,12 +238,12 @@ def verification_token(token):
 
 
 def send_reset_email(user, methods='GET'):
-    resetoken = user.get_verification_token()
+    resetoken = user.get_reset_token()
     msg = Message('Password Reset', sender='noreply@shurl.com',
                   recipients=[user.email])
-    msg.body = f"To complete your password reset request, please visit the following link:\
-                {url_for('app.reset_token', resetoken=resetoken,  _external=True)}If you did \
-                not make this request please ignore this email."
+    msg.body = f"To complete your password reset request, please visit the following link:\n\
+                {url_for('app.reset_token', resetoken=resetoken,  _external=True)}\n\
+                If you did not make this request please ignore this email."
     mail.send(msg)
     return None
 
@@ -268,7 +268,7 @@ def reset_token(resetoken):
     user = User.verify_reset_token(resetoken)
     if user is None:
         flash('That is an invalid or expired token', 'warning')
-        return redirect(url_for('reset_request'))
+        return redirect(url_for('app.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
