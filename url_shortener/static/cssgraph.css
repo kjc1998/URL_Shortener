@@ -1,20 +1,14 @@
 /*LOCAL USER DASHBOARD*/
 
-.localTitle{
-  width:50%;
-  margin:auto;
-  justify-content: center;
-  display: inline-block;
-}
-.localTitle h1{font-size: 50px;}
-
 .container1{
+  margin:auto;
+  overflow-y: auto;
   display: flex;
   width:100%; 
-  margin: auto;
-  flex-direction: row;
+  height: auto;
   border-radius: 20px;
-  justify-content: center;
+  justify-content: space-between;
+  flex-flow: wrap;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
   background: transparent;
@@ -25,56 +19,61 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.localTitle{
+  width:34%;
+  margin:auto;
+  display: inline-block;
+}
+.localTitle h1{font-size: 50px;}
+
 .localUser{
+  width:22%;
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: inline-block;
   vertical-align:text-top;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 .localUser h1{font-size: 30px; color: rgba(255,99,132,0.8)}
 .localUser p{font-size: 22px; padding-top: 10px;}
 
 .localUserNum {
+  width:22%;
+  margin:auto;
   display: inline-block; 
   vertical-align:text-top;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 .localUserNum h1{font-size: 30px; color: rgba(255,99,132,0.8)}
 .localUserNum p{font-size: 65px;}
 
 .localUserVisits {
+  width:22%;
+  margin:auto;
   display: inline-block; 
   vertical-align:text-top;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 .localUserVisits h1{font-size: 30px; color: rgba(255,99,132,0.8)}
 .localUserVisits p{font-size: 65px;}
 
+@media screen and (max-width: 768px) {
+  .container1 {
+      flex-direction: column;
+    }
+  }
+
+
 /*GLOBAL USER DASHBOARD*/
 
-.globalTitle{
-  width:50%;
-  margin:auto;
-  justify-content: center;
-  display: inline-block;
-}
-.globalTitle h1{font-size: 50px;}
-
 .container2{
-  display: flex;
   margin: auto;
+  overflow-y: auto;
+  display: flex;
   width:100%; 
-  flex-direction: row;
+  height: auto;
   border-radius: 20px;
-  justify-content: center;
+  justify-content: space-between;
+  flex-flow: wrap;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
   background: transparent;
@@ -85,35 +84,45 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.globalTitle{
+  width:34%;
+  margin:auto;
+  display: inline-block;
+}
+.globalTitle h1{font-size: 50px;}
+
 .globalUser{
+  width:22%;
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: inline-block;
   vertical-align:text-top;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 .globalUser h1{font-size: 30px; color: rgba(255,99,132,0.8)}
 .globalUser p{font-size: 22px;padding-top: 10px;}
 
 .globalUserNum {
+  width:22%;
+  margin:auto;
   display: inline-block; 
   vertical-align:text-top;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 .globalUserNum h1{font-size: 30px; color: rgba(255,99,132,0.8)}
 .globalUserNum p{font-size: 65px;}
 
 .globalUserVisits {
+  width:22%;
+  margin:auto;
   display: inline-block; 
   vertical-align:text-top;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 .globalUserVisits h1{font-size: 30px; color: rgba(255,99,132,0.8)}
 .globalUserVisits p{font-size: 65px;}
+
+@media screen and (max-width: 768px) {
+  .container2 {
+      flex-direction: column;
+    }
+  }
