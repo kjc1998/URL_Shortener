@@ -255,6 +255,14 @@ nav {
 }
 
 /* card list */
+.fa-linkedin{
+  background: white;
+  color: black;
+  margin-top: 15px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
 .card-list {
   display: flex;
   justify-content: center;
@@ -368,7 +376,7 @@ nav {
 }
 
 .card-author {
-  margin: 3rem 0 0;
+  /* margin: 3rem 0 0; */
   display: grid;
   grid-template-columns: 75px 1fr;
   align-items: center;
