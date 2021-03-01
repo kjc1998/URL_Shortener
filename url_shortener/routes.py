@@ -60,14 +60,18 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user.verified is not True:
-            flash('Login Unsuccessful, please verify your email!', 'danger')
-            return redirect(url_for('app.login'))
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('app.home'))
-        else:
+        try:
+            if user.verified is not True:
+                flash('Login Unsuccessful, please verify your email!', 'danger')
+                return redirect(url_for('app.login'))
+            if user and bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('app.home'))
+            else:
+                flash(
+                    'Login Unsuccessful, please check username and password!', 'danger')
+        except:
             flash('Login Unsuccessful, please check username and password!', 'danger')
     return render_template('login.html', title='Login', form=form)
 
@@ -169,7 +173,7 @@ def delete_link():
         abort(403)
     db.session.delete(link)
     db.session.commit()
-    flash('Your post has been deleted!', 'success')
+    flash('Link has been deleted!', 'success')
     return redirect(url_for('app.stats'))
 
 
@@ -215,9 +219,7 @@ def send_verification_email(user, methods='GET'):
     db.session.commit()
     msg = Message('Email Verification',
                   sender='noreply@spshurl.com', recipients=[user.email])
-    msg.body = f"Thank you for registering with us, to complete your registration please visit:\
-        \n{url_for('app.verification_token', token=token,  _external=True)}\
-        \nIf you did not make this request please ignore this email."
+    msg.body = f"Thank you for registering with us, to complete your registration please visit:\n{url_for('app.verification_token', token=token,  _external=True)}\nIf you did not make this request please ignore this email."
     mail.send(msg)
 
 
@@ -241,9 +243,7 @@ def send_reset_email(user, methods='GET'):
     resetoken = user.get_reset_token()
     msg = Message('Password Reset', sender='noreply@shurl.com',
                   recipients=[user.email])
-    msg.body = f"To complete your password reset request, please visit the following link:\n\
-                {url_for('app.reset_token', resetoken=resetoken,  _external=True)}\n\
-                If you did not make this request please ignore this email."
+    msg.body = f"To complete your password reset request, please visit the following link:\n{url_for('app.reset_token', resetoken=resetoken,  _external=True)}\nIf you did not make this request please ignore this email."
     mail.send(msg)
     return None
 

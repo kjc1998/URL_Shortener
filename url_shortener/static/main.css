@@ -517,10 +517,18 @@ nav {
 }
 /* Wrong credential alerts*/
 .alert {
+  z-index: 100;
+  position: absolute;
+  top: -30vh;
   height: 5vh; /*fallback*/
   height: calc(var(--vh, 1vh) * 5);
   margin: 20px 500px 20px 500px;
   border-radius: 50px;
+  transition: all 1s;
+}
+
+.alertAfter {
+  transform: translateY(20vh);
 }
 /* Wrong credential alerts end*/
 

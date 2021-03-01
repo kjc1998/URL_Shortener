@@ -9,16 +9,18 @@
 <div style="position:relative">
   <b id = "urlList" style="font-weight: normal;" onclick="urlListPage()">&#x2190; URL List</b>
   <br />
-  <b style="font-weight: normal">Old Link:</b> <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
   <br />
-  <b style="font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
-      {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
-  </a>
-
-  <br>
-          
-  <canvas id="qr-code"></canvas>
-
+  <div>
+    <b style="color:white; font-weight: normal">Title:</b> <b style="color:white; font-weight: normal">{{ link.title_url }}</b>
+    <br />
+    <b style="font-weight: normal">Old Link:</b> <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
+    <br />
+    <b style="font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
+        {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
+    </a>
+    <br>    
+    <canvas id="qr-code"></canvas>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script>
       function urlListPage(){
@@ -46,7 +48,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            Delete Link?
+            <b style="color: Black">Delete Link?</b>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

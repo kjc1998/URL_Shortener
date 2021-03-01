@@ -89,9 +89,20 @@
                     {% with messages = get_flashed_messages(with_categories = true) %}
                         {% if messages %}
                             {%  for category, message in messages %}
-                                <div class ="alert alert-{{ category }}">
+                                <div class ="alert alert-{{ category }}" id="flashMessage">
                                     {{ message }}
                                 </div>
+                                <script>
+                                    var flash = document.getElementById('flashMessage');
+                                    setTimeout(PushDown, 250);
+                                    function PushDown(){
+                                        flash.classList.add("alertAfter");
+                                        setTimeout(PushUp, 3000);
+                                    }
+                                    function PushUp(){
+                                        flash.classList.remove("alertAfter");
+                                    }
+                                </script>
                             {% endfor %}
                         {% endif %}
                     {% endwith %}
