@@ -171,6 +171,7 @@ nav {
   align-items: center;
   /* color: #5f4c6b; */
   color: #919191;
+  cursor: default;
 }
 
 .details h1 {
@@ -354,7 +355,8 @@ nav {
   color: inherit;
   border: 0;
   display: inline-block;
-  cursor: pointer;
+  cursor: default;
+  /* cursor: pointer; */
 }
 
 .card-header h2:hover {
@@ -442,6 +444,8 @@ nav {
   box-decoration-break: clone;
   background-clip: text;
   border-color: white;
+  cursor:default;
+
 }
 
 .hide {
