@@ -196,7 +196,6 @@ nav {
   padding-bottom: 2em;
   list-style-position: outside;
   text-align: justify;
-  font-size: 13px;
 }
 
 .brSpace {
@@ -590,6 +589,7 @@ nav {
   }
   #textAlignLeft {
     text-align: left;
+    font-size: 13px;
   }
 }
 
