@@ -33,21 +33,20 @@ nav {
     height: 100px;
     margin: 10px;
   }
+  .rightSide a:hover {
+    background-color: #c24d2c;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    padding: 16px;
+    text-align: center;
+    margin: 4px;
+    transition: 0.3s;
+  }
 }
 .rightSide a {
   text-decoration: none;
   color: white;
-}
-
-.rightSide a:hover {
-  background-color: #c24d2c;
-  border: none;
-  border-radius: 50px;
-  color: white;
-  padding: 16px;
-  text-align: center;
-  margin: 4px;
-  transition: 0.3s;
 }
 
 .leftSide {
