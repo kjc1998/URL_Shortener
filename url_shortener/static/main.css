@@ -619,6 +619,10 @@ nav {
   .listItem{
     font-size: 15px;
   }
+  .moreInfoBackground{
+    max-width: 80vw;
+    padding: 40px !important;
+  }
 }
 
 /* Mobile view end*/
@@ -860,4 +864,35 @@ td {
 /* Handle on hover */
 .urlList::-webkit-scrollbar-thumb:hover {
   background: #484848;
+}
+
+.backButton{
+  background: #c41515;
+  padding: 10px;
+  color: white;
+  border: black;
+  font-family: inherit;
+}
+
+.backButDiv{
+    text-align: center;
+}
+
+.moreInfoBackground{
+  padding: 80px;
+  font-size: 18px;
+  background: transparent;
+  border-radius: 50px;
+  backdrop-filter: blur(40px);
+  border: solid 2px transparent;
+  background-clip: padding-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.midSection{
+  text-align: center;
+}
+
+#qr-code{
+  margin: 15px;
 }

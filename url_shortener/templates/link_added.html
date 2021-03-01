@@ -6,13 +6,10 @@
     cursor: pointer;
   }
 </style>
-<div style="position:relative">
-  <b id = "urlList" style="font-weight: normal;" onclick="urlListPage()">&#x2190; URL List</b>
-  <br />
-  <br />
-  <div>
+<div class="moreInfoBackground" style="position:relative">
+  <div class="midSection">
     <b style="color:white; font-weight: normal">Title:</b> <b style="color:white; font-weight: normal">{{ link.title_url }}</b>
-    <br />
+    <br>
     <b style="font-weight: normal">Old Link:</b> <a id='OldLink' href="{{ original_url }}">{{ original_url }}</a>
     <br />
     <b style="font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
@@ -38,13 +35,18 @@
           });
       })();
   </script>
+        <br />
+        <div class="backButDiv">
+          <b class="backButton" id = "urlList" onclick="urlListPage()">&#x2190; URL List</b>
+        </div>
+        <br />
           {% if current_user %}
-            <div>
-              <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+            <div class="midSection">
+              <button type="button" class="backButton" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </div>
           {% endif %}
     <!-- Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal " id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
