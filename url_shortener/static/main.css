@@ -600,6 +600,10 @@ nav {
     text-align: left;
     font-size: 13px;
   }
+  .urlList{
+    max-width: 80vw;
+  }
+  
 }
 
 /* Mobile view end*/
