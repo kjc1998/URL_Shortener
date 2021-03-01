@@ -603,7 +603,9 @@ nav {
   .urlList{
     max-width: 80vw;
   }
-  
+  .listItem{
+    font-size: 13px;
+  }
 }
 
 /* Mobile view end*/
