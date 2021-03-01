@@ -196,6 +196,7 @@ nav {
   padding-bottom: 2em;
   list-style-position: outside;
   text-align: justify;
+  font-size: 13px;
 }
 
 .brSpace {
@@ -260,7 +261,7 @@ nav {
 }
 
 .aboutUs {
-  padding: 2rem 3rem 50px 3rem;
+  padding: 30px 0;
   display: flex;
   justify-content: start;
   font-size: 5em;
@@ -586,6 +587,9 @@ nav {
 
   .logo {
     display: none;
+  }
+  #textAlignLeft {
+    text-align: left;
   }
 }
 
