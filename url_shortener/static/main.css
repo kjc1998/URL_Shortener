@@ -792,3 +792,14 @@ td {
 .page {
   text-align: center;
 }
+.urlList{
+  padding: 50px;
+  font-size: 18px;
+
+  background: transparent;
+  border-radius: 50px;
+  backdrop-filter: blur(40px);
+  border: solid 2px transparent;
+  background-clip: padding-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
