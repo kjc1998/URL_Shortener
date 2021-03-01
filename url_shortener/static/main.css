@@ -614,9 +614,10 @@ nav {
   }
   .urlList{
     max-width: 80vw;
+    padding: 40px !important;
   }
   .listItem{
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -834,7 +835,7 @@ td {
 
 .urlList ol li::before {
   content: counter(my-awesome-counter) ". ";
-  color: #c24d2c;
+  color: #ffffff;
   display: inline-block;
   width: 1em;
   margin-left: -1.3em;

@@ -7,13 +7,13 @@
         {% for link in links %}
             <!--{% set my_string = current_user.user_id ~ count.value ~ '' %}-->
                 <li>
-                    <b style="color:white; font-weight: normal">Title &nbsp; &nbsp; &nbsp; &nbsp;:</b> <b style="color:aquamarine; font-weight: normal; font-size:larger">{{ link.title_url }}</b>
+                    <b style="color:white; font-weight: normal">Title: </b> <b style=" font-weight: bold; font-style: italic;"> &nbsp; {{ link.title_url }}</b>
                     <br>
-                    <b style="color:white; font-weight: normal">Short URL:</b> <a href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
+                    <b style="color:white; font-weight: normal">Short URL: </b> <a style="color: #c24d2c;" href="{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}">{{ url_for('app.redirect_to_url', short_url=link.short_url, _external = True) }}</a>
                     <br>
-                    <b style="color:white; font-weight: normal">Visits &nbsp; &nbsp; &nbsp; : {{ link.visits }}</b>
+                    <b style="color:white; font-weight: normal">Visits: {{ link.visits }}</b>
                     <br>
-                    <a href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
+                    <a style="color: white; text-decoration: underline;" href="{{ url_for('app.link_page', short = link.short_url) }}">more info</a>
                 </li>
                 <br>
             <!--{% set count.value = count.value + 1 %}-->
