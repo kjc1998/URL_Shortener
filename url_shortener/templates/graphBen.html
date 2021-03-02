@@ -15,22 +15,24 @@
     <div class="localTitle"> 
         <h1>USER DATA</h1>
     </div>
+    <div class="localEmpty"> 
+        <p>No Link Added</p>
+    </div>
     <div class="localUser"> 
         <h1>Top Visited<br>Webs</h1>
         <p id="top1"></p>
     </div>
     <div class="localUserNum">
-        <h1>Total Webs<br>Shortened</h1>
+        <h1>Total Webs<br>Added</h1>
         <p>{{ lenCurDict }}</p>
     </div>
-
     <div class="localUserVisits">
         <h1>Total Web<br>Visits</h1>
         <p>{{ sumCurDict }}</p>
     </div>
 </div>
 
-<div class = "graphs" style="width:80% ; margin:auto; padding-bottom: 50px; min-width: 500px; min-height: 250px;">
+<div class = "graph1" style="width:80% ; margin:auto; min-width: 480px; min-height: 250px;display: none;">
     <canvas id="local" width="500" height="225"></canvas> 
 </div>
 
@@ -41,12 +43,15 @@
     <div class="GlobalTitle"> 
         <h1>OVERALL<br>DATA</h1>
     </div>
+    <div class="localEmpty"> 
+        <p>No Link Added</p>
+    </div>
     <div class="GlobalUser">
         <h1>Top Visited<br>Webs</h1>
         <p id="top1g"></p>
     </div>
     <div class="GlobalUserNum">
-        <h1>Total Webs<br>Shortened</h1>
+        <h1>Total Webs<br>Added</h1>
         <p>{{ lenDict }}</p>
     </div>
     <div class="GlobalUserVisits">
@@ -55,7 +60,7 @@
     </div>
 </div>
 
-<div class="graphs" style="width:80% ; margin:auto; min-width: 500px; min-height: 250px;"> 
+<div class="graph2" style="width:80% ; margin:auto; min-width: 480px; min-height: 250px; display: none;"> 
      <canvas id="global" width="500" height="225"></canvas> 
 </div>
 
@@ -86,17 +91,32 @@
     $(function () {
         //USER
         if (currentLabel.length == 0) {
-            document.getElementById("top1").innerHTML = "No Links Added";        
+            document.getElementsByClassName("localEmpty")[0].style.display = "inline-block";
         } 
         if (currentLabel.length == 1) {
+            document.getElementsByClassName("localUser")[0].style.display = "inline-block";
+            document.getElementsByClassName("localUserNum")[0].style.display = "inline-block";
+            document.getElementsByClassName("localUserVisits")[0].style.display = "inline-block";
+            document.getElementsByClassName("graph1")[0].style.display = "block";
+
             document.getElementById("top1").innerHTML = currentLabel[0];
         } 
         if (currentLabel.length == 2) {
+            document.getElementsByClassName("localUser")[0].style.display = "inline-block";
+            document.getElementsByClassName("localUserNum")[0].style.display = "inline-block";
+            document.getElementsByClassName("localUserVisits")[0].style.display = "inline-block";
+            document.getElementsByClassName("graph1")[0].style.display = "block";
+
             document.getElementById("top1").innerHTML = currentLabel[0];
             document.getElementById("top1").innerHTML += "<br>" + currentLabel[1];
    
         } 
         if (currentLabel.length > 2) {
+            document.getElementsByClassName("localUser")[0].style.display = "inline-block";
+            document.getElementsByClassName("localUserNum")[0].style.display = "inline-block";
+            document.getElementsByClassName("localUserVisits")[0].style.display = "inline-block";
+            document.getElementsByClassName("graph1")[0].style.display = "block";
+            
             document.getElementById("top1").innerHTML = currentLabel[0];
             document.getElementById("top1").innerHTML += "<br>" + currentLabel[1];
             document.getElementById("top1").innerHTML += "<br>" + currentLabel[2]; 
@@ -104,17 +124,32 @@
 
         // GLOBAL
         if (globalLabel.length == 0) {
-            document.getElementById("top1g").innerHTML = "No Links Added";        
+            document.getElementsByClassName("globalEmpty")[0].style.display = "inline-block";      
         } 
         if (globalLabel.length == 1) {
+            document.getElementsByClassName("globalUser")[0].style.display = "inline-block";
+            document.getElementsByClassName("globalUserNum")[0].style.display = "inline-block";
+            document.getElementsByClassName("globalUserVisits")[0].style.display = "inline-block";
+            document.getElementsByClassName("graph2")[0].style.display = "block";
+
             document.getElementById("top1g").innerHTML = globalLabel[0];
         } 
         if (globalLabel.length == 2) {
+            document.getElementsByClassName("globalUser")[0].style.display = "inline-block";
+            document.getElementsByClassName("globalUserNum")[0].style.display = "inline-block";
+            document.getElementsByClassName("globalUserVisits")[0].style.display = "inline-block";
+            document.getElementsByClassName("graph2")[0].style.display = "block";
+            
             document.getElementById("top1g").innerHTML = globalLabel[0];
             document.getElementById("top1g").innerHTML += "<br>" + globalLabel[1];
    
         } 
         if (globalLabel.length > 2) {
+            document.getElementsByClassName("globalUser")[0].style.display = "inline-block";
+            document.getElementsByClassName("globalUserNum")[0].style.display = "inline-block";
+            document.getElementsByClassName("globalUserVisits")[0].style.display = "inline-block";
+            document.getElementsByClassName("graph2")[0].style.display = "block";
+
             document.getElementById("top1g").innerHTML = globalLabel[0];
             document.getElementById("top1g").innerHTML += "<br>" + globalLabel[1];
             document.getElementById("top1g").innerHTML += "<br>" + globalLabel[2]; 
@@ -125,11 +160,11 @@
             datasets:[{
                 data:currentData,
                 label: "Number of visits",
-                backgroundColor: "rgba(255,99,132,0.2)",
-                borderColor: "rgba(255,99,132,1)",
+                backgroundColor: "rgba(194,77,44,0.2)",
+                borderColor: "rgba(194,77,44,1)",
                 borderWidth: 2,
-                hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                hoverBorderColor: "rgba(255,99,132,1)",
+                hoverBackgroundColor: "rgba(194,77,44,0.4)",
+                hoverBorderColor: "rgba(194,77,44,1)",
             }],
             labels:currentLabel,
             };
@@ -167,7 +202,7 @@
             scales: {
                 yAxes: [{
                         display: true,
-                        maxBarThickness: 50,
+                        maxBarThickness: 40,
                         ticks: {
                             fontColor: 'rgba(255,255,255)',
                             fontSize: 15,
@@ -201,11 +236,11 @@
         datasets:[{
             data:globalData,
             label: "Number of visits",
-            backgroundColor: "rgba(255,99,132,0.2)",
-            borderColor: "rgba(255,99,132,1)",
+            backgroundColor: "rgba(194,77,44,0.2)",
+            borderColor: "rgba(194,77,44,1)",
             borderWidth: 2,
-            hoverBackgroundColor: "rgba(255,99,132,0.4)",
-            hoverBorderColor: "rgba(255,99,132,1)",
+            hoverBackgroundColor: "rgba(194,77,44,0.4)",
+            hoverBorderColor: "rgba(194,77,44,1)",
         }],        
         labels:globalLabel,
     };
@@ -231,10 +266,11 @@
                     bottom: 20
                 }
             },
+
             scales: {
                 yAxes: [{
                         display: true,
-                        maxBarThickness: 50,
+                        maxBarThickness: 40,
                         ticks: {
                             fontColor: 'rgba(255,255,255)',
                             fontSize: 15,
@@ -262,7 +298,7 @@
             legend: {
                 position: 'bottom',
                 labels: {
-                    boxWidth: 12,
+                    boxWidth: 30,
                     fontSize: 15,
                     fontColor: 'rgb(255, 255, 255)'
                 }

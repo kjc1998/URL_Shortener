@@ -6,7 +6,6 @@
   display: flex;
   width:100%; 
   height: auto;
-  border-radius: 20px;
   justify-content: space-between;
   flex-flow: wrap;
   text-align: center;
@@ -26,47 +25,56 @@
 }
 .localTitle h1{font-size: 50px;}
 
+.localEmpty{
+  display: none;
+  width:66%;
+  margin:auto;
+}
+.localEmpty p{font-size: 30px; color: rgba(194,77,44,0.8)}
+
 .localUser{
+  display: none;
   width:22%;
   margin-top: 0px;
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
-  display: inline-block;
   vertical-align:text-top;
 }
-.localUser h1{font-size: 30px; color: rgba(255,99,132,0.8)}
+.localUser h1{font-size: 30px; color: rgba(194,77,44,0.8)}
 .localUser p{font-size: 22px; padding-top: 10px;}
 
 .localUserNum {
+  display: none;
   width:22%;
-  margin:auto;
-  display: inline-block; 
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   vertical-align:text-top;
 }
-.localUserNum h1{font-size: 30px; color: rgba(255,99,132,0.8)}
+.localUserNum h1{font-size: 30px; color: rgba(194,77,44,0.8)}
 .localUserNum p{font-size: 65px;}
 
 .localUserVisits {
+  display: none;
   width:22%;
-  margin:auto;
-  display: inline-block; 
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   vertical-align:text-top;
 }
-.localUserVisits h1{font-size: 30px; color: rgba(255,99,132,0.8)}
+.localUserVisits h1{font-size: 30px; color: rgba(194,77,44,0.8)}
 .localUserVisits p{font-size: 65px;}
-
-@media screen and (max-width: 768px) {
-  .container1 {
-      flex-direction: column;
-    }
-  }
-
 
 /*GLOBAL USER DASHBOARD*/
 
 .container2{
-  margin: auto;
+  margin-top: 50px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   overflow-y: auto;
   display: flex;
   width:100%; 
@@ -91,38 +99,77 @@
 }
 .globalTitle h1{font-size: 50px;}
 
+.globalEmpty{
+  display: none;
+  width:66%;
+  margin:auto;
+}
+.globalEmpty p{font-size: 30px; color: rgba(194,77,44,0.8)}
+
 .globalUser{
+  display: none;
   width:22%;
   margin-top: 0px;
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
-  display: inline-block;
   vertical-align:text-top;
 }
-.globalUser h1{font-size: 30px; color: rgba(255,99,132,0.8)}
+.globalUser h1{font-size: 30px; color: rgba(194,77,44,0.8)}
 .globalUser p{font-size: 22px;padding-top: 10px;}
 
 .globalUserNum {
+  display: none; 
   width:22%;
-  margin:auto;
-  display: inline-block; 
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   vertical-align:text-top;
 }
-.globalUserNum h1{font-size: 30px; color: rgba(255,99,132,0.8)}
+.globalUserNum h1{font-size: 30px; color: rgba(194,77,44,0.8)}
 .globalUserNum p{font-size: 65px;}
 
 .globalUserVisits {
+  display: none; 
   width:22%;
-  margin:auto;
-  display: inline-block; 
+  margin-top: 0px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
   vertical-align:text-top;
 }
-.globalUserVisits h1{font-size: 30px; color: rgba(255,99,132,0.8)}
+.globalUserVisits h1{font-size: 30px; color: rgba(194,77,44,0.8)}
 .globalUserVisits p{font-size: 65px;}
 
 @media screen and (max-width: 768px) {
-  .container2 {
-      flex-direction: column;
-    }
-  }
+  .container1{border-radius: 20px;}
+
+  .localTitle h1{font-size: 25px;}
+
+  .localEmpty p{font-size: 25px;}
+
+  .localUser h1{font-size: 18px}
+  .localUser p{font-size: 15px; padding-top: 10px;}
+
+  .localUserNum h1{font-size: 18px;}
+  .localUserNum p{font-size: 30px;}
+
+  .localUserVisits h1{font-size: 18px;}
+  .localUserVisits p{font-size: 30px;}
+
+  .container2{border-radius: 20px; margin-top: 5px;}
+
+  .globalTitle h1{font-size: 25px;}
+
+  .globalEmpty p{font-size: 25px;}
+
+  .globalUser h1{font-size: 18px}
+  .globalUser p{font-size: 15px; padding-top: 10px;}
+
+  .globalUserNum h1{font-size: 18px;}
+  .globalUserNum p{font-size: 30px;}
+
+  .globalUserVisits h1{font-size: 18px;}
+  .globalUserVisits p{font-size: 30px;}
+}
