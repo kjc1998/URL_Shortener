@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Navigation styles */
@@ -254,7 +254,7 @@ nav {
 }
 
 /* card list */
-.fa-linkedin{
+.fa-linkedin {
   background: white;
   color: black;
   margin-top: 15px;
@@ -451,8 +451,7 @@ nav {
   box-decoration-break: clone;
   background-clip: text;
   border-color: white;
-  cursor:default;
-
+  cursor: default;
 }
 
 .hide {
@@ -612,14 +611,14 @@ nav {
     text-align: left;
     font-size: 13px;
   }
-  .urlList{
+  .urlList {
     max-width: 80vw;
     padding: 40px !important;
   }
-  .listItem{
+  .listItem {
     font-size: 15px;
   }
-  .moreInfoBackground{
+  .moreInfoBackground {
     max-width: 80vw;
     padding: 40px !important;
   }
@@ -651,7 +650,7 @@ body {
 
 @-webkit-keyframes fade {
   from {
-    opacity: 0.4;
+    opacity: 0.2;
   }
   to {
     opacity: 1;
@@ -660,10 +659,37 @@ body {
 
 @keyframes fade {
   from {
-    opacity: 0.4;
+    opacity: 0.2;
   }
   to {
     opacity: 1;
+  }
+}
+
+.fadeOff {
+  -webkit-animation-name: fadeOff;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: fadeOff;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeOff {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
+@keyframes fadeOff {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
   }
 }
 
@@ -866,7 +892,7 @@ td {
   background: #484848;
 }
 
-.backButton{
+.backButton {
   background: #c41515;
   padding: 10px;
   color: white;
@@ -874,11 +900,11 @@ td {
   font-family: inherit;
 }
 
-.backButDiv{
-    text-align: center;
+.backButDiv {
+  text-align: center;
 }
 
-.moreInfoBackground{
+.moreInfoBackground {
   padding: 80px;
   font-size: 18px;
   background: transparent;
@@ -889,10 +915,10 @@ td {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.midSection{
+.midSection {
   text-align: center;
 }
 
-#qr-code{
+#qr-code {
   margin: 15px;
 }
