@@ -217,8 +217,7 @@ def send_verification_email(user, methods='GET'):
     token = user.get_verification_token()
     user.user_token = token
     db.session.commit()
-    msg = Message('Email Verification',
-                  sender='noreply@spshurl.com', recipients=[user.email])
+    msg = Message('Email Verification', recipients=[user.email])
     stringMessage = f"Thank you for registering with us, to complete your registration please visit:\n\
         {url_for('app.verification_token', token=token,  _external=True)}\n\
         If you did not make this request please ignore this email."
@@ -244,8 +243,7 @@ def verification_token(token):
 
 def send_reset_email(user, methods='GET'):
     resetoken = user.get_reset_token()
-    msg = Message('Password Reset', sender='noreply@shurl.com',
-                  recipients=[user.email])
+    msg = Message('Password Reset', recipients=[user.email])
     stringMessage = f"To complete your password reset request, please visit the following link:\n\
         {url_for('app.reset_token', resetoken=resetoken,  _external=True)}\n\
         If you did not make this request please ignore this email."

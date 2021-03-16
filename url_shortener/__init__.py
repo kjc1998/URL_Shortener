@@ -18,6 +18,7 @@ appF.config['MAIL_USE_SSL'] = False
 
 appF.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 appF.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+appF.config['MAIL_DEFAULT_SENDER'] = "spArrow@gmail.com"
 
 appF.register_blueprint(url_shortener.routes.app)
 
