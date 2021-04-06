@@ -1,4 +1,7 @@
-﻿import string
+﻿import flask
+import socket
+import string
+import urllib
 import json
 import random
 from urllib.parse import quote
@@ -85,9 +88,42 @@ def logout():
 @app.route('/<short_url>')
 def redirect_to_url(short_url):
     link = Link.query.filter_by(short_url=short_url).first_or_404()
+    teleDevice = flask.request.headers.get('User-Agent')
+    url = 'http://ip-api.com/json/{}'.format(get_client_ip(flask.request))
+    userLocation = requests.get(url).json()
+    if userLocation['status'] == 'success':
+        city = userLocation['city']
+        country = userLocation['country']
+        if link.location != None:
+            old_dict = json.loads(link.location)
+            try:
+                old_dict["city"][city] = int(old_dict["city"][city]) + 1
+            except:
+                old_dict["city"][city] = 1
+            try:
+                old_dict["country"][country] = \
+                    int(old_dict["country"][country]) + 1
+            except:
+                old_dict["country"][country] = 1
+            link.location = json.dumps(old_dict)
+        else:
+            new_dict = {"city": {city: 1}, "country": {country: 1}}
+            new_dict_json = json.dumps(new_dict)
+            link.location = new_dict_json
+    else:
+        print("IP collection failed")
     link.visits = link.visits + 1
+    print(link.location)
     db.session.commit()
     return redirect(link.original_url)
+
+
+def get_client_ip(request):
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        ip = request.remote_addr
+    return ip
 
 
 @app.route('/add_link', methods=['POST'])

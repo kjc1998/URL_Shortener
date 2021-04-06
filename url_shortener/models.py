@@ -61,6 +61,7 @@ class Link(db.Model):
     short_url = db.Column(db.String(5), unique=True)
     visits = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    location = db.Column(db.String(10000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, **kwargs):
