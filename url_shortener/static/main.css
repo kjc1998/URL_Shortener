@@ -5,6 +5,26 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  /* background-color: #141c26; */
+}
+
+.whole{
+  /* background-color: #141c26; */
+  background: linear-gradient(-45deg, #141c26, #181e25, #3e454d, #4a4f52);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 /* Navigation styles */
@@ -169,7 +189,7 @@ nav {
   justify-content: center;
   align-items: center;
   /* color: #5f4c6b; */
-  color: #919191;
+  color: #ffffff;
   cursor: default;
 }
 
@@ -274,7 +294,7 @@ nav {
   justify-content: center;
   font-size: 5em;
   min-width: 1300px;
-  color: #919191;
+  color: #ffffff;
 }
 
 .back {
@@ -305,7 +325,7 @@ nav {
   min-width: 250px;
   padding: 1.5rem;
   border-radius: 16px;
-  background: #141c26;
+  /* background: #141c26; */
   display: flex;
   flex-direction: column;
   transition: 0.2s;
@@ -313,7 +333,23 @@ nav {
   scroll-snap-align: start;
   clear: both;
   position: relative;
+  background: linear-gradient(-45deg, #141c26, #181e25, #3e454d, #4a4f52);
+  animation: gradients 15s ease infinite;
 }
+
+
+@keyframes gradients {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 @media (hover: hover) {
   .card:focus-within ~ .card,
@@ -511,14 +547,14 @@ nav {
   font-size: 50px;
   padding-bottom: 10px;
   font-weight: 500;
-  color: #919191;
+  color: #ffffff;
 }
 
 .registerStyle {
   font-size: 50px;
   padding-bottom: 10px;
   font-weight: 500;
-  color: #919191;
+  color: #ffffff;
 }
 /* Enter URL end*/
 
@@ -566,7 +602,7 @@ nav {
   .details h1 {
     font-size: 55px;
     margin-top: 5px;
-    color: #919191;
+    color: #ffffff;
   }
   .enterUrl {
     max-width: 80vw;
@@ -603,6 +639,8 @@ nav {
     background-clip: padding-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
+
+
 
   .logo {
     display: none;
@@ -824,7 +862,7 @@ th {
   font-weight: bold;
   font-size: 25px;
   background: #2e2e2e;
-  color: #919191;
+  color: #ffffff;
   text-align: center !important;
   padding: 16px !important;
 }

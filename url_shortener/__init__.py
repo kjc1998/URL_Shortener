@@ -8,7 +8,6 @@ from .models import User, Link
 
 appF = Flask(__name__)
 appF.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite3"
-
 appF.config['SECRET_KEY'] = "95e1f4ae670667e3338bd65cfe36c773d9b958bb"
 appF.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 appF.config['MAIL_SERVER'] = 'smtp.gmail.com'

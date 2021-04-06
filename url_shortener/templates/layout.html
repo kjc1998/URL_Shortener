@@ -18,13 +18,16 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='table.css')}}">
         <link rel="icon" href="{{ url_for('static', filename='logo/Sparrow (Logo, Dark, Trans).png') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         {% if title %}
         <title> URL Shortener - {{ title }} </title>
         {% else %}
         <title> URL Shortener</title>
         {% endif %}
 
-
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        
         <style>
             body{
                 color: #D9DAD7;
