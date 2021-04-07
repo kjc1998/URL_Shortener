@@ -24,7 +24,6 @@ appF.config['MAIL_DEFAULT_SENDER'] = "spArrow@gmail.com"
 appF.register_blueprint(url_shortener.routes.app)
 
 db.init_app(appF)
-migrate = Migrate(appF, db)
 bcrypt.init_app(appF)
 api.init_app(appF)
 mail.init_app(appF)
