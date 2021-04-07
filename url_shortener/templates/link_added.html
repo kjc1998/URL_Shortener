@@ -15,7 +15,9 @@
     <b style="font-weight: normal">New Link: </b> <a id='NewLink' href="{{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}">
         {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
     </a>
-    <br>    
+    <br />
+    <b style="font-weight: normal">Location: {{link.location}}</a>
+    <br />
     <canvas id="qr-code"></canvas>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>

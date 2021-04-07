@@ -111,9 +111,8 @@ def redirect_to_url(short_url):
             new_dict_json = json.dumps(new_dict)
             link.location = new_dict_json
     else:
-        print("IP collection failed")
+        pass
     link.visits = link.visits + 1
-    print(link.location)
     db.session.commit()
     return redirect(link.original_url)
 
