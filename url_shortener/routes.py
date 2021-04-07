@@ -168,11 +168,17 @@ def link_page(short):
     link = Link.query.filter_by(short_url=short).first()
     clickDict = json.loads(link.location)
 
-    cityKeys = list(clickDict["city"].keys())
-    cityValues = list(clickDict["city"].values())
+    try:
+        cityKeys = list(clickDict["city"].keys())
+        cityValues = list(clickDict["city"].values())
+    except:
+        cityKeys, cityValues = None, None
 
-    countryKeys = list(clickDict["country"].keys())
-    countryValues = list(clickDict["country"].values())
+    try:
+        countryKeys = list(clickDict["country"].keys())
+        countryValues = list(clickDict["country"].values())
+    except:
+        countryKeys, countryValues = None, None
 
     return render_template('link_added.html',
                            new_link=link.short_url, original_url=link.original_url, link=link,
