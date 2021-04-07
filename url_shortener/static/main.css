@@ -8,23 +8,23 @@
   /* background-color: #141c26; */
 }
 
-.whole{
+.whole {
   /* background-color: #141c26; */
   background: linear-gradient(-45deg, #141c26, #181e25, #3e454d, #4a4f52);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Navigation styles */
@@ -97,7 +97,7 @@ nav {
   transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1084px) {
   .whole {
     overflow-x: hidden;
   }
@@ -337,7 +337,6 @@ nav {
   animation: gradients 15s ease infinite;
 }
 
-
 @keyframes gradients {
   0% {
     background-position: 0% 50%;
@@ -349,7 +348,6 @@ nav {
     background-position: 0% 50%;
   }
 }
-
 
 @media (hover: hover) {
   .card:focus-within ~ .card,
@@ -581,13 +579,13 @@ nav {
 
 /* Mobile view*/
 /*Revert card to original to style*/
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1084px) {
   .card-list {
     all: revert;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1084px) {
   .details {
     display: flex;
     flex-flow: column nowrap;
@@ -639,8 +637,6 @@ nav {
     background-clip: padding-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
-
-
 
   .logo {
     display: none;
