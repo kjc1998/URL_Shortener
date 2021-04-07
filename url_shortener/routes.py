@@ -91,6 +91,7 @@ def redirect_to_url(short_url):
     teleDevice = flask.request.headers.get('User-Agent')
     url = 'http://ip-api.com/json/{}'.format(get_client_ip(flask.request))
     userLocation = requests.get(url).json()
+    print(userLocation)
     if userLocation['status'] == 'success':
         city = userLocation['city']
         country = userLocation['country']
@@ -166,19 +167,15 @@ def stats():
 @app.route('/add_link/<short>', methods=['GET', 'POST'])
 def link_page(short):
     link = Link.query.filter_by(short_url=short).first()
-    clickDict = json.loads(link.location)
-
     try:
+        clickDict = json.loads(link.location)
         cityKeys = list(clickDict["city"].keys())
         cityValues = list(clickDict["city"].values())
-    except:
-        cityKeys, cityValues = None, None
-
-    try:
         countryKeys = list(clickDict["country"].keys())
         countryValues = list(clickDict["country"].values())
     except:
-        countryKeys, countryValues = None, None
+        cityKeys, cityValues = [], []
+        countryKeys, countryValues = [], []
 
     return render_template('link_added.html',
                            new_link=link.short_url, original_url=link.original_url, link=link,

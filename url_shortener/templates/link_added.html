@@ -18,15 +18,15 @@
     <br />
     <canvas id="qr-code"></canvas>
     <br />
+    City: <br/>
     {% if cityKeys is defined %}
-      City: <br/>
       {% for i in range(cityKeys|length) %}
         {{ cityKeys[i] }} : {{ cityValues[i] }}
       {% endfor %}
     {% endif %}
     <br />
+    Country: <br/>
     {% if countryKeys is defined %}
-      Country: <br/>
       {% for i in range(countryKeys|length) %}
         {{ countryKeys[i] }} : {{ countryValues[i] }}
       {% endfor %}
