@@ -166,8 +166,17 @@ def stats():
 @app.route('/add_link/<short>', methods=['GET', 'POST'])
 def link_page(short):
     link = Link.query.filter_by(short_url=short).first()
+    clickDict = json.loads(link.location)
+
+    cityKeys = list(clickDict["city"].keys())
+    cityValues = list(clickDict["city"].values())
+
+    countryKeys = list(clickDict["country"].keys())
+    countryValues = list(clickDict["country"].values())
+
     return render_template('link_added.html',
-                           new_link=link.short_url, original_url=link.original_url, link=link)
+                           new_link=link.short_url, original_url=link.original_url, link=link,
+                           cityKeys=cityKeys, cityValues=cityValues, countryKeys=countryKeys, countryValues=countryValues)
 
 
 @app.errorhandler(404)

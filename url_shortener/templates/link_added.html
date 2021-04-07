@@ -16,10 +16,23 @@
         {{ url_for('app.redirect_to_url', short_url=new_link, _external = True) }}
     </a>
     <br />
-    <b style="font-weight: normal">Location: {{link.location}}</a>
-    <br />
     <canvas id="qr-code"></canvas>
+    <br />
+    {% if cityKeys is defined %}
+      City: <br/>
+      {% for i in range(cityKeys|length) %}
+        {{ cityKeys[i] }} : {{ cityValues[i] }}
+      {% endfor %}
+    {% endif %}
+    <br />
+    {% if countryKeys is defined %}
+      Country: <br/>
+      {% for i in range(countryKeys|length) %}
+        {{ countryKeys[i] }} : {{ countryValues[i] }}
+      {% endfor %}
+    {% endif %}
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <script>
       function urlListPage(){
