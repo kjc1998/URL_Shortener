@@ -97,7 +97,7 @@ nav {
   transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 1084px) {
+@media screen and (max-width: 1366px) {
   .whole {
     overflow-x: hidden;
   }
@@ -579,13 +579,13 @@ nav {
 
 /* Mobile view*/
 /*Revert card to original to style*/
-@media only screen and (max-width: 1084px) {
+@media only screen and (max-width: 1366px) {
   .card-list {
     all: revert;
   }
 }
 
-@media screen and (max-width: 1084px) {
+@media screen and (max-width: 1366px) {
   .details {
     display: flex;
     flex-flow: column nowrap;
