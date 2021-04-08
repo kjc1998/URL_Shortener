@@ -10,7 +10,6 @@ from .models import User, Link
 load_dotenv()
 
 appF = Flask(__name__)
-appF.config['FLASK_APP'] = os.getenv("FLASK_APP")
 appF.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
 appF.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
