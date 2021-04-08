@@ -10,17 +10,18 @@ from .models import User, Link
 load_dotenv()
 
 appF = Flask(__name__)
-appF.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DATABASE_URL"]
+appF.config['FLASK_APP'] = os.getenv("FLASK_APP")
+appF.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
-appF.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
+appF.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 appF.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 appF.config['MAIL_SERVER'] = 'smtp.gmail.com'
 appF.config['MAIL_PORT'] = 587
 appF.config['MAIL_USE_TLS'] = True
 appF.config['MAIL_USE_SSL'] = False
 
-appF.config['MAIL_USERNAME'] = os.environ["MAIL_USERNAME"]
-appF.config['MAIL_PASSWORD'] = os.environ["MAIL_PASSWORD"]
+appF.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
+appF.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
 appF.config['MAIL_DEFAULT_SENDER'] = "spArrow@gmail.com"
 
 appF.register_blueprint(url_shortener.routes.app)
