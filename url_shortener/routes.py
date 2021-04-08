@@ -169,10 +169,22 @@ def link_page(short):
     link = Link.query.filter_by(short_url=short).first()
     try:
         clickDict = json.loads(link.location)
-        cityKeys = list(clickDict["city"].keys())
-        cityValues = list(clickDict["city"].values())
-        countryKeys = list(clickDict["country"].keys())
-        countryValues = list(clickDict["country"].values())
+        cityList = sorted(clickDict["city"].items(),
+                          key=lambda item: item[1])[-1::]
+        countryList = sorted(
+            clickDict["country"].items(), key=lambda item: item[1])[-1::]
+
+        f5City = cityList[:5]
+        f5Country = countryList[:5]
+
+        cityKeys, cityValues, countryKeys, countryValues = [], [], [], []
+        for i in range(min(5, len(f5City))):
+            cityKeys.append(f5City[i][0])
+            cityValues.append(f5City[i][1])
+        for i in range(min(5, len(f5Country))):
+            countryKeys.append(f5Country[i][0])
+            countryValues.append(f5Country[i][1])
+        print(cityKeys, cityValues, countryKeys, countryValues)
     except:
         cityKeys, cityValues = [], []
         countryKeys, countryValues = [], []

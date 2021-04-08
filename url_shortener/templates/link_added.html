@@ -18,18 +18,34 @@
     <br />
     <canvas id="qr-code"></canvas>
     <br />
-    City: <br/>
-    {% if cityKeys is defined %}
-      {% for i in range(cityKeys|length) %}
-        {{ cityKeys[i] }} : {{ cityValues[i] }}
-      {% endfor %}
+    {% if cityKeys|length > 0 %}
+      <table>
+        <tr>
+          <th>City</th>
+          <th>Clicks</th>
+        </tr>
+        {% for i in range(cityKeys|length) %}
+          <tr>
+            <th>{{ cityKeys[i] }}</th>
+            <th>{{ cityValues[i] }}</th>
+          </tr>
+        {% endfor %}
+      </table>
     {% endif %}
     <br />
-    Country: <br/>
-    {% if countryKeys is defined %}
-      {% for i in range(countryKeys|length) %}
-        {{ countryKeys[i] }} : {{ countryValues[i] }}
-      {% endfor %}
+    {% if countryKeys|length > 0 %}
+      <table>
+        <tr>
+          <th>Country</th>
+          <th>Clicks</th>
+        </tr>
+        {% for i in range(cityKeys|length) %}
+          <tr>
+            <th>{{ countryKeys[i] }}</th>
+            <th>{{ countryValues[i] }}</th>
+          </tr>
+        {% endfor %}
+      </table>
     {% endif %}
   </div>
 
