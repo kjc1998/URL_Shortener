@@ -846,9 +846,25 @@ img {
 }
 
 /* slideshow css End */
+/* th {
+  background-color: grey;
+  color: #ffffff;
+}
+
+table{ 
+  color: black;
+} */
+
+.tablack{
+  color: black;
+}
+
+/* .tables{
+  margin: 3vw 3vw;
+} */
 
 /*Tables*/
-table {
+/* table {
   border-collapse: collapse;
   border-radius: 1em;
   overflow: hidden;
@@ -861,7 +877,7 @@ th {
   color: #ffffff;
   text-align: center !important;
   padding: 16px !important;
-}
+} */
 
 td {
   background: #464646;
@@ -871,6 +887,8 @@ td {
 #homeTable {
   margin-left: 1.3em;
 }
+
+
 
 .page {
   text-align: center;
