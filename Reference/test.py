@@ -16,3 +16,4 @@ postLink = BASE + "details/" + f"{userID}/" + URL
 
 # retrieve details relating to given link/ shorten link if new in database (json format)
 details = requests.post(postLink).json()
+
