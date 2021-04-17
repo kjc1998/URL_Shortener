@@ -1,15 +1,18 @@
 import json
 import requests
-import urllib
 
-USERNAME, PASSWORD = "cer0cifer", "Ckj1ckj1"
 BASE = "https://spshurl.herokuapp.com/"
-userID = (requests.post(BASE + "login/" + USERNAME + "/" + PASSWORD).json())['userid']
-print(userID)
+
+# username and password
+USERNAME, PASSWORD = '''{ username }''' , '''{ password }'''
+loginLink = BASE + "login/" + f"{USERNAME}/" + PASSWORD
+
+# retrieve userID
+userID = (requests.post().json())['userid']
 
 # url to be shortened or extracted
-URL = "https://docs.katalon.com/katalon-studio/videos/create_basic_automation_test_case_katalon_studio.html"
+URL = '''{ original url }'''
 postLink = BASE + "details/" + f"{userID}/" + URL
 
+# retrieve details relating to given link/ shorten link if new in database (json format)
 details = requests.post(postLink).json()
-print(details)
