@@ -290,29 +290,22 @@ def global_graph():
             for i in range(min(5, len(f5City))):
                 cityKeys.append(f5City[i][0])
                 cityValues.append(f5City[i][1])
-
             for key in range(len(cityKeys)):
                 if cityKeys[key] in cityDict:
                     cityDict[cityKeys[key]] += (cityValues[key])
                 else:
                     cityDict[cityKeys[key]] = cityValues[key]
-
             for i in range(min(5, len(f5Country))):
                 countryKeys.append(f5Country[i][0])
                 countryValues.append(f5Country[i][1])
-
             for key in range(len(countryKeys)):
                 if countryKeys[key] in countryDict:
                     countryDict[countryKeys[key]] += (countryValues[key])
                 else:
                     countryDict[countryKeys[key]] = countryValues[key]
-
         except:
             cityKeys, cityValues = [], []
             countryKeys, countryValues = [], []
-            cityDict = {}
-            countryDict = {}
-
     cityDict = dict(
         reversed(sorted(cityDict.items(), key=lambda item: item[1])))
     cityDict = dict(list(cityDict.items())[:5])
@@ -324,7 +317,9 @@ def global_graph():
     countryDict = json.dumps(countryDict)
 
     # RENDER TEMPLATE
-    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary, lenDict=len_dict, sumDict=sum_dict, lenCurDict=len_curdict, sumCurDict=sum_curdict, cityLinkDict=cityDict, countryLinkDict=countryDict)
+    return render_template('graphBen.html', link=links, linkDict=dictionary,
+                           currentLinkDict=currentDictionary, lenDict=len_dict, sumDict=sum_dict,
+                           lenCurDict=len_curdict, sumCurDict=sum_curdict, cityLinkDict=cityDict, countryLinkDict=countryDict)
 
 
 def send_verification_email(user, methods='GET'):
