@@ -91,7 +91,7 @@ def redirect_to_url(short_url):
     teleDevice = flask.request.headers.get('User-Agent')
     url = 'http://ip-api.com/json/{}'.format(get_client_ip(flask.request))
     userLocation = requests.get(url).json()
-    #print(userLocation)
+    # print(userLocation)
     if userLocation['status'] == 'success':
         city = userLocation['city']
         country = userLocation['country']
@@ -118,11 +118,11 @@ def redirect_to_url(short_url):
     return redirect(link.original_url)
 
 
-def get_client_ip(request):
-    if request.headers.getlist("X-Forwarded-For"):
-        ip = request.headers.getlist("X-Forwarded-For")[0]
+def get_client_ip(flaskRequest):
+    if flaskRequest.headers.getlist("X-Forwarded-For"):
+        ip = flaskRequest.headers.getlist("X-Forwarded-For")[0]
     else:
-        ip = request.remote_addr
+        ip = flaskRequest.remote_addr
     return ip
 
 
@@ -176,7 +176,7 @@ def link_page(short):
 
         f5City = cityList[:5]
         f5Country = countryList[:5]
-        #print(clickDict)
+        # print(clickDict)
         cityKeys, cityValues, countryKeys, countryValues = [], [], [], []
         for i in range(min(5, len(f5City))):
             cityKeys.append(f5City[i][0])
@@ -251,7 +251,8 @@ def global_graph():
             dictionary[link.domain_url] = link.visits
     len_dict = len(dictionary)
     sum_dict = sum(dictionary.values())
-    dictionary = dict(reversed(sorted(dictionary.items(), key=lambda item: item[1])))
+    dictionary = dict(
+        reversed(sorted(dictionary.items(), key=lambda item: item[1])))
     dictionary = dict(list(dictionary.items())[:5])
     dictionary = json.dumps(dictionary)
 
@@ -265,11 +266,12 @@ def global_graph():
             currentDictionary[link.domain_url] = link.visits
     len_curdict = len(currentDictionary)
     sum_curdict = sum(currentDictionary.values())
-    currentDictionary = dict(reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
+    currentDictionary = dict(
+        reversed(sorted(currentDictionary.items(), key=lambda item: item[1])))
     currentDictionary = dict(list(currentDictionary.items())[:5])
     currentDictionary = json.dumps(currentDictionary)
 
-    #COUNTRY DATA
+    # COUNTRY DATA
     clink = Link.query.filter_by(author=current_user).all()
     cityDict = {}
     countryDict = {}
@@ -277,8 +279,10 @@ def global_graph():
     for link in clink:
         try:
             clickDict = json.loads(link.location)
-            cityList = sorted(clickDict["city"].items(),key=lambda item: item[1])[-1::]
-            countryList = sorted(clickDict["country"].items(), key=lambda item: item[1])[-1::]
+            cityList = sorted(
+                clickDict["city"].items(), key=lambda item: item[1])[-1::]
+            countryList = sorted(
+                clickDict["country"].items(), key=lambda item: item[1])[-1::]
 
             f5City = cityList[:5]
             f5Country = countryList[:5]
@@ -309,16 +313,18 @@ def global_graph():
             cityDict = {}
             countryDict = {}
 
-    cityDict = dict(reversed(sorted(cityDict.items(), key=lambda item: item[1])))
+    cityDict = dict(
+        reversed(sorted(cityDict.items(), key=lambda item: item[1])))
     cityDict = dict(list(cityDict.items())[:5])
     cityDict = json.dumps(cityDict)
 
-    countryDict = dict(reversed(sorted(countryDict.items(), key=lambda item: item[1])))
+    countryDict = dict(
+        reversed(sorted(countryDict.items(), key=lambda item: item[1])))
     countryDict = dict(list(countryDict.items())[:5])
     countryDict = json.dumps(countryDict)
-    
-    #RENDER TEMPLATE
-    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary,lenDict=len_dict, sumDict=sum_dict, lenCurDict=len_curdict, sumCurDict=sum_curdict, cityLinkDict=cityDict, countryLinkDict=countryDict)
+
+    # RENDER TEMPLATE
+    return render_template('graphBen.html', link=links, linkDict=dictionary, currentLinkDict=currentDictionary, lenDict=len_dict, sumDict=sum_dict, lenCurDict=len_curdict, sumCurDict=sum_curdict, cityLinkDict=cityDict, countryLinkDict=countryDict)
 
 
 def send_verification_email(user, methods='GET'):
