@@ -19,14 +19,14 @@
     <canvas id="qr-code"></canvas>
     <br />
     {% if cityKeys|length > 0 %}
-      <table>
+      <table class="tables">
         <tr>
-          <th>City</th>
+          <th style= "width:300px">City</th>
           <th>Clicks</th>
         </tr>
         {% for i in range(cityKeys|length) %}
-          <tr>
-            <th>{{ cityKeys[i] }}</th>
+          <tr class="tablack">
+            <th >{{ cityKeys[i] }}</th>
             <th>{{ cityValues[i] }}</th>
           </tr>
         {% endfor %}
@@ -36,11 +36,11 @@
     {% if countryKeys|length > 0 %}
       <table>
         <tr>
-          <th>Country</th>
+          <th style= "width:300px">Country</th>
           <th>Clicks</th>
         </tr>
         {% for i in range(cityKeys|length) %}
-          <tr>
+          <tr class="tablack">
             <th>{{ countryKeys[i] }}</th>
             <th>{{ countryValues[i] }}</th>
           </tr>

@@ -60,11 +60,12 @@
                   <li>Must first have a registered account at the hosted webpage.</li>
                   <li>Set up a <i style="color:#A97EDF; font-weight: bold;">BASE</i> variable that links to <b style="color:#25C3AA">"https://spshurl.herokuapp.com/"</b>.</li>
                   <li>Obtain individual specific userID in JSON format via request method as given in the example below:<br>
-                  <b style="color:#25C3AA">request.post(<i style="color:#A97EDF">BASE</i> + "login/" + "{<i style="color:#A97EDF">username</i>}/" + "{<i style="color:#A97EDF">password</i>}")</b></li>
+                  <b style="color:#25C3AA">requests.post(<i style="color:#A97EDF">BASE</i> + "login/" + "{<i style="color:#A97EDF">username</i>}/" + "{<i style="color:#A97EDF">password</i>}")</b></li>
                   <li>Run another post request to either add or obtain information related to a given URL:<br>
-                  <b style="color:#25C3AA">request.post(BASE + "details/" + "{<i style="color:#A97EDF">userID</i>}/" + "{<i style="color:#A97EDF">URL</i>}")</b><br>which should return a JSON serialised dictionary with all relevant details.</li>
+                  <b style="color:#25C3AA">requests.post(BASE + "details/" + "{<i style="color:#A97EDF">userID</i>}/" + "{<i style="color:#A97EDF">URL</i>}")</b><br>which should return a JSON serialised dictionary with all relevant details.</li>
                 </ol>
               </div>
+              <img src="static/code/apiExample.png" width="650" />
             </p>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
