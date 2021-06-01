@@ -91,12 +91,13 @@ def redirect_to_url(short_url):
     teleDevice = flask.request.headers.get('User-Agent')
     url = 'http://ip-api.com/json/{}'.format(get_client_ip(flask.request))
     userLocation = requests.get(url).json()
-    # print(userLocation)
     if userLocation['status'] == 'success':
         city = userLocation['city']
         country = userLocation['country']
-        if link.location != None:
+        # print(city, country)
+        if link.location is not None:
             old_dict = json.loads(link.location)
+            # print(old_dict)
             try:
                 old_dict["city"][city] = int(old_dict["city"][city]) + 1
             except:
@@ -106,6 +107,7 @@ def redirect_to_url(short_url):
                     int(old_dict["country"][country]) + 1
             except:
                 old_dict["country"][country] = 1
+            print(old_dict)
             link.location = json.dumps(old_dict)
         else:
             new_dict = {"city": {city: 1}, "country": {country: 1}}
@@ -167,13 +169,14 @@ def stats():
 @app.route('/add_link/<short>', methods=['GET', 'POST'])
 def link_page(short):
     link = Link.query.filter_by(short_url=short).first()
+    # print(link.location)
     try:
         clickDict = json.loads(link.location)
         cityList = sorted(clickDict["city"].items(),
-                          key=lambda item: item[1])[-1::]
+                          key=lambda item: item[1])[::-1]
         countryList = sorted(
-            clickDict["country"].items(), key=lambda item: item[1])[-1::]
-
+            clickDict["country"].items(), key=lambda item: item[1])[::-1]
+        # print(cityList, countryList)
         f5City = cityList[:5]
         f5Country = countryList[:5]
         # print(clickDict)
@@ -283,7 +286,6 @@ def global_graph():
                 clickDict["city"].items(), key=lambda item: item[1])[-1::]
             countryList = sorted(
                 clickDict["country"].items(), key=lambda item: item[1])[-1::]
-
             f5City = cityList[:5]
             f5Country = countryList[:5]
             cityKeys, cityValues, countryKeys, countryValues, counter = [], [], [], [], []
