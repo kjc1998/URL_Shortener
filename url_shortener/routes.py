@@ -283,23 +283,26 @@ def global_graph():
         try:
             clickDict = json.loads(link.location)
             cityList = sorted(
-                clickDict["city"].items(), key=lambda item: item[1])[-1::]
+                clickDict["city"].items(), key=lambda item: item[1])[::-1]
             countryList = sorted(
-                clickDict["country"].items(), key=lambda item: item[1])[-1::]
+                clickDict["country"].items(), key=lambda item: item[1])[::-1]
             f5City = cityList[:5]
             f5Country = countryList[:5]
             cityKeys, cityValues, countryKeys, countryValues, counter = [], [], [], [], []
             for i in range(min(5, len(f5City))):
                 cityKeys.append(f5City[i][0])
                 cityValues.append(f5City[i][1])
+
             for key in range(len(cityKeys)):
                 if cityKeys[key] in cityDict:
                     cityDict[cityKeys[key]] += (cityValues[key])
                 else:
                     cityDict[cityKeys[key]] = cityValues[key]
+
             for i in range(min(5, len(f5Country))):
                 countryKeys.append(f5Country[i][0])
                 countryValues.append(f5Country[i][1])
+
             for key in range(len(countryKeys)):
                 if countryKeys[key] in countryDict:
                     countryDict[countryKeys[key]] += (countryValues[key])
