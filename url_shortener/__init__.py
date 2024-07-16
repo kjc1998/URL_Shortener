@@ -1,11 +1,8 @@
 ﻿import os
 from dotenv import load_dotenv
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 import url_shortener.routes
 from .extensions import db, login_manager, bcrypt, api, mail
-from .models import User, Link
 
 load_dotenv()
 

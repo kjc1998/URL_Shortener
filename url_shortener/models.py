@@ -1,7 +1,7 @@
 ﻿import string
 from random import choices
 from datetime import datetime
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous.url_safe import URLSafeTimedSerializer as Serializer
 from flask import current_app
 from flask_login import UserMixin
 from .extensions import db, login_manager

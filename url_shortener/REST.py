@@ -1,15 +1,11 @@
-import string
 import json
-from random import choices
 from urllib.parse import quote
 import validators
 import requests
 import tldextract
-from flask import Flask, request
-from flask_restful import Resource, abort, reqparse, fields, marshal_with
-from flask_sqlalchemy import SQLAlchemy
+from flask_restful import Resource, abort
 from .models import User, Link
-from .extensions import db, login_manager, bcrypt, api
+from .extensions import db, bcrypt, api
 
 
 class Login(Resource):
